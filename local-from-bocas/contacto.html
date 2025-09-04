@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Local From Bocas | Planifica tu Aventura en Bocas del Toro</title>
+    <meta name="description" content="Contáctanos para planificar tu aventura perfecta en Bocas del Toro. Tours personalizados, asistencia de viaje y experiencias auténticas te esperan.">
+    <meta name="keywords" content="contacto Bocas del Toro, tours personalizados, asistencia viaje, reservas, Local From Bocas">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%);
+            background-image: url('https://via.placeholder.com/1920x800/0F5B55/FFFFFF?text=Contacto+Local+From+Bocas');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+        .hero::before {
+            background: rgba(15, 91, 85, 0.7);
+        }
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .checkbox-label input[type="checkbox"] {
+            margin: 0;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--jungle-teal);
+        }
+        .contact-methods {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        .contact-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+        .contact-details h3 {
+            margin-bottom: 0.5rem;
+            color: var(--jungle-teal);
+        }
+        .contact-details p {
+            margin-bottom: 0.25rem;
+        }
+        .contact-note {
+            font-size: 14px;
+            color: var(--neutral-gray);
+            font-style: italic;
+        }
+        .social-media {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        .social-media h3 {
+            margin-bottom: 1rem;
+            color: var(--jungle-teal);
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .social-link {
+            color: var(--ocean-blue);
+            font-weight: 500;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--ocean-blue);
+            border-radius: var(--radius-pill);
+            transition: all 0.2s ease;
+        }
+        .social-link:hover {
+            background: var(--ocean-blue);
+            color: white;
+        }
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        .faq-item {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        .faq-item h3 {
+            color: var(--jungle-teal);
+            margin-bottom: 1rem;
+        }
+        .map-container {
+            margin-bottom: 2rem;
+        }
+        .location-details {
+            margin-top: 2rem;
+        }
+        .location-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        .location-card h3 {
+            color: var(--jungle-teal);
+            margin-bottom: 1rem;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">Local From Bocas</a>
+            <nav>
+                <ul class="navbar-nav">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="vlogs.html">Vlogs</a></li>
+                    <li><a href="panama.html">Panamá</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="contacto.html" class="active">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="height: 50vh; min-height: 400px;">
+        <div class="hero-content">
+            <div class="pill mb-md">📞 Contáctanos</div>
+            <h1>Planifica tu Aventura Perfecta en Bocas del Toro</h1>
+            <p class="body-large">Estamos aquí para ayudarte a crear la experiencia de viaje auténtica que siempre has soñado</p>
+        </div>
+    </section>
+
+    <!-- Contact Form and Info -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-2">
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <h2>Enviarnos un Mensaje</h2>
+                    <p class="body-large mb-lg">Cuéntanos sobre tu viaje ideal y te ayudaremos a hacerlo realidad</p>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo *</label>
+                            <input type="text" id="name" name="name" class="input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" class="input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" class="input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Servicio de Interés</label>
+                            <select id="service" name="service" class="input">
+                                <option value="">Selecciona un servicio</option>
+                                <option value="tours">Tours Históricos</option>
+                                <option value="merchandise">Mercancía Cultural</option>
+                                <option value="assistance">Asistencia Personalizada</option>
+                                <option value="custom">Experiencia Personalizada</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="travel-dates">Fechas de Viaje</label>
+                            <input type="text" id="travel-dates" name="travel-dates" class="input" placeholder="Ej: 15-20 de Marzo, 2024">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="group-size">Tamaño del Grupo</label>
+                            <select id="group-size" name="group-size" class="input">
+                                <option value="">Selecciona el tamaño</option>
+                                <option value="1">1 persona</option>
+                                <option value="2">2 personas</option>
+                                <option value="3-4">3-4 personas</option>
+                                <option value="5-8">5-8 personas</option>
+                                <option value="9+">9+ personas</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensaje *</label>
+                            <textarea id="message" name="message" class="input" rows="5" placeholder="Cuéntanos sobre tus intereses, expectativas y cualquier pregunta que tengas..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <span class="checkmark"></span>
+                                Quiero recibir actualizaciones sobre tours y contenido de Bocas del Toro
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                    </form>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="contact-info-section">
+                    <h2>Información de Contacto</h2>
+                    <p class="body-large mb-lg">Múltiples formas de ponerte en contacto con nosotros</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-details">
+                                <h3>Correo Electrónico</h3>
+                                <p>info@localfrombocas.com</p>
+                                <p class="contact-note">Respuesta en 24 horas</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">📱</div>
+                            <div class="contact-details">
+                                <h3>WhatsApp</h3>
+                                <p>+507 1234-5678</p>
+                                <p class="contact-note">Respuesta inmediata</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-details">
+                                <h3>Teléfono</h3>
+                                <p>+507 1234-5678</p>
+                                <p class="contact-note">Lunes a Viernes, 8AM-6PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-details">
+                                <h3>Ubicación</h3>
+                                <p>Bocas Town, Isla Colón<br>Bocas del Toro, Panamá</p>
+                                <p class="contact-note">Oficina principal</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-media">
+                        <h3>Síguenos en Redes Sociales</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link">Instagram</a>
+                            <a href="#" class="social-link">Facebook</a>
+                            <a href="#" class="social-link">YouTube</a>
+                            <a href="#" class="social-link">TikTok</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" style="background-color: var(--seafoam);">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Preguntas Frecuentes</h2>
+                <p class="body-large">Respuestas a las preguntas más comunes sobre nuestros servicios</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>¿Cuánto tiempo debo planificar para mi visita a Bocas del Toro?</h3>
+                    <p>Recomendamos al menos 3-4 días para experimentar lo mejor de Bocas del Toro. Esto te permitirá disfrutar de nuestros tours históricos, explorar las islas y relajarte en las hermosas playas.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>¿Los tours están disponibles en inglés?</h3>
+                    <p>Sí, todos nuestros tours están disponibles tanto en español como en inglés. Nuestros guías son bilingües y conocen profundamente la cultura local.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>¿Qué incluye el servicio de asistencia personalizada?</h3>
+                    <p>Nuestro servicio incluye planificación de itinerario, recomendaciones de alojamiento, reservas de actividades, consejos de transporte local y soporte durante toda tu estadía.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>¿Puedo personalizar mi experiencia?</h3>
+                    <p>¡Absolutamente! Nos especializamos en crear experiencias personalizadas basadas en tus intereses específicos, ya sea historia, naturaleza, cultura o aventura.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>¿Cómo puedo reservar la mercancía cultural?</h3>
+                    <p>Puedes ver nuestro catálogo en línea y hacer pedidos a través de nuestro formulario de contacto. También tenemos una tienda física en Bocas Town.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>¿Ofrecen descuentos para grupos grandes?</h3>
+                    <p>Sí, ofrecemos descuentos especiales para grupos de 6 o más personas. Contáctanos para obtener una cotización personalizada.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Encuéntranos en Bocas del Toro</h2>
+                <p class="body-large">Nuestra oficina principal está ubicada en el corazón de Bocas Town</p>
+            </div>
+            
+            <div class="map-container">
+                <img src="https://via.placeholder.com/800x400/0F5B55/FFFFFF?text=Mapa+Bocas+Town+Oficina" alt="Ubicación de Local From Bocas en Bocas Town" style="width: 100%; border-radius: var(--radius-lg);">
+            </div>
+            
+            <div class="location-details">
+                <div class="grid grid-3">
+                    <div class="location-card">
+                        <h3>Oficina Principal</h3>
+                        <p>Calle 3ra, Bocas Town<br>Isla Colón, Bocas del Toro<br>Panamá</p>
+                        <div class="pill-light">📍 Centro de Bocas Town</div>
+                    </div>
+                    
+                    <div class="location-card">
+                        <h3>Horarios de Atención</h3>
+                        <p>Lunes a Viernes: 8:00 AM - 6:00 PM<br>Sábados: 9:00 AM - 4:00 PM<br>Domingos: Cerrado</p>
+                        <div class="pill-light">🕒 Horario Extendido</div>
+                    </div>
+                    
+                    <div class="location-card">
+                        <h3>Servicios en Oficina</h3>
+                        <p>Consultoría personalizada<br>Venta de mercancía<br>Información turística<br>Reservas de tours</p>
+                        <div class="pill-light">🎯 Servicio Completo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%); color: white;">
+        <div class="container text-center">
+            <h2 style="color: white;">¿Listo para tu Aventura?</h2>
+            <p class="body-large" style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">No esperes más. Contáctanos hoy y comienza a planificar la experiencia de viaje de tus sueños en Bocas del Toro.</p>
+            <div class="hero-actions">
+                <a href="#contactForm" class="btn" style="background: white; color: var(--jungle-teal);">Enviar Mensaje</a>
+                <a href="https://wa.me/50712345678" class="btn btn-secondary" style="border-color: white; color: white;">WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Local From Bocas</h3>
+                    <p>Conectando viajeros con la auténtica cultura de Bocas del Toro, Panamá.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <a href="servicios.html#tours">Tours Históricos</a>
+                    <a href="servicios.html#merchandise">Mercancía Cultural</a>
+                    <a href="servicios.html#assistance">Asistencia Personalizada</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Explorar</h3>
+                    <a href="vlogs.html">Vlogs</a>
+                    <a href="panama.html">Panamá</a>
+                    <a href="nosotros.html">Nosotros</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <a href="contacto.html">Contáctanos</a>
+                    <a href="mailto:info@localfrombocas.com">info@localfrombocas.com</a>
+                    <a href="tel:+507-1234-5678">+507 1234-5678</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Local From Bocas. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

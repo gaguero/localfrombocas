@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - Local From Bocas | Tours, Mercancía y Asistencia</title>
+    <meta name="description" content="Descubre nuestros servicios: tours históricos auténticos, mercancía cultural de alta calidad y asistencia personalizada para tu viaje a Bocas del Toro.">
+    <meta name="keywords" content="tours Bocas del Toro, mercancía cultural, asistencia viajeros, servicios turísticos Panamá">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%);
+            background-image: url('https://via.placeholder.com/1920x800/0F5B55/FFFFFF?text=Servicios+Local+From+Bocas');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+        .hero::before {
+            background: rgba(15, 91, 85, 0.7);
+        }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .feature-item .pill-light {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .product-categories {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .category-item {
+            padding: 1rem;
+            background: white;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--palm-leaf);
+        }
+        .service-packages {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .package-item {
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .testimonial-author span {
+            color: var(--neutral-gray);
+            font-size: 14px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 768px) {
+            .service-packages {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">Local From Bocas</a>
+            <nav>
+                <ul class="navbar-nav">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html" class="active">Servicios</a></li>
+                    <li><a href="vlogs.html">Vlogs</a></li>
+                    <li><a href="panama.html">Panamá</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="height: 50vh; min-height: 400px;">
+        <div class="hero-content">
+            <div class="pill mb-md">🎯 Nuestros Servicios</div>
+            <h1>Experiencias Auténticas en Bocas del Toro</h1>
+            <p class="body-large">Descubre nuestros tres servicios principales diseñados para conectarte con la verdadera cultura de la región</p>
+        </div>
+    </section>
+
+    <!-- Tours Históricos -->
+    <section class="section" id="tours">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <div class="pill mb-md">🏛️ Tours Históricos</div>
+                    <h2>Conecta con la Historia de Bocas Town</h2>
+                    <p class="body-large mb-lg">Nuestros tours históricos ofrecen una experiencia educativa y entretenida que te lleva más allá de la superficie turística. Descubre los secretos mejor guardados de Bocas del Toro.</p>
+                    
+                    <div class="features">
+                        <div class="feature-item">
+                            <div class="pill-light">📚</div>
+                            <div>
+                                <h4>Historia Auténtica</h4>
+                                <p>Conoce la verdadera historia de la región, desde la época precolombina hasta la actualidad.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🎭</div>
+                            <div>
+                                <h4>Experiencia Inmersiva</h4>
+                                <p>No solo escuches, sino que vivas la historia a través de experiencias interactivas y storytelling.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">👥</div>
+                            <div>
+                                <h4>Grupos Pequeños</h4>
+                                <p>Máximo 8 personas por tour para una experiencia personalizada y de calidad.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="callout">
+                        <div class="callout-price">Desde $45 USD</div>
+                        <p>Incluye guía local experto, materiales educativos y refrigerio tradicional</p>
+                    </div>
+                    
+                    <a href="contacto.html" class="btn btn-primary">Reservar Tour</a>
+                </div>
+                
+                <div class="service-image">
+                    <img src="https://via.placeholder.com/600x400/0F5B55/FFFFFF?text=Tour+Historico+Bocas+Town" alt="Tour Histórico en Bocas Town" style="width: 100%; border-radius: var(--radius-lg);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mercancía Cultural -->
+    <section class="section" id="merchandise" style="background-color: var(--seafoam);">
+        <div class="container">
+            <div class="grid grid-2">
+                <div class="service-image">
+                    <img src="https://via.placeholder.com/600x400/8DBB66/FFFFFF?text=Mercancia+Cultural" alt="Mercancía Cultural de Bocas del Toro" style="width: 100%; border-radius: var(--radius-lg);">
+                </div>
+                
+                <div>
+                    <div class="pill mb-md">🎨 Mercancía Cultural</div>
+                    <h2>Lleva Contigo un Pedazo de Bocas del Toro</h2>
+                    <p class="body-large mb-lg">Nuestra línea de mercancía de alta calidad presenta diseños originales que representan auténticamente la cultura bocatoreña. Cada producto cuenta una historia.</p>
+                    
+                    <div class="features">
+                        <div class="feature-item">
+                            <div class="pill-light">🎨</div>
+                            <div>
+                                <h4>Diseños Originales</h4>
+                                <p>Creados por artistas locales que conocen profundamente la cultura de la región.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🌿</div>
+                            <div>
+                                <h4>Materiales Sostenibles</h4>
+                                <p>Productos elaborados con materiales eco-friendly y técnicas tradicionales.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🤝</div>
+                            <div>
+                                <h4>Apoyo Local</h4>
+                                <p>Comprando nuestros productos apoyas directamente a las comunidades locales.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-categories">
+                        <div class="category-item">
+                            <h4>Ropa y Accesorios</h4>
+                            <p>Camisetas, gorras, bolsos con diseños únicos</p>
+                        </div>
+                        <div class="category-item">
+                            <h4>Artesanías</h4>
+                            <p>Piezas únicas elaboradas por artesanos locales</p>
+                        </div>
+                        <div class="category-item">
+                            <h4>Recuerdos</h4>
+                            <p>Productos que capturan la esencia de Bocas del Toro</p>
+                        </div>
+                    </div>
+                    
+                    <a href="contacto.html" class="btn btn-primary">Ver Catálogo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Asistencia Personalizada -->
+    <section class="section" id="assistance">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <div class="pill mb-md">🤝 Asistencia Personalizada</div>
+                    <h2>Tu Guía Personal en Bocas del Toro</h2>
+                    <p class="body-large mb-lg">Nuestro servicio de asistencia personalizada te ayuda a planificar la visita perfecta a Bocas del Toro. Desde recomendaciones de lugares hasta reservas y logística.</p>
+                    
+                    <div class="features">
+                        <div class="feature-item">
+                            <div class="pill-light">📋</div>
+                            <div>
+                                <h4>Planificación Personalizada</h4>
+                                <p>Itinerarios adaptados a tus intereses, presupuesto y tiempo disponible.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🏨</div>
+                            <div>
+                                <h4>Reservas y Logística</h4>
+                                <p>Te ayudamos con reservas de alojamiento, transporte y actividades.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">📱</div>
+                            <div>
+                                <h4>Soporte 24/7</h4>
+                                <p>Asistencia durante toda tu estadía en Bocas del Toro.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-packages">
+                        <div class="package-item">
+                            <h4>Paquete Básico</h4>
+                            <div class="callout-price">$25 USD</div>
+                            <p>Consultoría inicial y recomendaciones personalizadas</p>
+                        </div>
+                        <div class="package-item">
+                            <h4>Paquete Completo</h4>
+                            <div class="callout-price">$75 USD</div>
+                            <p>Planificación completa + soporte durante tu estadía</p>
+                        </div>
+                    </div>
+                    
+                    <a href="contacto.html" class="btn btn-primary">Solicitar Asistencia</a>
+                </div>
+                
+                <div class="service-image">
+                    <img src="https://via.placeholder.com/600x400/2C8AC6/FFFFFF?text=Asistencia+Personalizada" alt="Asistencia Personalizada para Viajeros" style="width: 100%; border-radius: var(--radius-lg);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="section" style="background-color: var(--island-sand);">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Lo que Dicen Nuestros Clientes</h2>
+                <p class="body-large">Experiencias reales de viajeros que han descubierto la auténtica Bocas del Toro</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="card-body">
+                        <p>"El tour histórico fue increíble. Aprendí más sobre Bocas del Toro en 3 horas que en toda mi estadía anterior. El guía conocía cada detalle de la historia local."</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="testimonial-author">
+                            <strong>María González</strong>
+                            <span>Madrid, España</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                        <p>"La mercancía es de excelente calidad y los diseños son únicos. Cada pieza cuenta una historia. Definitivamente recomiendo comprar aquí."</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="testimonial-author">
+                            <strong>John Smith</strong>
+                            <span>Toronto, Canadá</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                        <p>"La asistencia personalizada hizo que mi viaje fuera perfecto. Me ayudaron con todo: desde dónde comer hasta cómo llegar a lugares secretos que solo los locales conocen."</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="testimonial-author">
+                            <strong>Ana Rodríguez</strong>
+                            <span>Buenos Aires, Argentina</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%); color: white;">
+        <div class="container text-center">
+            <h2 style="color: white;">¿Listo para tu Experiencia Auténtica?</h2>
+            <p class="body-large" style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Contáctanos hoy y comienza a planificar tu aventura perfecta en Bocas del Toro.</p>
+            <div class="hero-actions">
+                <a href="contacto.html" class="btn" style="background: white; color: var(--jungle-teal);">Contactar Ahora</a>
+                <a href="vlogs.html" class="btn btn-secondary" style="border-color: white; color: white;">Leer Nuestros Vlogs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Local From Bocas</h3>
+                    <p>Conectando viajeros con la auténtica cultura de Bocas del Toro, Panamá.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <a href="#tours">Tours Históricos</a>
+                    <a href="#merchandise">Mercancía Cultural</a>
+                    <a href="#assistance">Asistencia Personalizada</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Explorar</h3>
+                    <a href="vlogs.html">Vlogs</a>
+                    <a href="panama.html">Panamá</a>
+                    <a href="nosotros.html">Nosotros</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <a href="contacto.html">Contáctanos</a>
+                    <a href="mailto:info@localfrombocas.com">info@localfrombocas.com</a>
+                    <a href="tel:+507-1234-5678">+507 1234-5678</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Local From Bocas. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bocas del Toro - Local From Bocas | La Joya del Caribe Panameño</title>
+    <meta name="description" content="Descubre Bocas del Toro, conocida como 'Las Galápagos del Siglo XXI'. Explora su biodiversidad excepcional, cultura afrocaribeña y hermosas islas caribeñas.">
+    <meta name="keywords" content="Bocas del Toro, Panamá, Caribe, biodiversidad, islas, cultura afrocaribeña, turismo">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%);
+            background-image: url('https://via.placeholder.com/1920x800/0F5B55/FFFFFF?text=Bocas+del+Toro+Caribbean');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+        .hero::before {
+            background: rgba(15, 91, 85, 0.7);
+        }
+        .province-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--jungle-teal);
+            font-family: var(--font-display);
+        }
+        .stat-label {
+            color: var(--neutral-gray);
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .island-card, .park-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        .island-card:hover, .park-card:hover {
+            transform: translateY(-2px);
+        }
+        .island-content, .park-content {
+            padding: 1.5rem;
+        }
+        .island-highlights, .park-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .feature-item .pill-light {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 768px) {
+            .province-stats {
+                grid-template-columns: 1fr;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-logo">Local From Bocas</a>
+            <nav>
+                <ul class="navbar-nav">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="../servicios.html">Servicios</a></li>
+                    <li><a href="../vlogs.html">Vlogs</a></li>
+                    <li><a href="../panama.html" class="active">Panamá</a></li>
+                    <li><a href="../nosotros.html">Nosotros</a></li>
+                    <li><a href="../contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="height: 50vh; min-height: 400px;">
+        <div class="hero-content">
+            <div class="pill mb-md">🏝️ Bocas del Toro</div>
+            <h1>Las Galápagos del Siglo XXI</h1>
+            <p class="body-large">Descubre la provincia caribeña de Panamá con biodiversidad excepcional, cultura afrocaribeña vibrante y hermosas islas tropicales</p>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <h2>Una Joya del Caribe</h2>
+                    <p class="body-large mb-lg">Bocas del Toro es una provincia única en Panamá, ubicada en el extremo noroeste del país. Conocida como "Las Galápagos del Siglo XXI" por su excepcional biodiversidad, esta región caribeña ofrece una combinación perfecta de naturaleza virgen, cultura auténtica y playas paradisíacas.</p>
+                    
+                    <div class="province-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">4,643</div>
+                            <div class="stat-label">km² de Territorio</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">125,000</div>
+                            <div class="stat-label">Habitantes</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">9</div>
+                            <div class="stat-label">Islas Principales</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Parques Nacionales</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="province-map">
+                    <img src="https://via.placeholder.com/600x400/0F5B55/FFFFFF?text=Mapa+Bocas+del+Toro" alt="Mapa de Bocas del Toro" style="width: 100%; border-radius: var(--radius-lg);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Islas Principales -->
+    <section class="section" style="background-color: var(--seafoam);">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Islas Principales</h2>
+                <p class="body-large">Cada isla tiene su propia personalidad y atractivos únicos</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="island-card">
+                    <img src="https://via.placeholder.com/300x200/0F5B55/FFFFFF?text=Isla+Colon" alt="Isla Colón" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="island-content">
+                        <h3>Isla Colón</h3>
+                        <p>La isla principal donde se encuentra Bocas Town, el centro urbano y cultural de la provincia.</p>
+                        <div class="island-highlights">
+                            <span class="pill-light">🏛️ Bocas Town</span>
+                            <span class="pill-light">🏖️ Playa Bluff</span>
+                            <span class="pill-light">🌊 Surf</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="island-card">
+                    <img src="https://via.placeholder.com/300x200/8DBB66/FFFFFF?text=Isla+Bastimentos" alt="Isla Bastimentos" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="island-content">
+                        <h3>Isla Bastimentos</h3>
+                        <p>Hogar del Parque Nacional Marino Isla Bastimentos y la famosa Playa Red Frog.</p>
+                        <div class="island-highlights">
+                            <span class="pill-light">🏞️ Parque Nacional</span>
+                            <span class="pill-light">🐸 Rana Roja</span>
+                            <span class="pill-light">🏖️ Playa Red Frog</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="island-card">
+                    <img src="https://via.placeholder.com/300x200/FF7466/FFFFFF?text=Cayo+Zapatilla" alt="Cayo Zapatilla" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="island-content">
+                        <h3>Cayo Zapatilla</h3>
+                        <p>Dos pequeñas islas paradisíacas con playas de arena blanca y aguas cristalinas.</p>
+                        <div class="island-highlights">
+                            <span class="pill-light">🏖️ Arena Blanca</span>
+                            <span class="pill-light">🌊 Aguas Cristalinas</span>
+                            <span class="pill-light">🐢 Tortugas Marinas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biodiversidad -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <h2>Biodiversidad Excepcional</h2>
+                    <p class="body-large mb-lg">Bocas del Toro alberga una de las biodiversidades más ricas del planeta, con ecosistemas únicos que incluyen arrecifes de coral, manglares, bosques tropicales y playas de anidación de tortugas marinas.</p>
+                    
+                    <div class="biodiversity-features">
+                        <div class="feature-item">
+                            <div class="pill-light">🐠</div>
+                            <div>
+                                <h4>Arrecifes de Coral</h4>
+                                <p>Algunos de los arrecifes de coral más diversos del Caribe occidental.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🐢</div>
+                            <div>
+                                <h4>Tortugas Marinas</h4>
+                                <p>Importante sitio de anidación para varias especies de tortugas marinas.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🦜</div>
+                            <div>
+                                <h4>Aves Endémicas</h4>
+                                <p>Hogar de numerosas especies de aves endémicas y migratorias.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="biodiversity-image">
+                    <img src="https://via.placeholder.com/600x400/8DBB66/FFFFFF?text=Biodiversidad+Bocas" alt="Biodiversidad de Bocas del Toro" style="width: 100%; border-radius: var(--radius-lg);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cultura -->
+    <section class="section" style="background-color: var(--island-sand);">
+        <div class="container">
+            <div class="grid grid-2">
+                <div class="culture-image">
+                    <img src="https://via.placeholder.com/600x400/FF7466/FFFFFF?text=Cultura+Afrocaribena" alt="Cultura Afrocaribeña" style="width: 100%; border-radius: var(--radius-lg);">
+                </div>
+                
+                <div>
+                    <h2>Cultura Afrocaribeña Vibrante</h2>
+                    <p class="body-large mb-lg">La cultura de Bocas del Toro está profundamente influenciada por la herencia afrocaribeña, con tradiciones que incluyen música, danza, gastronomía y artesanías únicas.</p>
+                    
+                    <div class="culture-features">
+                        <div class="feature-item">
+                            <div class="pill-light">🎵</div>
+                            <div>
+                                <h4>Música y Danza</h4>
+                                <p>Calipso, reggae y danzas tradicionales que reflejan la herencia caribeña.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🍽️</div>
+                            <div>
+                                <h4>Gastronomía</h4>
+                                <p>Platos únicos que combinan ingredientes locales con técnicas caribeñas.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🎨</div>
+                            <div>
+                                <h4>Artesanías</h4>
+                                <p>Artesanías tradicionales que preservan las técnicas ancestrales.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parques Nacionales -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Parques Nacionales y Áreas Protegidas</h2>
+                <p class="body-large">Bocas del Toro cuenta con importantes áreas protegidas que preservan su biodiversidad única</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="park-card">
+                    <img src="https://via.placeholder.com/400x250/0F5B55/FFFFFF?text=Parque+Marino+Bastimentos" alt="Parque Nacional Marino Isla Bastimentos" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="park-content">
+                        <h3>Parque Nacional Marino Isla Bastimentos</h3>
+                        <p>Protege valiosos ecosistemas de arrecifes de coral, manglares y playas de anidación de tortugas marinas.</p>
+                        <div class="park-highlights">
+                            <span class="pill-light">🐠 Arrecifes de coral</span>
+                            <span class="pill-light">🐢 Tortugas marinas</span>
+                            <span class="pill-light">🌊 Ecosistemas marinos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="park-card">
+                    <img src="https://via.placeholder.com/400x250/8DBB66/FFFFFF?text=Parque+La+Amistad" alt="Parque Internacional La Amistad" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="park-content">
+                        <h3>Parque Internacional La Amistad</h3>
+                        <p>Patrimonio Mundial de la UNESCO que protege bosques nubosos y biodiversidad única.</p>
+                        <div class="park-highlights">
+                            <span class="pill-light">🌲 Bosques nubosos</span>
+                            <span class="pill-light">🦜 Aves endémicas</span>
+                            <span class="pill-light">🌿 Biodiversidad</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="park-card">
+                    <img src="https://via.placeholder.com/400x250/FF7466/FFFFFF?text=San+San+Pond+Sak" alt="San San Pond Sak" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="park-content">
+                        <h3>San San Pond Sak</h3>
+                        <p>Humedal de importancia internacional que protege ecosistemas de manglares y vida silvestre.</p>
+                        <div class="park-highlights">
+                            <span class="pill-light">🌿 Manglares</span>
+                            <span class="pill-light">🐊 Vida silvestre</span>
+                            <span class="pill-light">🌊 Humedales</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%); color: white;">
+        <div class="container text-center">
+            <h2 style="color: white;">¿Listo para Descubrir Bocas del Toro?</h2>
+            <p class="body-large" style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Explora esta joya del Caribe con nuestros tours auténticos y experiencias únicas.</p>
+            <div class="hero-actions">
+                <a href="../servicios.html" class="btn" style="background: white; color: var(--jungle-teal);">Nuestros Tours</a>
+                <a href="../contacto.html" class="btn btn-secondary" style="border-color: white; color: white;">Contactar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Local From Bocas</h3>
+                    <p>Conectando viajeros con la auténtica cultura de Bocas del Toro, Panamá.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <a href="../servicios.html#tours">Tours Históricos</a>
+                    <a href="../servicios.html#merchandise">Mercancía Cultural</a>
+                    <a href="../servicios.html#assistance">Asistencia Personalizada</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Explorar</h3>
+                    <a href="../vlogs.html">Vlogs</a>
+                    <a href="../panama.html">Panamá</a>
+                    <a href="../nosotros.html">Nosotros</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <a href="../contacto.html">Contáctanos</a>
+                    <a href="mailto:info@localfrombocas.com">info@localfrombocas.com</a>
+                    <a href="tel:+507-1234-5678">+507 1234-5678</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Local From Bocas. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vlogs - Local From Bocas | Artículos sobre Bocas del Toro y Panamá</title>
+    <meta name="description" content="Descubre la riqueza cultural y natural de Bocas del Toro a través de nuestros artículos. Historia, biodiversidad, cultura y tradiciones de la región.">
+    <meta name="keywords" content="artículos Bocas del Toro, blog Panamá, cultura local, historia Bocas, biodiversidad">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%);
+            background-image: url('https://via.placeholder.com/1920x800/0F5B55/FFFFFF?text=Vlogs+Local+From+Bocas');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+        .hero::before {
+            background: rgba(15, 91, 85, 0.7);
+        }
+        .featured-article {
+            padding: 2rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+        .article-meta {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        .popular-article {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--seafoam);
+        }
+        .popular-article:last-child {
+            border-bottom: none;
+        }
+        .popular-article h4 {
+            margin-bottom: 0.5rem;
+            color: var(--jungle-teal);
+        }
+        .popular-article p {
+            font-size: 14px;
+            color: var(--neutral-gray);
+            margin-bottom: 0.5rem;
+        }
+        .category-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease;
+        }
+        .category-card:hover {
+            transform: translateY(-2px);
+        }
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .article-card {
+            transition: transform 0.2s ease;
+        }
+        .article-card:hover {
+            transform: translateY(-2px);
+        }
+        .article-image {
+            margin-bottom: 1rem;
+        }
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+            .newsletter-form .input {
+                margin-right: 0;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">Local From Bocas</a>
+            <nav>
+                <ul class="navbar-nav">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="vlogs.html" class="active">Vlogs</a></li>
+                    <li><a href="panama.html">Panamá</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="height: 50vh; min-height: 400px;">
+        <div class="hero-content">
+            <div class="pill mb-md">📝 Nuestros Vlogs</div>
+            <h1>Descubre la Riqueza de Bocas del Toro</h1>
+            <p class="body-large">Artículos de valor que te conectan con la historia, cultura y biodiversidad única de esta joya caribeña de Panamá</p>
+        </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-2">
+                <div class="featured-article">
+                    <img src="https://via.placeholder.com/600x400/0F5B55/FFFFFF?text=Historia+Bocas+del+Toro" alt="Historia de Bocas del Toro" style="width: 100%; border-radius: var(--radius-lg); margin-bottom: 1.5rem;">
+                    <div class="pill mb-md">Destacado</div>
+                    <h2>La Historia Oculta de Bocas Town: De la Época Precolombina al Presente</h2>
+                    <p class="body-large mb-lg">Descubre los secretos históricos que pocos conocen sobre la fundación y desarrollo de esta joya caribeña. Desde los primeros asentamientos indígenas hasta la actualidad.</p>
+                    <div class="article-meta">
+                        <span class="pill-light">📅 15 de Diciembre, 2024</span>
+                        <span class="pill-light">⏱️ 8 min lectura</span>
+                        <span class="pill-light">👁️ 1,247 vistas</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">Leer Artículo Completo</a>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Artículos Populares</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="popular-article">
+                                <h4>Las Galápagos del Siglo XXI</h4>
+                                <p>Explora la increíble biodiversidad que hace de Bocas del Toro un destino único en el mundo.</p>
+                                <span class="pill-light">👁️ 892 vistas</span>
+                            </div>
+                            <div class="popular-article">
+                                <h4>Tradiciones que Perduran</h4>
+                                <p>Conoce las tradiciones culturales que han sobrevivido generaciones y siguen vivas hoy en día.</p>
+                                <span class="pill-light">👁️ 756 vistas</span>
+                            </div>
+                            <div class="popular-article">
+                                <h4>Gastronomía Local Auténtica</h4>
+                                <p>Descubre los sabores únicos de la cocina bocatoreña y sus ingredientes tradicionales.</p>
+                                <span class="pill-light">👁️ 634 vistas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section" style="background-color: var(--seafoam);">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Explora por Categorías</h2>
+                <p class="body-large">Encuentra contenido específico sobre los temas que más te interesan</p>
+            </div>
+            
+            <div class="grid grid-4">
+                <div class="category-card">
+                    <div class="category-icon">🏛️</div>
+                    <h3>Historia</h3>
+                    <p>Descubre la rica historia de Bocas del Toro desde sus orígenes hasta la actualidad</p>
+                    <span class="pill-light">12 artículos</span>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🌿</div>
+                    <h3>Biodiversidad</h3>
+                    <p>Explora la increíble flora y fauna que hace única a esta región</p>
+                    <span class="pill-light">8 artículos</span>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🎭</div>
+                    <h3>Cultura</h3>
+                    <p>Conoce las tradiciones, festividades y expresiones culturales locales</p>
+                    <span class="pill-light">15 artículos</span>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🍽️</div>
+                    <h3>Gastronomía</h3>
+                    <p>Descubre los sabores auténticos de la cocina bocatoreña</p>
+                    <span class="pill-light">6 artículos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Articles -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Últimos Artículos</h2>
+                <p class="body-large">Mantente actualizado con nuestro contenido más reciente</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <article class="card article-card">
+                    <div class="article-image">
+                        <img src="https://via.placeholder.com/400x250/8DBB66/FFFFFF?text=Parques+Nacionales" alt="Parques Nacionales de Bocas del Toro" style="width: 100%; border-radius: var(--radius-md);">
+                    </div>
+                    <div class="card-body">
+                        <div class="pill mb-sm">Biodiversidad</div>
+                        <h3>Parques Nacionales: Guardianes de la Biodiversidad</h3>
+                        <p>Explora los parques nacionales que protegen la increíble biodiversidad de Bocas del Toro y su importancia para la conservación.</p>
+                        <div class="article-meta">
+                            <span class="pill-light">📅 12 Dic, 2024</span>
+                            <span class="pill-light">⏱️ 6 min</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-text">Leer Más →</a>
+                    </div>
+                </article>
+
+                <article class="card article-card">
+                    <div class="article-image">
+                        <img src="https://via.placeholder.com/400x250/FF7466/FFFFFF?text=Comunidades+Indigenas" alt="Comunidades Indígenas" style="width: 100%; border-radius: var(--radius-md);">
+                    </div>
+                    <div class="card-body">
+                        <div class="pill mb-sm">Cultura</div>
+                        <h3>Comunidades Indígenas: Guardianes de la Tradición</h3>
+                        <p>Conoce las comunidades indígenas que han preservado sus tradiciones y conocimientos ancestrales en la región.</p>
+                        <div class="article-meta">
+                            <span class="pill-light">📅 10 Dic, 2024</span>
+                            <span class="pill-light">⏱️ 7 min</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-text">Leer Más →</a>
+                    </div>
+                </article>
+
+                <article class="card article-card">
+                    <div class="article-image">
+                        <img src="https://via.placeholder.com/400x250/2C8AC6/FFFFFF?text=Turismo+Sostenible" alt="Turismo Sostenible" style="width: 100%; border-radius: var(--radius-md);">
+                    </div>
+                    <div class="card-body">
+                        <div class="pill mb-sm">Sostenibilidad</div>
+                        <h3>Turismo Sostenible: El Futuro de Bocas del Toro</h3>
+                        <p>Descubre cómo el turismo sostenible puede proteger la belleza natural de la región para las futuras generaciones.</p>
+                        <div class="article-meta">
+                            <span class="pill-light">📅 8 Dic, 2024</span>
+                            <span class="pill-light">⏱️ 5 min</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-text">Leer Más →</a>
+                    </div>
+                </article>
+
+                <article class="card article-card">
+                    <div class="article-image">
+                        <img src="https://via.placeholder.com/400x250/5B4B3F/FFFFFF?text=Arquitectura+Colonial" alt="Arquitectura Colonial" style="width: 100%; border-radius: var(--radius-md);">
+                    </div>
+                    <div class="card-body">
+                        <div class="pill mb-sm">Historia</div>
+                        <h3>Arquitectura Colonial: Testimonio del Pasado</h3>
+                        <p>Explora la arquitectura colonial que aún se conserva en Bocas Town y su importancia histórica.</p>
+                        <div class="article-meta">
+                            <span class="pill-light">📅 5 Dic, 2024</span>
+                            <span class="pill-light">⏱️ 6 min</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-text">Leer Más →</a>
+                    </div>
+                </article>
+
+                <article class="card article-card">
+                    <div class="article-image">
+                        <img src="https://via.placeholder.com/400x250/8DBB66/FFFFFF?text=Artesanias+Locales" alt="Artesanías Locales" style="width: 100%; border-radius: var(--radius-md);">
+                    </div>
+                    <div class="card-body">
+                        <div class="pill mb-sm">Cultura</div>
+                        <h3>Artesanías Locales: Tradición en Cada Pieza</h3>
+                        <p>Conoce a los artesanos locales y sus técnicas tradicionales que han pasado de generación en generación.</p>
+                        <div class="article-meta">
+                            <span class="pill-light">📅 3 Dic, 2024</span>
+                            <span class="pill-light">⏱️ 8 min</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-text">Leer Más →</a>
+                    </div>
+                </article>
+
+                <article class="card article-card">
+                    <div class="article-image">
+                        <img src="https://via.placeholder.com/400x250/0F5B55/FFFFFF?text=Islas+y+Cayos" alt="Islas y Cayos" style="width: 100%; border-radius: var(--radius-md);">
+                    </div>
+                    <div class="card-body">
+                        <div class="pill mb-sm">Geografía</div>
+                        <h3>Islas y Cayos: Joyas del Caribe</h3>
+                        <p>Descubre las islas y cayos que forman el archipiélago de Bocas del Toro y sus características únicas.</p>
+                        <div class="article-meta">
+                            <span class="pill-light">📅 1 Dic, 2024</span>
+                            <span class="pill-light">⏱️ 7 min</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-text">Leer Más →</a>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="text-center mt-xl">
+                <a href="#" class="btn btn-primary">Ver Todos los Artículos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section" style="background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%); color: white;">
+        <div class="container text-center">
+            <h2 style="color: white;">Mantente Actualizado</h2>
+            <p class="body-large" style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Suscríbete a nuestro newsletter y recibe los últimos artículos directamente en tu correo.</p>
+            <div class="newsletter-form">
+                <input type="email" class="input" placeholder="Tu correo electrónico" style="max-width: 400px; margin-right: 1rem;">
+                <button class="btn" style="background: white; color: var(--jungle-teal);">Suscribirse</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Local From Bocas</h3>
+                    <p>Conectando viajeros con la auténtica cultura de Bocas del Toro, Panamá.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <a href="servicios.html#tours">Tours Históricos</a>
+                    <a href="servicios.html#merchandise">Mercancía Cultural</a>
+                    <a href="servicios.html#assistance">Asistencia Personalizada</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Explorar</h3>
+                    <a href="vlogs.html">Vlogs</a>
+                    <a href="panama.html">Panamá</a>
+                    <a href="nosotros.html">Nosotros</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <a href="contacto.html">Contáctanos</a>
+                    <a href="mailto:info@localfrombocas.com">info@localfrombocas.com</a>
+                    <a href="tel:+507-1234-5678">+507 1234-5678</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Local From Bocas. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
