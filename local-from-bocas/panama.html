@@ -144,7 +144,9 @@
                 </div>
                 
                 <div class="panama-map">
-                    <img src="https://via.placeholder.com/600x400/0F5B55/FFFFFF?text=Mapa+de+Panama" alt="Mapa de Panamá" style="width: 100%; border-radius: var(--radius-lg);">
+                    <div class="interactive-map" id="panamaMap">
+                        <!-- El mapa SVG se generará dinámicamente con JavaScript -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -458,5 +460,7 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/panama-map.js"></script>
+    <script src="js/svg-loader.js"></script>
 </body>
 </html>
