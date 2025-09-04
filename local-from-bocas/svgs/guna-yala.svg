@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .comarca-bg { fill: #E6F3EE; stroke: #0F5B55; stroke-width: 2; }
+      .island { fill: #8DBB66; stroke: #0F5B55; stroke-width: 1.5; }
+      .capital { fill: #FF7466; stroke: #0F5B55; stroke-width: 2; }
+      .village { fill: #5B4B3F; stroke: #0F5B55; stroke-width: 1; }
+      .mola { fill: #FF7466; opacity: 0.3; }
+      .water { fill: #2C8AC6; opacity: 0.2; }
+      .text { font-family: 'Inter', sans-serif; font-size: 11px; fill: #242424; }
+      .title { font-family: 'DM Serif Display', serif; font-size: 16px; fill: #0F5B55; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <!-- Fondo de agua del Caribe -->
+  <rect width="400" height="300" fill="#2C8AC6" opacity="0.1"/>
+  
+  <!-- Contorno de Guna Yala -->
+  <path class="comarca-bg" d="M50 50 Q100 40 150 50 Q200 60 250 70 Q300 80 350 90 Q360 120 350 150 Q340 180 320 200 Q300 220 270 230 Q240 240 210 235 Q180 230 150 220 Q120 210 90 200 Q70 180 60 150 Q50 120 50 90 Z"/>
+  
+  <!-- El Porvenir (Capital) -->
+  <circle class="capital" cx="200" cy="120" r="5"/>
+  <text class="text" x="200" y="115" text-anchor="middle">El Porvenir</text>
+  
+  <!-- Islas principales -->
+  <!-- Isla Ailigandí -->
+  <ellipse class="island" cx="150" cy="100" rx="12" ry="8"/>
+  <circle class="village" cx="150" cy="100" r="2"/>
+  <text class="text" x="150" y="115" text-anchor="middle">Ailigandí</text>
+  
+  <!-- Isla Narganá -->
+  <ellipse class="island" cx="180" cy="110" rx="10" ry="7"/>
+  <circle class="village" cx="180" cy="110" r="2"/>
+  <text class="text" x="180" y="125" text-anchor="middle">Narganá</text>
+  
+  <!-- Isla Corazón de Jesús -->
+  <ellipse class="island" cx="220" cy="100" rx="8" ry="6"/>
+  <circle class="village" cx="220" cy="100" r="2"/>
+  <text class="text" x="220" y="115" text-anchor="middle">Corazón de Jesús</text>
+  
+  <!-- Isla Playón Chico -->
+  <ellipse class="island" cx="120" cy="130" rx="15" ry="10"/>
+  <circle class="village" cx="120" cy="130" r="2"/>
+  <text class="text" x="120" y="145" text-anchor="middle">Playón Chico</text>
+  
+  <!-- Isla Ustupu -->
+  <ellipse class="island" cx="160" cy="140" rx="14" ry="9"/>
+  <circle class="village" cx="160" cy="140" r="2"/>
+  <text class="text" x="160" y="155" text-anchor="middle">Ustupu</text>
+  
+  <!-- Isla Achutupu -->
+  <ellipse class="island" cx="200" cy="140" rx="12" ry="8"/>
+  <circle class="village" cx="200" cy="140" r="2"/>
+  <text class="text" x="200" y="155" text-anchor="middle">Achutupu</text>
+  
+  <!-- Isla Cartí -->
+  <ellipse class="island" cx="240" cy="130" rx="10" ry="7"/>
+  <circle class="village" cx="240" cy="130" r="2"/>
+  <text class="text" x="240" y="145" text-anchor="middle">Cartí</text>
+  
+  <!-- Isla Mulatupu -->
+  <ellipse class="island" cx="100" cy="160" rx="13" ry="9"/>
+  <circle class="village" cx="100" cy="160" r="2"/>
+  <text class="text" x="100" y="175" text-anchor="middle">Mulatupu</text>
+  
+  <!-- Isla Tubualá -->
+  <ellipse class="island" cx="140" cy="170" rx="11" ry="8"/>
+  <circle class="village" cx="140" cy="170" r="2"/>
+  <text class="text" x="140" y="185" text-anchor="middle">Tubualá</text>
+  
+  <!-- Isla Gardi Sugdub -->
+  <ellipse class="island" cx="180" cy="170" rx="9" ry="6"/>
+  <circle class="village" cx="180" cy="170" r="2"/>
+  <text class="text" x="180" y="185" text-anchor="middle">Gardi Sugdub</text>
+  
+  <!-- Isla Aguja -->
+  <ellipse class="island" cx="220" cy="160" rx="8" ry="6"/>
+  <circle class="village" cx="220" cy="160" r="2"/>
+  <text class="text" x="220" y="175" text-anchor="middle">Aguja</text>
+  
+  <!-- Isla Mamitupu -->
+  <ellipse class="island" cx="260" cy="150" rx="10" ry="7"/>
+  <circle class="village" cx="260" cy="150" r="2"/>
+  <text class="text" x="260" y="165" text-anchor="middle">Mamitupu</text>
+  
+  <!-- Isla Yandup -->
+  <ellipse class="island" cx="80" cy="180" rx="12" ry="8"/>
+  <circle class="village" cx="80" cy="180" r="2"/>
+  <text class="text" x="80" y="195" text-anchor="middle">Yandup</text>
+  
+  <!-- Isla Nalunega -->
+  <ellipse class="island" cx="120" cy="190" rx="9" ry="6"/>
+  <circle class="village" cx="120" cy="190" r="2"/>
+  <text class="text" x="120" y="205" text-anchor="middle">Nalunega</text>
+  
+  <!-- Isla Wichubwala -->
+  <ellipse class="island" cx="160" cy="190" rx="8" ry="6"/>
+  <circle class="village" cx="160" cy="190" r="2"/>
+  <text class="text" x="160" y="205" text-anchor="middle">Wichubwala</text>
+  
+  <!-- Isla Iskardup -->
+  <ellipse class="island" cx="200" cy="180" rx="7" ry="5"/>
+  <circle class="village" cx="200" cy="180" r="2"/>
+  <text class="text" x="200" y="195" text-anchor="middle">Iskardup</text>
+  
+  <!-- Isla Yansipdiwar -->
+  <ellipse class="island" cx="240" cy="180" rx="9" ry="6"/>
+  <circle class="village" cx="240" cy="180" r="2"/>
+  <text class="text" x="240" y="195" text-anchor="middle">Yansipdiwar</text>
+  
+  <!-- Isla Ukupseni -->
+  <ellipse class="island" cx="280" cy="170" rx="8" ry="6"/>
+  <circle class="village" cx="280" cy="170" r="2"/>
+  <text class="text" x="280" y="185" text-anchor="middle">Ukupseni</text>
+  
+  <!-- Isla Ogobsucun -->
+  <ellipse class="island" cx="100" cy="210" rx="10" ry="7"/>
+  <circle class="village" cx="100" cy="210" r="2"/>
+  <text class="text" x="100" y="225" text-anchor="middle">Ogobsucun</text>
+  
+  <!-- Isla Niadup -->
+  <ellipse class="island" cx="140" cy="210" rx="8" ry="6"/>
+  <circle class="village" cx="140" cy="210" r="2"/>
+  <text class="text" x="140" y="225" text-anchor="middle">Niadup</text>
+  
+  <!-- Isla Yandup -->
+  <ellipse class="island" cx="180" cy="210" rx="7" ry="5"/>
+  <circle class="village" cx="180" cy="210" r="2"/>
+  <text class="text" x="180" y="225" text-anchor="middle">Yandup</text>
+  
+  <!-- Isla Yansipdiwar -->
+  <ellipse class="island" cx="220" cy="210" rx="6" ry="4"/>
+  <circle class="village" cx="220" cy="210" r="2"/>
+  <text class="text" x="220" y="225" text-anchor="middle">Yansipdiwar</text>
+  
+  <!-- Isla Ukupseni -->
+  <ellipse class="island" cx="260" cy="200" rx="8" ry="6"/>
+  <circle class="village" cx="260" cy="200" r="2"/>
+  <text class="text" x="260" y="215" text-anchor="middle">Ukupseni</text>
+  
+  <!-- Área de Molas -->
+  <ellipse class="mola" cx="200" cy="150" rx="60" ry="30"/>
+  <text class="text" x="200" y="145" text-anchor="middle" font-weight="bold">Arte de Molas</text>
+  <text class="text" x="200" y="155" text-anchor="middle">Tradición Guna</text>
+  
+  <!-- Título -->
+  <text class="title" x="200" y="30" text-anchor="middle">Guna Yala</text>
+  <text class="text" x="200" y="45" text-anchor="middle">365 Islas del Caribe</text>
+  
+  <!-- Leyenda -->
+  <g transform="translate(20, 250)">
+    <circle class="capital" cx="5" cy="5" r="3"/>
+    <text class="text" x="15" y="8">Capital</text>
+    <circle class="village" cx="5" cy="20" r="2"/>
+    <text class="text" x="15" y="23">Poblado</text>
+    <ellipse class="island" cx="5" cy="30" rx="4" ry="3"/>
+    <text class="text" x="15" y="33">Isla</text>
+    <ellipse class="mola" cx="5" cy="40" rx="4" ry="2"/>
+    <text class="text" x="15" y="43">Mola</text>
+  </g>
+</svg>

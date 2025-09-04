@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .province-bg { fill: #E6F3EE; stroke: #0F5B55; stroke-width: 2; }
+      .mountain { fill: #8DBB66; stroke: #0F5B55; stroke-width: 1.5; }
+      .volcano { fill: #FF7466; stroke: #0F5B55; stroke-width: 2; }
+      .capital { fill: #FF7466; stroke: #0F5B55; stroke-width: 2; }
+      .city { fill: #5B4B3F; stroke: #0F5B55; stroke-width: 1; }
+      .coffee { fill: #5B4B3F; opacity: 0.7; }
+      .text { font-family: 'Inter', sans-serif; font-size: 11px; fill: #242424; }
+      .title { font-family: 'DM Serif Display', serif; font-size: 16px; fill: #0F5B55; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <!-- Fondo de la provincia -->
+  <rect width="400" height="300" fill="#F7F3EC"/>
+  
+  <!-- Contorno de Chiriquí -->
+  <path class="province-bg" d="M50 50 Q100 40 150 50 Q200 60 250 70 Q300 80 350 90 Q360 120 350 150 Q340 180 320 200 Q300 220 270 230 Q240 240 210 235 Q180 230 150 220 Q120 210 90 200 Q70 180 60 150 Q50 120 50 90 Z"/>
+  
+  <!-- Volcán Barú -->
+  <path class="volcano" d="M200 80 Q220 60 240 80 Q250 100 240 120 Q220 140 200 120 Q180 100 190 80 Z"/>
+  <circle class="volcano" cx="220" cy="100" r="3"/>
+  <text class="text" x="220" y="95" text-anchor="middle">Volcán Barú</text>
+  <text class="text" x="220" y="110" text-anchor="middle">3,474m</text>
+  
+  <!-- Cordillera Central -->
+  <path class="mountain" d="M80 120 Q120 100 160 120 Q200 140 240 130 Q280 120 320 130"/>
+  <path class="mountain" d="M70 160 Q110 140 150 160 Q190 180 230 170 Q270 160 310 170"/>
+  
+  <!-- David (Capital) -->
+  <circle class="capital" cx="180" cy="180" r="5"/>
+  <text class="text" x="180" y="175" text-anchor="middle">David</text>
+  
+  <!-- Boquete -->
+  <circle class="city" cx="200" cy="120" r="3"/>
+  <text class="text" x="200" y="115" text-anchor="middle">Boquete</text>
+  
+  <!-- Volcán -->
+  <circle class="city" cx="150" cy="200" r="3"/>
+  <text class="text" x="150" y="195" text-anchor="middle">Volcán</text>
+  
+  <!-- Puerto Armuelles -->
+  <circle class="city" cx="100" cy="220" r="3"/>
+  <text class="text" x="100" y="215" text-anchor="middle">Puerto Armuelles</text>
+  
+  <!-- Gualaca -->
+  <circle class="city" cx="220" cy="200" r="3"/>
+  <text class="text" x="220" y="195" text-anchor="middle">Gualaca</text>
+  
+  <!-- Dolega -->
+  <circle class="city" cx="160" cy="190" r="3"/>
+  <text class="text" x="160" y="185" text-anchor="middle">Dolega</text>
+  
+  <!-- San Félix -->
+  <circle class="city" cx="120" cy="210" r="3"/>
+  <text class="text" x="120" y="205" text-anchor="middle">San Félix</text>
+  
+  <!-- Renacimiento -->
+  <circle class="city" cx="80" cy="190" r="3"/>
+  <text class="text" x="80" y="185" text-anchor="middle">Renacimiento</text>
+  
+  <!-- Tierras Altas -->
+  <circle class="city" cx="250" cy="150" r="3"/>
+  <text class="text" x="250" y="145" text-anchor="middle">Tierras Altas</text>
+  
+  <!-- Alanje -->
+  <circle class="city" cx="140" cy="220" r="3"/>
+  <text class="text" x="140" y="215" text-anchor="middle">Alanje</text>
+  
+  <!-- Bugaba -->
+  <circle class="city" cx="170" cy="210" r="3"/>
+  <text class="text" x="170" y="205" text-anchor="middle">Bugaba</text>
+  
+  <!-- Barú -->
+  <circle class="city" cx="110" cy="200" r="3"/>
+  <text class="text" x="110" y="195" text-anchor="middle">Barú</text>
+  
+  <!-- Tolé -->
+  <circle class="city" cx="200" cy="220" r="3"/>
+  <text class="text" x="200" y="215" text-anchor="middle">Tolé</text>
+  
+  <!-- San Lorenzo -->
+  <circle class="city" cx="90" cy="180" r="3"/>
+  <text class="text" x="90" y="175" text-anchor="middle">San Lorenzo</text>
+  
+  <!-- Áreas de café -->
+  <ellipse class="coffee" cx="200" cy="130" rx="25" ry="15" transform="rotate(-20 200 130)"/>
+  <ellipse class="coffee" cx="180" cy="150" rx="20" ry="12" transform="rotate(15 180 150)"/>
+  <ellipse class="coffee" cx="220" cy="160" rx="18" ry="10" transform="rotate(-10 220 160)"/>
+  
+  <!-- Ríos principales -->
+  <path d="M60 100 Q100 120 140 110 Q180 100 220 110 Q260 120 300 110" stroke="#2C8AC6" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M80 140 Q120 160 160 150 Q200 140 240 150 Q280 160 320 150" stroke="#2C8AC6" stroke-width="2" fill="none" opacity="0.6"/>
+  
+  <!-- Título -->
+  <text class="title" x="200" y="30" text-anchor="middle">Chiriquí</text>
+  <text class="text" x="200" y="45" text-anchor="middle">La Suiza de Panamá</text>
+  
+  <!-- Leyenda -->
+  <g transform="translate(20, 250)">
+    <circle class="capital" cx="5" cy="5" r="3"/>
+    <text class="text" x="15" y="8">Capital</text>
+    <circle class="city" cx="5" cy="20" r="2"/>
+    <text class="text" x="15" y="23">Ciudad</text>
+    <path class="volcano" d="M0 30 L10 30 L5 25 Z"/>
+    <text class="text" x="15" y="36">Volcán</text>
+    <ellipse class="coffee" cx="5" cy="45" rx="4" ry="2"/>
+    <text class="text" x="15" y="48">Café</text>
+  </g>
+</svg>
