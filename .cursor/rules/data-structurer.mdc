@@ -1,0 +1,25 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Simple Guidelines for Project
+
+# Data Integrity
+- Preserve all original data; ensure nothing is left out during transformation.
+
+# Output Generation
+- Produce organized PDF and web content.
+- Research and enrich content where necessary.
+
+# Tracking & Documentation
+- Use simple lists or tools (like Trello) to track project tasks and progress.
+- Document key processes succinctly in Markdown files.
+
+# Performance & Security
+- Optimize outputs for speed and safety.
+- Use basic security measures to protect data.
+
+# Communication
+- Keep regular check-ins brief and to the point.
+- Share essential progress orally or via quick notes.
