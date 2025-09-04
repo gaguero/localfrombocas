@@ -1,0 +1,224 @@
+/* Estilos para mapas SVG de provincias y comarcas */
+
+.province-map-container {
+    position: relative;
+    width: 100%;
+    background: var(--pure-white);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--jungle-teal);
+}
+
+.province-map-container object {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    background: var(--island-sand);
+}
+
+.province-map-container object svg {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+}
+
+/* Estilos específicos para los SVGs */
+.province-map-container svg .province-bg,
+.province-map-container svg .comarca-bg {
+    fill: var(--seafoam);
+    stroke: var(--jungle-teal);
+    stroke-width: 2;
+}
+
+.province-map-container svg .island {
+    fill: var(--palm-leaf);
+    stroke: var(--jungle-teal);
+    stroke-width: 1.5;
+}
+
+.province-map-container svg .mountain {
+    fill: var(--palm-leaf);
+    stroke: var(--jungle-teal);
+    stroke-width: 1.5;
+}
+
+.province-map-container svg .volcano {
+    fill: var(--sunset-coral);
+    stroke: var(--jungle-teal);
+    stroke-width: 2;
+}
+
+.province-map-container svg .capital {
+    fill: var(--sunset-coral);
+    stroke: var(--jungle-teal);
+    stroke-width: 2;
+}
+
+.province-map-container svg .city,
+.province-map-container svg .village,
+.province-map-container svg .town {
+    fill: var(--cacao-brown);
+    stroke: var(--jungle-teal);
+    stroke-width: 1;
+}
+
+.province-map-container svg .jungle {
+    fill: var(--palm-leaf);
+    stroke: var(--jungle-teal);
+    stroke-width: 1.5;
+}
+
+.province-map-container svg .beach {
+    fill: var(--island-sand);
+    stroke: var(--jungle-teal);
+    stroke-width: 1;
+}
+
+.province-map-container svg .fortress {
+    fill: var(--cacao-brown);
+    stroke: var(--jungle-teal);
+    stroke-width: 2;
+}
+
+.province-map-container svg .zone {
+    fill: var(--sunset-coral);
+    stroke: var(--jungle-teal);
+    stroke-width: 2;
+}
+
+.province-map-container svg .indigenous,
+.province-map-container svg .artisan {
+    fill: var(--cacao-brown);
+    opacity: 0.7;
+}
+
+.province-map-container svg .coffee {
+    fill: var(--cacao-brown);
+    opacity: 0.7;
+}
+
+.province-map-container svg .carnival {
+    fill: var(--sunset-coral);
+    opacity: 0.3;
+}
+
+.province-map-container svg .mola {
+    fill: var(--sunset-coral);
+    opacity: 0.3;
+}
+
+.province-map-container svg .water {
+    fill: var(--ocean-blue);
+    opacity: 0.2;
+}
+
+.province-map-container svg .river {
+    fill: var(--ocean-blue);
+    opacity: 0.6;
+}
+
+/* Texto en los SVGs */
+.province-map-container svg .text {
+    font-family: var(--font-body);
+    font-size: 11px;
+    fill: var(--ink);
+}
+
+.province-map-container svg .title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    fill: var(--jungle-teal);
+    font-weight: bold;
+}
+
+/* Efectos hover para interactividad */
+.province-map-container svg .island:hover,
+.province-map-container svg .city:hover,
+.province-map-container svg .village:hover {
+    fill: var(--jungle-teal);
+    stroke: var(--ocean-blue);
+    stroke-width: 2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .province-map-container {
+        padding: 0.5rem;
+    }
+    
+    .province-map-container svg .text {
+        font-size: 10px;
+    }
+    
+    .province-map-container svg .title {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .province-map-container {
+        padding: 0.25rem;
+    }
+    
+    .province-map-container svg .text {
+        font-size: 9px;
+    }
+    
+    .province-map-container svg .title {
+        font-size: 12px;
+    }
+}
+
+/* Animaciones de carga */
+.province-map-container {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estados de carga */
+.province-map-container.loading {
+    background: var(--seafoam);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.province-map-container.loading::after {
+    content: 'Cargando mapa...';
+    color: var(--jungle-teal);
+    font-family: var(--font-body);
+    font-size: 1rem;
+}
+
+/* Modo oscuro */
+[data-theme="dark"] .province-map-container {
+    background: var(--shell-light);
+    border-color: var(--jungle-teal);
+}
+
+[data-theme="dark"] .province-map-container object {
+    background: var(--deep-reef);
+}
+
+[data-theme="dark"] .province-map-container svg .text {
+    fill: var(--ink);
+}
+
+[data-theme="dark"] .province-map-container svg .title {
+    fill: var(--jungle-teal);
+}
