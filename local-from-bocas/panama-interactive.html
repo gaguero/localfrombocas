@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panamá - Local From Bocas | Descubre las 10 Provincias y 3 Comarcas</title>
+    <meta name="description" content="Explora la diversidad de Panamá: 10 provincias y 3 comarcas indígenas. Descubre la riqueza cultural, geográfica y natural de cada región del país.">
+    <meta name="keywords" content="Panamá, provincias Panamá, comarcas indígenas, geografía Panamá, cultura panameña">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">Local From Bocas</a>
+            <nav>
+                <ul class="navbar-nav">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="vlogs.html">Vlogs</a></li>
+                    <li><a href="panama.html" class="active">Panamá</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="height: 50vh; min-height: 400px;">
+        <div class="hero-content">
+            <div class="pill mb-md">🇵🇦 Descubre Panamá</div>
+            <h1>La Riqueza de un País Completo</h1>
+            <p class="body-large">Explora las 10 provincias y 3 comarcas indígenas que conforman la diversidad cultural y natural de Panamá</p>
+        </div>
+    </section>
+
+    <!-- Panama Overview -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <h2>Un País de Contrastes y Belleza</h2>
+                    <p class="body-large mb-lg">Panamá es mucho más que su famoso canal. Es un país que conecta dos océanos y dos continentes, creando una diversidad única de ecosistemas, culturas y tradiciones.</p>
+                    
+                    <div class="panama-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">10</div>
+                            <div class="stat-label">Provincias</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Comarcas Indígenas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">75,517</div>
+                            <div class="stat-label">km² de Territorio</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">4.3M</div>
+                            <div class="stat-label">Habitantes</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panama-map">
+                    <div class="interactive-map" id="panamaMap">
+                        <!-- El mapa SVG se generará dinámicamente con JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa Interactivo -->
+    <section class="section" style="background-color: var(--seafoam);">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Mapa Interactivo de Panamá</h2>
+                <p class="body-large">Haz clic en cualquier provincia o comarca para explorar sus características únicas</p>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <div class="legend-color provincia"></div>
+                        <span>Provincias</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color comarca"></div>
+                        <span>Comarcas Indígenas</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="interactive-map-container">
+                <div class="interactive-map" id="panamaMapFull">
+                    <!-- Mapa SVG completo se generará aquí -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Provincias -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Las 10 Provincias de Panamá</h2>
+                <p class="body-large">Cada provincia tiene su propia identidad, cultura y atractivos únicos</p>
+            </div>
+            
+            <div class="grid grid-2">
+                <!-- Bocas del Toro -->
+                <div class="province-card">
+                    <div class="province-header">
+                        <img src="https://via.placeholder.com/300x200/0F5B55/FFFFFF?text=Bocas+del+Toro" alt="Bocas del Toro" style="width: 100%; border-radius: var(--radius-md);">
+                        <div class="pill">🏝️ Caribe</div>
+                    </div>
+                    <div class="province-content">
+                        <h3>Bocas del Toro</h3>
+                        <p>Conocida como "Las Galápagos del Siglo XXI", esta provincia caribeña alberga una biodiversidad excepcional y una rica cultura afrocaribeña.</p>
+                        <div class="province-highlights">
+                            <span class="pill-light">🌊 Archipiélago único</span>
+                            <span class="pill-light">🌿 Biodiversidad excepcional</span>
+                            <span class="pill-light">🎭 Cultura afrocaribeña</span>
+                        </div>
+                        <a href="panama/bocas-del-toro.html" class="btn btn-primary">Explorar Provincia</a>
+                    </div>
+                </div>
+
+                <!-- Chiriquí -->
+                <div class="province-card">
+                    <div class="province-header">
+                        <img src="https://via.placeholder.com/300x200/8DBB66/FFFFFF?text=Chiriqui" alt="Chiriquí" style="width: 100%; border-radius: var(--radius-md);">
+                        <div class="pill">🏔️ Tierras Altas</div>
+                    </div>
+                    <div class="province-content">
+                        <h3>Chiriquí</h3>
+                        <p>La "Suiza de Panamá" con sus tierras altas, volcanes y clima templado. Cuna de la agricultura de altura y el ecoturismo.</p>
+                        <div class="province-highlights">
+                            <span class="pill-light">🌋 Volcán Barú</span>
+                            <span class="pill-light">☕ Café de altura</span>
+                            <span class="pill-light">🌲 Bosques nubosos</span>
+                        </div>
+                        <a href="panama/chiriqui.html" class="btn btn-primary">Explorar Provincia</a>
+                    </div>
+                </div>
+
+                <!-- Coclé -->
+                <div class="province-card">
+                    <div class="province-header">
+                        <img src="https://via.placeholder.com/300x200/FF7466/FFFFFF?text=Cocle" alt="Coclé" style="width: 100%; border-radius: var(--radius-md);">
+                        <div class="pill">🏖️ Pacífico Central</div>
+                    </div>
+                    <div class="province-content">
+                        <h3>Coclé</h3>
+                        <p>Corazón geográfico de Panamá con playas del Pacífico, montañas y una rica tradición cultural que incluye el famoso Carnaval de Penonomé.</p>
+                        <div class="province-highlights">
+                            <span class="pill-light">🎭 Carnaval tradicional</span>
+                            <span class="pill-light">🏖️ Playas del Pacífico</span>
+                            <span class="pill-light">🏔️ Cordillera Central</span>
+                        </div>
+                        <a href="panama/cocle.html" class="btn btn-primary">Explorar Provincia</a>
+                    </div>
+                </div>
+
+                <!-- Colón -->
+                <div class="province-card">
+                    <div class="province-header">
+                        <img src="https://via.placeholder.com/300x200/2C8AC6/FFFFFF?text=Colon" alt="Colón" style="width: 100%; border-radius: var(--radius-md);">
+                        <div class="pill">🚢 Zona Libre</div>
+                    </div>
+                    <div class="province-content">
+                        <h3>Colón</h3>
+                        <p>Puerta de entrada del Caribe con la Zona Libre de Colón, fortificaciones coloniales y playas caribeñas vírgenes.</p>
+                        <div class="province-highlights">
+                            <span class="pill-light">🏰 Fortificaciones coloniales</span>
+                            <span class="pill-light">🛒 Zona Libre</span>
+                            <span class="pill-light">🏝️ Islas caribeñas</span>
+                        </div>
+                        <a href="panama/colon.html" class="btn btn-primary">Explorar Provincia</a>
+                    </div>
+                </div>
+
+                <!-- Darién -->
+                <div class="province-card">
+                    <div class="province-header">
+                        <img src="https://via.placeholder.com/300x200/5B4B3F/FFFFFF?text=Darien" alt="Darién" style="width: 100%; border-radius: var(--radius-md);">
+                        <div class="pill">🌿 Selva Virgen</div>
+                    </div>
+                    <div class="province-content">
+                        <h3>Darién</h3>
+                        <p>La provincia más salvaje de Panamá con selvas vírgenes, comunidades indígenas y el famoso Tapón del Darién.</p>
+                        <div class="province-highlights">
+                            <span class="pill-light">🌳 Selva virgen</span>
+                            <span class="pill-light">👥 Comunidades indígenas</span>
+                            <span class="pill-light">🦜 Biodiversidad única</span>
+                        </div>
+                        <a href="panama/darien.html" class="btn btn-primary">Explorar Provincia</a>
+                    </div>
+                </div>
+
+                <!-- Herrera -->
+                <div class="province-card">
+                    <div class="province-header">
+                        <img src="https://via.placeholder.com/300x200/8DBB66/FFFFFF?text=Herrera" alt="Herrera" style="width: 100%; border-radius: var(--radius-md);">
+                        <div class="pill">🌾 Azuero</div>
+                    </div>
+                    <div class="province-content">
+                        <h3>Herrera</h3>
+                        <p>Corazón de la Península de Azuero con tradiciones folclóricas, artesanías y una rica herencia cultural española.</p>
+                        <div class="province-highlights">
+                            <span class="pill-light">🎭 Folclor tradicional</span>
+                            <span class="pill-light">🏺 Artesanías</span>
+                            <span class="pill-light">🌾 Tradición ganadera</span>
+                        </div>
+                        <a href="panama/herrera.html" class="btn btn-primary">Explorar Provincia</a>
+                    </div>
+                </div>
+
+                <!-- Los Santos -->
+                <div class="province-card">
+                    <div class="province-header">
+                        <img src="https://via.placeholder.com/300x200/FF7466/FFFFFF?text=Los+Santos" alt="Los Santos" style="width: 100%; border-radius: var(--radius-md);">
+                        <div class="pill">🎭 Folclor</div>
+                    </div>
+                    <div class="province-content">
+                        <h3>Los Santos</h3>
+                        <p>Cuna del folclor panameño con el famoso Festival de la Mejorana, tradiciones centenarias y hermosas playas del Pacífico.</p>
+                        <div class="province-highlights">
+                            <span class="pill-light">🎪 Festival de la Mejorana</span>
+                            <span class="pill-light">🏖️ Playas del Pacífico</span>
+                            <span class="pill-light">🎭 Folclor auténtico</span>
+                        </div>
+                        <a href="panama/los-santos.html" class="btn btn-primary">Explorar Provincia</a>
+                    </div>
+                </div>
+
+                <!-- Panamá -->
+                <div class="province-card">
+                    <div class="province-header">
+                        <img src="https://via.placeholder.com/300x200/0F5B55/FFFFFF?text=Panama" alt="Panamá" style="width: 100%; border-radius: var(--radius-md);">
+                        <div class="pill">🏙️ Capital</div>
+                    </div>
+                    <div class="province-content">
+                        <h3>Panamá</h3>
+                        <p>La capital del país con el Casco Antiguo, rascacielos modernos, el Canal de Panamá y una vibrante vida urbana.</p>
+                        <div class="province-highlights">
+                            <span class="pill-light">🏗️ Canal de Panamá</span>
+                            <span class="pill-light">🏛️ Casco Antiguo</span>
+                            <span class="pill-light">🌆 Vida urbana</span>
+                        </div>
+                        <a href="panama/panama.html" class="btn btn-primary">Explorar Provincia</a>
+                    </div>
+                </div>
+
+                <!-- Panamá Oeste -->
+                <div class="province-card">
+                    <div class="province-header">
+                        <img src="https://via.placeholder.com/300x200/2C8AC6/FFFFFF?text=Panama+Oeste" alt="Panamá Oeste" style="width: 100%; border-radius: var(--radius-md);">
+                        <div class="pill">🌊 Pacífico</div>
+                    </div>
+                    <div class="province-content">
+                        <h3>Panamá Oeste</h3>
+                        <p>La provincia más joven con hermosas playas del Pacífico, desarrollo urbano y acceso directo a la capital.</p>
+                        <div class="province-highlights">
+                            <span class="pill-light">🏖️ Playas del Pacífico</span>
+                            <span class="pill-light">🏘️ Desarrollo urbano</span>
+                            <span class="pill-light">🌊 Acceso al mar</span>
+                        </div>
+                        <a href="panama/panama-oeste.html" class="btn btn-primary">Explorar Provincia</a>
+                    </div>
+                </div>
+
+                <!-- Veraguas -->
+                <div class="province-card">
+                    <div class="province-header">
+                        <img src="https://via.placeholder.com/300x200/5B4B3F/FFFFFF?text=Veraguas" alt="Veraguas" style="width: 100%; border-radius: var(--radius-md);">
+                        <div class="pill">🌊 Dos Mares</div>
+                    </div>
+                    <div class="province-content">
+                        <h3>Veraguas</h3>
+                        <p>La única provincia con costas en ambos océanos, rica en historia colonial y hermosos paisajes naturales.</p>
+                        <div class="province-highlights">
+                            <span class="pill-light">🌊 Caribe y Pacífico</span>
+                            <span class="pill-light">🏰 Historia colonial</span>
+                            <span class="pill-light">🏔️ Paisajes naturales</span>
+                        </div>
+                        <a href="panama/veraguas.html" class="btn btn-primary">Explorar Provincia</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comarcas Indígenas -->
+    <section class="section" style="background-color: var(--island-sand);">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Las 3 Comarcas Indígenas</h2>
+                <p class="body-large">Territorios autónomos que preservan las culturas ancestrales de Panamá</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <!-- Guna Yala -->
+                <div class="comarca-card">
+                    <div class="comarca-header">
+                        <img src="https://via.placeholder.com/400x250/0F5B55/FFFFFF?text=Guna+Yala" alt="Guna Yala" style="width: 100%; border-radius: var(--radius-md);">
+                        <div class="pill">🏝️ Caribe</div>
+                    </div>
+                    <div class="comarca-content">
+                        <h3>Guna Yala</h3>
+                        <p>Comarca autónoma en el Caribe con 365 islas, cultura guna preservada y hermosas playas vírgenes.</p>
+                        <div class="comarca-highlights">
+                            <span class="pill-light">🏝️ 365 islas</span>
+                            <span class="pill-light">🎨 Molas tradicionales</span>
+                            <span class="pill-light">🌊 Aguas cristalinas</span>
+                        </div>
+                        <a href="panama/guna-yala.html" class="btn btn-primary">Explorar Comarca</a>
+                    </div>
+                </div>
+
+                <!-- Emberá-Wounaan -->
+                <div class="comarca-card">
+                    <div class="comarca-header">
+                        <img src="https://via.placeholder.com/400x250/8DBB66/FFFFFF?text=Embera-Wounaan" alt="Emberá-Wounaan" style="width: 100%; border-radius: var(--radius-md);">
+                        <div class="pill">🌿 Selva</div>
+                    </div>
+                    <div class="comarca-content">
+                        <h3>Emberá-Wounaan</h3>
+                        <p>Comarca en la selva del Darién que preserva las tradiciones de los pueblos emberá y wounaan.</p>
+                        <div class="comarca-highlights">
+                            <span class="pill-light">🌳 Selva tropical</span>
+                            <span class="pill-light">🎨 Artesanías en madera</span>
+                            <span class="pill-light">🏹 Tradiciones ancestrales</span>
+                        </div>
+                        <a href="panama/embera-wounaan.html" class="btn btn-primary">Explorar Comarca</a>
+                    </div>
+                </div>
+
+                <!-- Ngäbe-Buglé -->
+                <div class="comarca-card">
+                    <div class="comarca-header">
+                        <img src="https://via.placeholder.com/400x250/FF7466/FFFFFF?text=Ngabe-Bugle" alt="Ngäbe-Buglé" style="width: 100%; border-radius: var(--radius-md);">
+                        <div class="pill">🏔️ Tierras Altas</div>
+                    </div>
+                    <div class="comarca-content">
+                        <h3>Ngäbe-Buglé</h3>
+                        <p>La comarca más grande de Panamá en las tierras altas, hogar de los pueblos ngäbe y buglé.</p>
+                        <div class="comarca-highlights">
+                            <span class="pill-light">🏔️ Tierras altas</span>
+                            <span class="pill-light">☕ Cultivo de café</span>
+                            <span class="pill-light">🎭 Tradiciones vivas</span>
+                        </div>
+                        <a href="panama/ngabe-bugle.html" class="btn btn-primary">Explorar Comarca</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%); color: white;">
+        <div class="container text-center">
+            <h2 style="color: white;">¿Listo para Explorar Panamá?</h2>
+            <p class="body-large" style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Comienza tu aventura en Bocas del Toro y descubre la diversidad de todo el país.</p>
+            <div class="hero-actions">
+                <a href="servicios.html" class="btn" style="background: white; color: var(--jungle-teal);">Nuestros Servicios</a>
+                <a href="contacto.html" class="btn btn-secondary" style="border-color: white; color: white;">Planificar Viaje</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Local From Bocas</h3>
+                    <p>Conectando viajeros con la auténtica cultura de Bocas del Toro, Panamá.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <a href="servicios.html#tours">Tours Históricos</a>
+                    <a href="servicios.html#merchandise">Mercancía Cultural</a>
+                    <a href="servicios.html#assistance">Asistencia Personalizada</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Explorar</h3>
+                    <a href="vlogs.html">Vlogs</a>
+                    <a href="panama.html">Panamá</a>
+                    <a href="nosotros.html">Nosotros</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <a href="contacto.html">Contáctanos</a>
+                    <a href="mailto:info@localfrombocas.com">info@localfrombocas.com</a>
+                    <a href="tel:+507-1234-5678">+507 1234-5678</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Local From Bocas. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/panama-map.js"></script>
+</body>
+</html>
