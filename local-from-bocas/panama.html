@@ -7,6 +7,7 @@
     <meta name="description" content="Explora la diversidad de Panamá: 10 provincias y 3 comarcas indígenas. Descubre la riqueza cultural, geográfica y natural de cada región del país.">
     <meta name="keywords" content="Panamá, provincias Panamá, comarcas indígenas, geografía Panamá, cultura panameña">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/geojson-map.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -144,9 +145,7 @@
                 </div>
                 
                 <div class="panama-map">
-                    <div class="interactive-map" id="panamaMap">
-                        <!-- El mapa SVG se generará dinámicamente con JavaScript -->
-                    </div>
+                    <iframe src="panama-interactive.html" width="100%" height="500" frameborder="0" style="border-radius: var(--radius-lg);"></iframe>
                 </div>
             </div>
         </div>
@@ -460,7 +459,6 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <script src="js/panama-map.js"></script>
-    <script src="js/svg-loader.js"></script>
+    <script src="js/geojson-map.js"></script>
 </body>
 </html>

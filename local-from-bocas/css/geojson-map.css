@@ -1,0 +1,240 @@
+/* Estilos para el mapa interactivo GeoJSON de Panamá */
+
+#panamaMap {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--island-sand);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--jungle-teal);
+    overflow: hidden;
+}
+
+#panamaMap svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Estilos para las provincias y comarcas */
+.province-path {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    fill: var(--seafoam);
+    stroke: var(--jungle-teal);
+    stroke-width: 1.5;
+}
+
+.province-path:hover {
+    fill: var(--palm-leaf);
+    stroke: var(--ocean-blue);
+    stroke-width: 2;
+    filter: brightness(1.1);
+}
+
+.province-path.comarca {
+    fill: var(--sunset-coral);
+    opacity: 0.8;
+}
+
+.province-path.comarca:hover {
+    fill: var(--sunset-coral);
+    opacity: 1;
+    stroke: var(--ocean-blue);
+    stroke-width: 2;
+}
+
+/* Leyenda del mapa */
+.legend text {
+    font-family: var(--font-body);
+    fill: var(--ink);
+}
+
+.legend text:first-child {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* Tooltip personalizado */
+.tooltip {
+    position: absolute;
+    background: rgba(15, 91, 85, 0.95);
+    color: white;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 14px;
+    pointer-events: none;
+    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tooltip .tooltip-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: white;
+}
+
+.tooltip .tooltip-subtitle {
+    font-size: 12px;
+    opacity: 0.8;
+    color: var(--seafoam);
+}
+
+/* Estados de carga */
+#panamaMap.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    background: var(--seafoam);
+}
+
+#panamaMap.loading::after {
+    content: 'Cargando mapa de Panamá...';
+    color: var(--jungle-teal);
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Animaciones */
+.province-path {
+    animation: fadeInProvince 0.6s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInProvince {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Efectos de selección */
+.province-path.selected {
+    fill: var(--jungle-teal);
+    stroke: var(--ocean-blue);
+    stroke-width: 3;
+    filter: brightness(1.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #panamaMap {
+        margin: 0 1rem;
+        border-radius: var(--radius-md);
+    }
+    
+    .legend text:first-child {
+        font-size: 14px;
+    }
+    
+    .legend text {
+        font-size: 11px;
+    }
+    
+    .province-path {
+        stroke-width: 1;
+    }
+    
+    .province-path:hover {
+        stroke-width: 1.5;
+    }
+}
+
+@media (max-width: 480px) {
+    #panamaMap {
+        margin: 0 0.5rem;
+    }
+    
+    .legend text:first-child {
+        font-size: 12px;
+    }
+    
+    .legend text {
+        font-size: 10px;
+    }
+}
+
+/* Modo oscuro */
+[data-theme="dark"] #panamaMap {
+    background: var(--deep-reef);
+    border-color: var(--jungle-teal);
+}
+
+[data-theme="dark"] .province-path {
+    fill: var(--seafoam);
+    stroke: var(--jungle-teal);
+}
+
+[data-theme="dark"] .province-path:hover {
+    fill: var(--palm-leaf);
+    stroke: var(--ocean-blue);
+}
+
+[data-theme="dark"] .province-path.comarca {
+    fill: var(--sunset-coral);
+}
+
+[data-theme="dark"] .legend text {
+    fill: var(--ink);
+}
+
+/* Efectos de hover mejorados */
+.province-path {
+    position: relative;
+}
+
+.province-path::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--jungle-teal);
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.province-path:hover::before {
+    opacity: 0.1;
+}
+
+/* Indicador de click */
+.province-path:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}
+
+/* Mejoras de accesibilidad */
+.province-path:focus {
+    outline: 2px solid var(--ocean-blue);
+    outline-offset: 2px;
+}
+
+/* Animación de entrada del mapa */
+#panamaMap {
+    animation: slideInUp 0.8s ease forwards;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
