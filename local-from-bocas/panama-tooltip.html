@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panamá - Tooltip Avanzado - Local From Bocas</title>
+    <meta name="description" content="Explora la diversidad de Panamá: 10 provincias y 3 comarcas indígenas. Mapa interactivo con tooltip avanzado y panel de detalles.">
+    <meta name="keywords" content="Panamá, provincias Panamá, comarcas indígenas, geografía Panamá, cultura panameña">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F7F3EC;
+            min-height: 100vh;
+        }
+
+        /* Header fijo */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(15, 91, 85, 0.1);
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8rem;
+            color: #0F5B55;
+            margin: 0;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .header-nav a {
+            color: #5B4B3F;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .header-nav a:hover {
+            color: #0F5B55;
+        }
+
+        /* Contenedor principal */
+        .main-container {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            display: flex;
+        }
+
+        /* Mapa principal */
+        .map-section {
+            flex: 1;
+            position: relative;
+            background: linear-gradient(135deg, #E6F3EE 0%, #F2E9DC 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 2/1;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .map-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Estilos para las provincias y comarcas */
+        .province-path {
+            fill: #E6F3EE;
+            stroke: #0F5B55;
+            stroke-width: 2;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .province-path:hover {
+            fill: #8DBB66;
+            stroke: #2C8AC6;
+            stroke-width: 3;
+            transform: scale(1.02);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        .comarca-path {
+            fill: #FF7466;
+            opacity: 0.8;
+            stroke: #0F5B55;
+            stroke-width: 2;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .comarca-path:hover {
+            fill: #FF7466;
+            opacity: 1;
+            transform: scale(1.02);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        /* Tooltip avanzado */
+        .tooltip {
+            position: absolute;
+            background: rgba(15, 91, 85, 0.95);
+            backdrop-filter: blur(20px);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0;
+            transform: translate(-50%, -120%) scale(0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-width: 200px;
+            max-width: 300px;
+        }
+
+        .tooltip.show {
+            opacity: 1;
+            transform: translate(-50%, -120%) scale(1);
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: rgba(15, 91, 85, 0.95);
+        }
+
+        .tooltip-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .tooltip-subtitle {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            color: #E6F3EE;
+            margin-bottom: 0.5rem;
+        }
+
+        .tooltip-description {
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: #E6F3EE;
+        }
+
+        /* Panel de detalles */
+        .details-panel {
+            width: 400px;
+            background: white;
+            border-left: 1px solid rgba(15, 91, 85, 0.1);
+            padding: 2rem;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+
+        .details-panel.hidden {
+            width: 0;
+            padding: 0;
+            border: none;
+            overflow: hidden;
+        }
+
+        .details-header {
+            margin-bottom: 2rem;
+        }
+
+        .details-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: #0F5B55;
+            margin-bottom: 0.5rem;
+        }
+
+        .details-subtitle {
+            color: #5B4B3F;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .details-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .details-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .details-highlights {
+            margin-bottom: 2rem;
+        }
+
+        .highlights-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0F5B55;
+            margin-bottom: 1rem;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .highlight-item {
+            background: #E6F3EE;
+            color: #0F5B55;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover {
+            background: #0F5B55;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .details-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn-explore {
+            background: linear-gradient(135deg, #0F5B55 0%, #2C8AC6 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-explore:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(15, 91, 85, 0.3);
+        }
+
+        .btn-close {
+            background: transparent;
+            color: #5B4B3F;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #5B4B3F;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-close:hover {
+            background: #5B4B3F;
+            color: white;
+        }
+
+        /* Indicador de región seleccionada */
+        .region-indicator {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(15, 91, 85, 0.9);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .region-indicator.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .details-panel {
+                width: 100%;
+                height: 300px;
+                border-left: none;
+                border-top: 1px solid rgba(15, 91, 85, 0.1);
+            }
+            
+            .details-panel.hidden {
+                height: 0;
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .header-nav {
+                gap: 1rem;
+            }
+            
+            .map-section {
+                padding: 1rem;
+            }
+            
+            .details-panel {
+                padding: 1.5rem;
+            }
+            
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animaciones de entrada */
+        .province-path, .comarca-path {
+            animation: fadeInScale 0.6s ease-out forwards;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        @keyframes fadeInScale {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Delay escalonado para las animaciones */
+        .province-path:nth-child(1) { animation-delay: 0.1s; }
+        .province-path:nth-child(2) { animation-delay: 0.15s; }
+        .province-path:nth-child(3) { animation-delay: 0.2s; }
+        .province-path:nth-child(4) { animation-delay: 0.25s; }
+        .province-path:nth-child(5) { animation-delay: 0.3s; }
+        .province-path:nth-child(6) { animation-delay: 0.35s; }
+        .province-path:nth-child(7) { animation-delay: 0.4s; }
+        .province-path:nth-child(8) { animation-delay: 0.45s; }
+        .province-path:nth-child(9) { animation-delay: 0.5s; }
+        .province-path:nth-child(10) { animation-delay: 0.55s; }
+        .comarca-path:nth-child(1) { animation-delay: 0.6s; }
+        .comarca-path:nth-child(2) { animation-delay: 0.65s; }
+        .comarca-path:nth-child(3) { animation-delay: 0.7s; }
+    </style>
+</head>
+<body>
+    <!-- Header fijo -->
+    <header class="header">
+        <div class="header-content">
+            <h1>🗺️ Panamá Completo</h1>
+            <nav class="header-nav">
+                <a href="panama.html">Vista Normal</a>
+                <a href="panama-fullscreen.html">Vista Fullscreen</a>
+                <a href="index.html">Inicio</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenedor principal -->
+    <div class="main-container">
+        <!-- Mapa principal -->
+        <section class="map-section">
+            <div class="map-container">
+                <svg class="map-svg" viewBox="0 0 1000 400" id="panamaMap">
+                    <!-- El mapa SVG se generará dinámicamente -->
+                </svg>
+                
+                <!-- Tooltip avanzado -->
+                <div class="tooltip" id="tooltip">
+                    <div class="tooltip-title" id="tooltipTitle">Título</div>
+                    <div class="tooltip-subtitle" id="tooltipSubtitle">Subtítulo</div>
+                    <div class="tooltip-description" id="tooltipDescription">Descripción...</div>
+                </div>
+                
+                <!-- Indicador de región seleccionada -->
+                <div class="region-indicator" id="regionIndicator">
+                    Región seleccionada
+                </div>
+            </div>
+        </section>
+
+        <!-- Panel de detalles -->
+        <aside class="details-panel" id="detailsPanel">
+            <div class="details-header">
+                <h2 class="details-title" id="detailsTitle">Selecciona una región</h2>
+                <p class="details-subtitle" id="detailsSubtitle">Haz hover sobre el mapa para explorar</p>
+            </div>
+            
+            <img id="detailsImage" src="" alt="" class="details-image" style="display: none;">
+            
+            <p class="details-description" id="detailsDescription" style="display: none;">
+                Selecciona una provincia o comarca en el mapa para ver información detallada.
+            </p>
+            
+            <div class="details-highlights" id="detailsHighlights" style="display: none;">
+                <h3 class="highlights-title">Características destacadas</h3>
+                <div class="highlights-grid" id="highlightsGrid">
+                    <!-- Los highlights se llenarán dinámicamente -->
+                </div>
+            </div>
+            
+            <div class="details-actions" id="detailsActions" style="display: none;">
+                <a href="#" id="detailsButton" class="btn-explore">Explorar Región</a>
+                <button class="btn-close" onclick="closeDetailsPanel()">Cerrar</button>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // Datos de las provincias y comarcas
+        const regionData = {
+            'bocas-del-toro': {
+                name: 'Bocas del Toro',
+                type: 'provincia',
+                image: 'https://via.placeholder.com/400x200/0F5B55/FFFFFF?text=Bocas+del+Toro+Caribbean',
+                description: 'Conocida como "Las Galápagos del Siglo XXI", esta provincia caribeña alberga una biodiversidad excepcional y una rica cultura afrocaribeña.',
+                highlights: ['🌊 Archipiélago único', '🌿 Biodiversidad excepcional', '🎭 Cultura afrocaribeña']
+            },
+            'chiriqui': {
+                name: 'Chiriquí',
+                type: 'provincia',
+                image: 'https://via.placeholder.com/400x200/8DBB66/FFFFFF?text=Chiriqui',
+                description: 'La "Suiza de Panamá" con sus tierras altas, volcanes y clima templado. Cuna de la agricultura de altura y el ecoturismo.',
+                highlights: ['🌋 Volcán Barú', '☕ Café de altura', '🌲 Bosques nubosos']
+            },
+            'cocle': {
+                name: 'Coclé',
+                type: 'provincia',
+                image: 'https://via.placeholder.com/400x200/FF7466/FFFFFF?text=Cocle',
+                description: 'Corazón geográfico de Panamá con playas del Pacífico, montañas y una rica tradición cultural que incluye el famoso Carnaval de Penonomé.',
+                highlights: ['🎭 Carnaval tradicional', '🏖️ Playas del Pacífico', '🏔️ Cordillera Central']
+            },
+            'colon': {
+                name: 'Colón',
+                type: 'provincia',
+                image: 'https://via.placeholder.com/400x200/2C8AC6/FFFFFF?text=Colon',
+                description: 'Puerta de entrada del Caribe con la Zona Libre de Colón, fortificaciones coloniales y playas caribeñas vírgenes.',
+                highlights: ['🏰 Fortificaciones coloniales', '🛒 Zona Libre', '🏝️ Islas caribeñas']
+            },
+            'darien': {
+                name: 'Darién',
+                type: 'provincia',
+                image: 'https://via.placeholder.com/400x200/5B4B3F/FFFFFF?text=Darien',
+                description: 'La provincia más salvaje de Panamá con selvas vírgenes, comunidades indígenas y el famoso Tapón del Darién.',
+                highlights: ['🌳 Selva virgen', '👥 Comunidades indígenas', '🦜 Biodiversidad única']
+            },
+            'herrera': {
+                name: 'Herrera',
+                type: 'provincia',
+                image: 'https://via.placeholder.com/400x200/8DBB66/FFFFFF?text=Herrera',
+                description: 'Corazón de la Península de Azuero con tradiciones folclóricas, artesanías y una rica herencia cultural española.',
+                highlights: ['🎭 Folclor tradicional', '🏺 Artesanías', '🌾 Tradición ganadera']
+            },
+            'los-santos': {
+                name: 'Los Santos',
+                type: 'provincia',
+                image: 'https://via.placeholder.com/400x200/FF7466/FFFFFF?text=Los+Santos',
+                description: 'Cuna del folclor panameño con el famoso Festival de la Mejorana, tradiciones centenarias y hermosas playas del Pacífico.',
+                highlights: ['🎪 Festival de la Mejorana', '🏖️ Playas del Pacífico', '🎭 Folclor auténtico']
+            },
+            'panama': {
+                name: 'Panamá',
+                type: 'provincia',
+                image: 'https://via.placeholder.com/400x200/0F5B55/FFFFFF?text=Panama',
+                description: 'La capital del país con el Casco Antiguo, rascacielos modernos, el Canal de Panamá y una vibrante vida urbana.',
+                highlights: ['🏗️ Canal de Panamá', '🏛️ Casco Antiguo', '🌆 Vida urbana']
+            },
+            'panama-oeste': {
+                name: 'Panamá Oeste',
+                type: 'provincia',
+                image: 'https://via.placeholder.com/400x200/2C8AC6/FFFFFF?text=Panama+Oeste',
+                description: 'La provincia más joven con hermosas playas del Pacífico, desarrollo urbano y acceso directo a la capital.',
+                highlights: ['🏖️ Playas del Pacífico', '🏘️ Desarrollo urbano', '🌊 Acceso al mar']
+            },
+            'veraguas': {
+                name: 'Veraguas',
+                type: 'provincia',
+                image: 'https://via.placeholder.com/400x200/5B4B3F/FFFFFF?text=Veraguas',
+                description: 'La única provincia con costas en ambos océanos, rica en historia colonial y hermosos paisajes naturales.',
+                highlights: ['🌊 Caribe y Pacífico', '🏰 Historia colonial', '🏔️ Paisajes naturales']
+            },
+            'guna-yala': {
+                name: 'Guna Yala',
+                type: 'comarca',
+                image: 'https://via.placeholder.com/400x200/0F5B55/FFFFFF?text=Guna+Yala',
+                description: 'Comarca autónoma en el Caribe con 365 islas, cultura guna preservada y hermosas playas vírgenes.',
+                highlights: ['🏝️ 365 islas', '🎨 Molas tradicionales', '🌊 Aguas cristalinas']
+            },
+            'embera-wounaan': {
+                name: 'Emberá-Wounaan',
+                type: 'comarca',
+                image: 'https://via.placeholder.com/400x200/8DBB66/FFFFFF?text=Embera-Wounaan',
+                description: 'Comarca en la selva del Darién que preserva las tradiciones de los pueblos emberá y wounaan.',
+                highlights: ['🌳 Selva tropical', '🎨 Artesanías en madera', '🏹 Tradiciones ancestrales']
+            },
+            'ngabe-bugle': {
+                name: 'Ngäbe-Buglé',
+                type: 'comarca',
+                image: 'https://via.placeholder.com/400x200/FF7466/FFFFFF?text=Ngabe-Bugle',
+                description: 'La comarca más grande de Panamá en las tierras altas, hogar de los pueblos ngäbe y buglé.',
+                highlights: ['🏔️ Tierras altas', '☕ Cultivo de café', '🎭 Tradiciones vivas']
+            }
+        };
+
+        let currentRegion = null;
+        let tooltipTimeout = null;
+
+        // Función para mostrar tooltip
+        function showTooltip(regionKey, event) {
+            const region = regionData[regionKey];
+            if (!region) return;
+
+            clearTimeout(tooltipTimeout);
+
+            const tooltip = document.getElementById('tooltip');
+            const title = document.getElementById('tooltipTitle');
+            const subtitle = document.getElementById('tooltipSubtitle');
+            const description = document.getElementById('tooltipDescription');
+
+            title.textContent = region.name;
+            subtitle.textContent = region.type === 'comarca' ? 'Comarca Indígena' : 'Provincia';
+            description.textContent = region.description;
+
+            const rect = event.currentTarget.getBoundingClientRect();
+            const mapRect = document.getElementById('panamaMap').getBoundingClientRect();
+            
+            const x = rect.left + rect.width / 2 - mapRect.left;
+            const y = rect.top + rect.height / 2 - mapRect.top;
+
+            tooltip.style.left = `${x}px`;
+            tooltip.style.top = `${y}px`;
+            tooltip.classList.add('show');
+        }
+
+        // Función para ocultar tooltip
+        function hideTooltip() {
+            tooltipTimeout = setTimeout(() => {
+                const tooltip = document.getElementById('tooltip');
+                tooltip.classList.remove('show');
+            }, 100);
+        }
+
+        // Función para mostrar detalles en el panel
+        function showDetails(regionKey) {
+            const region = regionData[regionKey];
+            if (!region) return;
+
+            currentRegion = regionKey;
+
+            const panel = document.getElementById('detailsPanel');
+            const title = document.getElementById('detailsTitle');
+            const subtitle = document.getElementById('detailsSubtitle');
+            const image = document.getElementById('detailsImage');
+            const description = document.getElementById('detailsDescription');
+            const highlights = document.getElementById('detailsHighlights');
+            const highlightsGrid = document.getElementById('highlightsGrid');
+            const actions = document.getElementById('detailsActions');
+            const button = document.getElementById('detailsButton');
+            const indicator = document.getElementById('regionIndicator');
+
+            title.textContent = region.name;
+            subtitle.textContent = region.type === 'comarca' ? 'Comarca Indígena' : 'Provincia';
+            image.src = region.image;
+            image.alt = region.name;
+            description.textContent = region.description;
+
+            highlightsGrid.innerHTML = '';
+            region.highlights.forEach(highlight => {
+                const div = document.createElement('div');
+                div.className = 'highlight-item';
+                div.textContent = highlight;
+                highlightsGrid.appendChild(div);
+            });
+
+            button.textContent = region.type === 'comarca' ? 'Explorar Comarca' : 'Explorar Provincia';
+            button.href = `panama/${regionKey}.html`;
+
+            // Mostrar elementos
+            image.style.display = 'block';
+            description.style.display = 'block';
+            highlights.style.display = 'block';
+            actions.style.display = 'flex';
+
+            // Mostrar indicador
+            indicator.textContent = region.name;
+            indicator.classList.add('show');
+
+            // Mostrar panel si está oculto
+            panel.classList.remove('hidden');
+        }
+
+        // Función para cerrar panel de detalles
+        function closeDetailsPanel() {
+            const panel = document.getElementById('detailsPanel');
+            const indicator = document.getElementById('regionIndicator');
+            
+            panel.classList.add('hidden');
+            indicator.classList.remove('show');
+            currentRegion = null;
+        }
+
+        // Función para cargar y renderizar el mapa GeoJSON
+        async function loadPanamaMap() {
+            try {
+                const response = await fetch('./data/geoBoundaries-PAN-ADM1.geojson');
+                const geo = await response.json();
+                renderMap(geo);
+            } catch (error) {
+                console.error('Error cargando GeoJSON:', error);
+            }
+        }
+
+        // Función para renderizar el mapa
+        function renderMap(geo) {
+            const container = document.getElementById('panamaMap');
+            container.innerHTML = '';
+
+            // Calcular bounds
+            let minLon = Infinity, minLat = Infinity, maxLon = -Infinity, maxLat = -Infinity;
+
+            function scanCoords(coords) {
+                for (const poly of coords) {
+                    const rings = Array.isArray(poly[0][0]) ? poly : [poly];
+                    for (const ring of rings) {
+                        for (const pt of ring) {
+                            const [lon, lat] = pt;
+                            if (lon < minLon) minLon = lon;
+                            if (lon > maxLon) maxLon = lon;
+                            if (lat < minLat) minLat = lat;
+                            if (lat > maxLat) maxLat = lat;
+                        }
+                    }
+                }
+            }
+
+            for (const f of geo.features) {
+                const g = f.geometry;
+                if (!g) continue;
+                if (g.type === 'Polygon') scanCoords([g.coordinates]);
+                if (g.type === 'MultiPolygon') scanCoords(g.coordinates);
+            }
+
+            const viewW = 1000, viewH = 400;
+            function project([lon, lat]) {
+                const x = (lon - minLon) / (maxLon - minLon) * viewW;
+                const y = (maxLat - lat) / (maxLat - minLat) * viewH;
+                return [x, y];
+            }
+
+            function pathFromPolygon(coords) {
+                let d = '';
+                for (const ring of coords) {
+                    const [startX, startY] = project(ring[0]);
+                    d += `M ${startX} ${startY}`;
+                    for (let i = 1; i < ring.length; i++) {
+                        const [x, y] = project(ring[i]);
+                        d += ` L ${x} ${y}`;
+                    }
+                    d += ' Z ';
+                }
+                return d.trim();
+            }
+
+            geo.features.forEach((f, idx) => {
+                const g = f.geometry;
+                let d = '';
+                if (g.type === 'Polygon') {
+                    d = pathFromPolygon(g.coordinates);
+                } else if (g.type === 'MultiPolygon') {
+                    d = g.coordinates.map(poly => pathFromPolygon(poly)).join(' ');
+                } else {
+                    return;
+                }
+
+                const name = f.properties.shapeName || `Región ${idx + 1}`;
+                const normalizedName = normalizeName(name);
+                const isComarca = name.includes('Comarca');
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', d);
+                path.setAttribute('class', isComarca ? 'comarca-path' : 'province-path');
+                path.setAttribute('data-region', normalizedName);
+
+                // Eventos de hover para tooltip
+                path.addEventListener('mouseenter', (e) => {
+                    showTooltip(normalizedName, e);
+                });
+
+                path.addEventListener('mouseleave', () => {
+                    hideTooltip();
+                });
+
+                // Evento de click para detalles
+                path.addEventListener('click', () => {
+                    showDetails(normalizedName);
+                });
+
+                container.appendChild(path);
+            });
+        }
+
+        // Función para normalizar nombres
+        function normalizeName(name) {
+            const nameMap = {
+                'Provincia de Bocas del Toro': 'bocas-del-toro',
+                'Colón Province': 'colon',
+                'Provincia de Darién': 'darien',
+                'Comarca Emberá-Wounaan': 'embera-wounaan',
+                'Comarca Guna Yala': 'guna-yala',
+                'Provincia de Herrera': 'herrera',
+                'Provincia de Los Santos': 'los-santos',
+                'Comarca Ngäbe-Buglé': 'ngabe-bugle',
+                'Provincia de Panamá': 'panama',
+                'Provincia de Panamá Oeste': 'panama-oeste',
+                'Provincia de Veraguas': 'veraguas',
+                'Provincia de Chiriquí': 'chiriqui',
+                'Provincia de Coclé': 'cocle'
+            };
+            
+            return nameMap[name] || name.toLowerCase().replace(/\s+/g, '-');
+        }
+
+        // Cargar el mapa cuando se carga la página
+        document.addEventListener('DOMContentLoaded', loadPanamaMap);
+    </script>
+</body>
+</html>
