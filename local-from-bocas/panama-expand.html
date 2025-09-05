@@ -486,9 +486,6 @@
                 const isComarca = name.includes('Comarca');
                 const region = regionData[normalizedName];
 
-                // Crear grupo para la provincia
-                const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                
                 // Crear el path de la provincia
                 const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
                 path.setAttribute('d', d);
@@ -566,16 +563,14 @@
                 contentWrapper.setAttribute('class', 'province-content');
                 contentWrapper.appendChild(contentGroup);
 
-                // Agregar todo al grupo principal
-                group.appendChild(path);
-                group.appendChild(contentWrapper);
+                // Agregar todo al contenedor
+                container.appendChild(path);
+                container.appendChild(contentWrapper);
 
                 // Evento de click en la provincia
                 path.addEventListener('click', () => {
                     window.location.href = `panama/${normalizedName}.html`;
                 });
-
-                container.appendChild(group);
             });
         }
 
