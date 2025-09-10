@@ -1,0 +1,23 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "CHANGUINOLA",
+        "type": "district",
+        "admin_level": 2,
+        "province": "Provincia de Bocas del Toro",
+        "corregimientos_count": 8,
+        "corregimientos": [
+          "CHANGUINOLA",
+          "GUABITO",
+          "EL EMPALME",
+          "LAS TABLAS",
+          "LAS DELICIAS",
+          "COCHIGRO",
+          "LA GLORIA",
+          "TERIBE"
+        ]
+      },
+      "geometry": 

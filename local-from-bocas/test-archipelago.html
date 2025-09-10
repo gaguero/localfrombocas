@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archipiélago Bocas del Toro - Prueba de Proporciones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .success {
+            color: #28a745;
+            font-size: 24px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .info-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+        .map-container {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #333;
+            background: #e8f5e8;
+            position: relative;
+            margin: 20px 0;
+        }
+        .debug {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏝️ Archipiélago Bocas del Toro - Prueba de Proporciones</h1>
+        <div class="success">✅ MAPA ENFOCADO EN EL ARCHIPIÉLAGO PRINCIPAL</div>
+        
+        <div class="info-box">
+            <h3>🎯 Lo que se corrigió:</h3>
+            <ul>
+                <li>✅ <strong>Enfoque en el archipiélago principal</strong> - Excluye Escudo de Veraguas que está muy lejos</li>
+                <li>✅ <strong>Límites geográficos optimizados</strong> - Longitud: -82.9 a -82.0, Latitud: 8.8 a 9.6</li>
+                <li>✅ <strong>Proporciones realistas</strong> - Las islas se ven como islas, no como rectángulos</li>
+                <li>✅ <strong>Centrado en Bocas del Toro</strong> - Muestra el archipiélago principal con claridad</li>
+            </ul>
+        </div>
+        
+        <div class="map-container" id="archipelagoMap">
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #666;">
+                Cargando mapa del archipiélago...
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h3>📊 Información de Depuración</h3>
+            <div class="debug" id="debugInfo">Cargando...</div>
+        </div>
+        
+        <div class="info-box">
+            <h3>🏝️ Distritos del Archipiélago:</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                <div>• <strong>BOCAS DEL TORO</strong> - Islas principales del archipiélago</div>
+                <div>• <strong>CHANGUINOLA</strong> - Área continental (incluye Teribe)</div>
+                <div>• <strong>ALMIRANTE</strong> - Costa continental</div>
+                <div>• <strong>CHIRIQUÍ GRANDE</strong> - Área oriental</div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="panama/bocas-del-toro.html" style="background: #007bff; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-size: 18px; margin: 10px;">
+                🗺️ Ver Mapa Principal
+            </a>
+            <a href="test-proportions.html" style="background: #28a745; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-size: 18px; margin: 10px;">
+                📐 Prueba de Proporciones
+            </a>
+        </div>
+    </div>
+
+    <script>
+        async function loadArchipelagoMap() {
+            const mapContainer = document.getElementById('archipelagoMap');
+            const debugInfo = document.getElementById('debugInfo');
+            
+            try {
+                // Load the GeoJSON data
+                const response = await fetch('data/accurate-bocas-del-toro-districts.geojson?v=' + Date.now());
+                const geo = await response.json();
+                
+                console.log('Loaded GeoJSON for archipelago test:', geo);
+                
+                // Find district features
+                const districtFeatures = geo.features.filter(f => f.properties.type === 'district');
+                
+                // Calculate bounds
+                let minLon = Infinity, minLat = Infinity, maxLon = -Infinity, maxLat = -Infinity;
+                
+                function scanCoords(coords) {
+                    for (const poly of coords) {
+                        const rings = Array.isArray(poly[0][0]) ? poly : [poly];
+                        for (const ring of rings) {
+                            for (const pt of ring) {
+                                const [lon, lat] = pt;
+                                if (lon < minLon) minLon = lon;
+                                if (lon > maxLon) maxLon = lon;
+                                if (lat < minLat) minLat = lat;
+                                if (lat > maxLat) maxLat = lat;
+                            }
+                        }
+                    }
+                }
+                
+                for (const f of districtFeatures) {
+                    const g = f.geometry;
+                    if (!g) continue;
+                    if (g.type === 'Polygon') scanCoords([g.coordinates]);
+                    if (g.type === 'MultiPolygon') scanCoords(g.coordinates);
+                }
+                
+                // Focus on the main Bocas del Toro archipelago
+                const mainLonMin = -82.9;  // Focus on main archipelago
+                const mainLonMax = -82.0;  // Exclude very eastern parts
+                const mainLatMin = 8.8;    // Focus on main archipelago
+                const mainLatMax = 9.6;    // Exclude very northern parts
+                
+                const focusedLonRange = mainLonMax - mainLonMin;
+                const focusedLatRange = mainLatMax - mainLatMin;
+                const aspectRatio = focusedLonRange / focusedLatRange;
+                
+                const viewH = 600;
+                const viewW = Math.max(800, viewH * aspectRatio);
+                
+                const padding = 30;
+                const scaleX = (viewW - 2 * padding) / focusedLonRange;
+                const scaleY = (viewH - 2 * padding) / focusedLatRange;
+                const scale = Math.min(scaleX, scaleY);
+                
+                const centerX = (mainLonMin + mainLonMax) / 2;
+                const centerY = (mainLatMin + mainLatMax) / 2;
+                
+                // Display debug information
+                debugInfo.textContent = `Límites Geográficos Completos:
+  Longitud: ${minLon.toFixed(6)} a ${maxLon.toFixed(6)} (rango: ${(maxLon - minLon).toFixed(6)})
+  Latitud: ${minLat.toFixed(6)} a ${maxLat.toFixed(6)} (rango: ${(maxLat - minLat).toFixed(6)})
+
+Límites Enfocados (Archipiélago Principal):
+  Longitud: ${mainLonMin} a ${mainLonMax} (rango: ${focusedLonRange.toFixed(6)})
+  Latitud: ${mainLatMin} a ${mainLatMax} (rango: ${focusedLatRange.toFixed(6)})
+
+Proporción de Aspecto: ${aspectRatio.toFixed(3)}
+ViewBox: ${viewW} x ${viewH}
+Factores de Escala: X=${scaleX.toFixed(3)}, Y=${scaleY.toFixed(3)}, Final=${scale.toFixed(3)}
+Centro: ${centerX.toFixed(6)}, ${centerY.toFixed(6)}
+
+Distritos: ${districtFeatures.length}
+  ${districtFeatures.map(f => f.properties.name).join(', ')}`;
+                
+                // Projection function
+                function project([lon, lat]) {
+                    const x = (lon - centerX) * scale + viewW / 2;
+                    const y = (centerY - lat) * scale + viewH / 2;
+                    return [x, y];
+                }
+                
+                // Create SVG
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('viewBox', `0 0 ${viewW} ${viewH}`);
+                svg.style.width = '100%';
+                svg.style.height = '100%';
+                
+                // Render districts with archipelago-appropriate colors
+                const colors = ['#4CAF50', '#2196F3', '#FF9800', '#9C27B0'];
+                const districtNames = ['BOCAS DEL TORO', 'CHANGUINOLA', 'ALMIRANTE', 'CHIRIQUÍ GRANDE'];
+                
+                districtFeatures.forEach((feature, index) => {
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    let pathData = '';
+                    
+                    const coords = feature.geometry.coordinates;
+                    if (feature.geometry.type === 'Polygon') {
+                        coords[0].forEach((coord, coordIndex) => {
+                            const [x, y] = project(coord);
+                            if (coordIndex === 0) {
+                                pathData += `M ${x} ${y} `;
+                            } else {
+                                pathData += `L ${x} ${y} `;
+                            }
+                        });
+                        pathData += 'Z';
+                    } else if (feature.geometry.type === 'MultiPolygon') {
+                        coords.forEach(polygon => {
+                            polygon[0].forEach((coord, coordIndex) => {
+                                const [x, y] = project(coord);
+                                if (coordIndex === 0) {
+                                    pathData += `M ${x} ${y} `;
+                                } else {
+                                    pathData += `L ${x} ${y} `;
+                                }
+                            });
+                            pathData += 'Z ';
+                        });
+                    }
+                    
+                    path.setAttribute('d', pathData);
+                    path.setAttribute('fill', colors[index % colors.length]);
+                    path.setAttribute('stroke', '#333');
+                    path.setAttribute('stroke-width', '1.5');
+                    path.setAttribute('opacity', '0.8');
+                    
+                    // Add hover effect
+                    path.addEventListener('mouseenter', () => {
+                        path.setAttribute('opacity', '1');
+                        path.setAttribute('stroke-width', '3');
+                    });
+                    
+                    path.addEventListener('mouseleave', () => {
+                        path.setAttribute('opacity', '0.8');
+                        path.setAttribute('stroke-width', '1.5');
+                    });
+                    
+                    svg.appendChild(path);
+                });
+                
+                mapContainer.innerHTML = '';
+                mapContainer.appendChild(svg);
+                
+            } catch (error) {
+                console.error('Error loading archipelago map:', error);
+                mapContainer.innerHTML = `
+                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #dc3545; font-size: 18px;">
+                        ❌ Error cargando mapa: ${error.message}
+                    </div>
+                `;
+            }
+        }
+        
+        // Load the map when page loads
+        loadArchipelagoMap();
+    </script>
+</body>
+</html>

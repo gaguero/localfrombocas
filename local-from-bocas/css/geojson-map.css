@@ -33,6 +33,38 @@
     filter: brightness(1.1);
 }
 
+/* Estilos específicos para distritos */
+.district-path {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    fill: var(--seafoam);
+    stroke: var(--jungle-teal);
+    stroke-width: 1.5;
+    opacity: 0.9;
+}
+
+.district-path:hover {
+    fill: var(--palm-leaf);
+    stroke: var(--ocean-blue);
+    stroke-width: 2.5;
+    filter: brightness(1.15) drop-shadow(0 4px 8px rgba(15, 91, 85, 0.3));
+    transform: scale(1.02);
+}
+
+.district-path.selected {
+    fill: var(--jungle-teal);
+    stroke: var(--ocean-blue);
+    stroke-width: 3;
+    filter: brightness(1.2) drop-shadow(0 6px 12px rgba(15, 91, 85, 0.4));
+    transform: scale(1.05);
+}
+
+/* Gradientes para distritos */
+.district-gradient-1 { fill: url(#districtGradient1); }
+.district-gradient-2 { fill: url(#districtGradient2); }
+.district-gradient-3 { fill: url(#districtGradient3); }
+.district-gradient-4 { fill: url(#districtGradient4); }
+
 .province-path.comarca {
     fill: var(--sunset-coral);
     opacity: 0.8;
@@ -118,12 +150,210 @@
     }
 }
 
+/* District animations */
+@keyframes fadeInDistrict {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Ripple and selection effects */
+.ripple-effect {
+    pointer-events: none;
+    animation: ripple 0.6s ease-out forwards;
+}
+
+.selection-effect {
+    pointer-events: none;
+    animation: selection 0.8s ease-out forwards;
+}
+
+@keyframes ripple {
+    from {
+        r: 0;
+        opacity: 1;
+    }
+    to {
+        r: 20;
+        opacity: 0;
+    }
+}
+
+@keyframes selection {
+    from {
+        r: 0;
+        opacity: 1;
+    }
+    to {
+        r: 30;
+        opacity: 0;
+    }
+}
+
 /* Efectos de selección */
 .province-path.selected {
     fill: var(--jungle-teal);
     stroke: var(--ocean-blue);
     stroke-width: 3;
     filter: brightness(1.2);
+}
+
+/* District Name Tooltip */
+.district-tooltip {
+    position: absolute;
+    background: var(--jungle-teal);
+    color: white;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-md);
+    white-space: nowrap;
+}
+
+.district-tooltip.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.district-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--jungle-teal);
+}
+
+/* District Information Card */
+.district-card {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 320px;
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    border: 2px solid var(--jungle-teal);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+}
+
+.district-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.district-card-content {
+    padding: 1.5rem;
+}
+
+.district-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--seafoam);
+}
+
+.district-card-header h3 {
+    margin: 0;
+    color: var(--jungle-teal);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.district-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 0.5rem;
+    background: var(--seafoam);
+    border-radius: var(--radius-sm);
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--jungle-teal);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--ink);
+    opacity: 0.8;
+}
+
+.district-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.district-highlight {
+    background: var(--palm-leaf);
+    color: var(--jungle-teal);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Map Controls */
+.map-controls {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 100;
+}
+
+.map-control-btn {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: 2px solid var(--jungle-teal);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-md);
+}
+
+.map-control-btn:hover {
+    background: var(--seafoam);
+    transform: scale(1.05);
+}
+
+.map-control-btn:active {
+    transform: scale(0.95);
 }
 
 /* Responsive design */
@@ -147,6 +377,17 @@
     
     .province-path:hover {
         stroke-width: 1.5;
+    }
+    
+    .district-card {
+        width: 280px;
+        top: 10px;
+        right: 10px;
+    }
+    
+    .district-stats {
+        grid-template-columns: 1fr;
+    }
     }
 }
 

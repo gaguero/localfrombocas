@@ -4,13 +4,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guna Yala - Local From Bocas | 365 Islas del Caribe</title>
-    <meta name="description" content="Descubre Guna Yala, la comarca autónoma con 365 islas caribeñas, cultura guna preservada y hermosas playas vírgenes.">
-    <meta name="keywords" content="Guna Yala, San Blas, islas caribeñas, molas, cultura guna, Panamá">
+    <meta name="description" content="Descubre Guna Yala, comarca autónoma en el Caribe con 365 islas, cultura guna preservada y hermosas playas vírgenes.">
+    <meta name="keywords" content="Guna Yala, Panamá, Caribe, 365 islas, molas, cultura guna, comarca indígena">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/svg-maps.css">
+    <link rel="stylesheet" href="../css/geojson-map.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%);
+            background-image: url('https://via.placeholder.com/1920x800/0F5B55/FFFFFF?text=Guna+Yala+Caribbean');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+        .hero::before {
+            background: rgba(15, 91, 85, 0.7);
+        }
+        .province-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--jungle-teal);
+            font-family: var(--font-display);
+        }
+        .stat-label {
+            color: var(--neutral-gray);
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .district-card, .island-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        .district-card:hover, .island-card:hover {
+            transform: translateY(-2px);
+        }
+        .district-content, .island-content {
+            padding: 1.5rem;
+        }
+        .district-highlights, .island-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .feature-item .pill-light {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Estilos para las tarjetas de estadísticas */
+        .stat-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-card h3 {
+            color: var(--jungle-teal);
+            margin-bottom: 1.5rem;
+            font-family: var(--font-display);
+        }
+        
+        .stat-details {
+            text-align: left;
+        }
+        
+        .stat-details .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--seafoam);
+        }
+        
+        .stat-details .stat-item:last-child {
+            border-bottom: none;
+        }
+        
+        .stat-details .stat-label {
+            color: var(--neutral-gray);
+            font-weight: 500;
+        }
+        
+        .stat-details .stat-value {
+            color: var(--jungle-teal);
+            font-weight: 700;
+            font-family: var(--font-display);
+        }
+        
+        /* Estilos para el mapa interactivo */
+        .interactive-map-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: var(--seafoam);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 2px solid var(--jungle-teal);
+        }
+        
+        .interactive-map-container svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .province-stats {
+                grid-template-columns: 1fr;
+            }
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .interactive-map-container {
+                height: 400px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -22,7 +180,7 @@
                     <li><a href="../index.html">Inicio</a></li>
                     <li><a href="../servicios.html">Servicios</a></li>
                     <li><a href="../vlogs.html">Vlogs</a></li>
-                    <li><a href="../panama.html">Panamá</a></li>
+                    <li><a href="../panama.html" class="active">Panamá</a></li>
                     <li><a href="../nosotros.html">Nosotros</a></li>
                     <li><a href="../contacto.html">Contacto</a></li>
                 </ul>
@@ -33,121 +191,44 @@
     <!-- Hero Section -->
     <section class="hero" style="height: 50vh; min-height: 400px;">
         <div class="hero-content">
-            <div class="pill mb-md">🏝️ Caribe</div>
-            <h1>Guna Yala</h1>
-            <p class="body-large">Comarca autónoma con 365 islas caribeñas y cultura guna preservada</p>
+            <div class="pill mb-md">🏝️ Guna Yala</div>
+            <h1>365 Islas del Caribe</h1>
+            <p class="body-large">Descubre la comarca autónoma con 365 islas paradisíacas, cultura guna preservada y aguas cristalinas únicas</p>
         </div>
     </section>
 
-    <!-- Mapa SVG -->
+    <!-- Overview -->
     <section class="section">
-        <div class="container">
-            <div class="text-center mb-xxl">
-                <h2>Mapa de Guna Yala</h2>
-                <p class="body-large">Explora las 365 islas del archipiélago caribeño</p>
-            </div>
-            
-            <div class="interactive-map-container">
-                <div class="province-map-container">
-                    <object data="../svgs/guna-yala.svg" type="image/svg+xml" style="width: 100%; height: auto; border-radius: var(--radius-lg);">
-                        <div id="region-map" data-region="guna-yala"></div>
-                    </object>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Información General -->
-    <section class="section" style="background-color: var(--seafoam);">
         <div class="container">
             <div class="grid grid-2">
                 <div>
-                    <h2>365 Islas del Caribe</h2>
-                    <p class="body-large mb-lg">Guna Yala es una comarca autónoma que preserva la cultura guna en 365 islas caribeñas. Es un paraíso natural con aguas cristalinas y tradiciones ancestrales.</p>
+                    <h2>Un Archipiélago Único</h2>
+                    <p class="body-large mb-lg">Guna Yala es una comarca autónoma indígena ubicada en el Caribe panameño, famosa por sus 365 islas paradisíacas, cultura guna preservada y aguas cristalinas. Es uno de los destinos más exclusivos y hermosos de Centroamérica.</p>
                     
                     <div class="province-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">2,393</div>
+                            <div class="stat-label">km² de Territorio</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">33,000</div>
+                            <div class="stat-label">Habitantes</div>
+                        </div>
                         <div class="stat-item">
                             <div class="stat-number">365</div>
                             <div class="stat-label">Islas</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">2,393</div>
-                            <div class="stat-label">km²</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">33,109</div>
-                            <div class="stat-label">Habitantes</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">🎨</div>
-                            <div class="stat-label">Molas</div>
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Distritos</div>
                         </div>
                     </div>
                 </div>
                 
-                <div>
-                    <img src="https://via.placeholder.com/500x400/0F5B55/FFFFFF?text=Islas+Guna+Yala" alt="Islas de Guna Yala" style="width: 100%; border-radius: var(--radius-lg);">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Atractivos Principales -->
-    <section class="section">
-        <div class="container">
-            <div class="text-center mb-xxl">
-                <h2>Atractivos Principales</h2>
-                <p class="body-large">Descubre las maravillas de Guna Yala</p>
-            </div>
-            
-            <div class="grid grid-3">
-                <!-- Islas Principales -->
-                <div class="attraction-card">
-                    <div class="attraction-header">
-                        <img src="https://via.placeholder.com/400x250/8DBB66/FFFFFF?text=Islas+Principales" alt="Islas Principales" style="width: 100%; border-radius: var(--radius-md);">
-                        <div class="pill">🏝️ Islas</div>
-                    </div>
-                    <div class="attraction-content">
-                        <h3>Islas Principales</h3>
-                        <p>Islas como Ailigandí, Narganá y El Porvenir que son centros de la cultura guna y puntos de entrada a la comarca.</p>
-                        <div class="attraction-highlights">
-                            <span class="pill-light">🏝️ 365 islas</span>
-                            <span class="pill-light">🌊 Aguas cristalinas</span>
-                            <span class="pill-light">🏖️ Playas vírgenes</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Arte de Molas -->
-                <div class="attraction-card">
-                    <div class="attraction-header">
-                        <img src="https://via.placeholder.com/400x250/FF7466/FFFFFF?text=Arte+de+Molas" alt="Arte de Molas" style="width: 100%; border-radius: var(--radius-md);">
-                        <div class="pill">🎨 Arte</div>
-                    </div>
-                    <div class="attraction-content">
-                        <h3>Arte de Molas</h3>
-                        <p>Las molas son obras de arte textil únicas que representan la cosmovisión guna y son reconocidas mundialmente.</p>
-                        <div class="attraction-highlights">
-                            <span class="pill-light">🎨 Arte textil</span>
-                            <span class="pill-light">🌍 Reconocimiento mundial</span>
-                            <span class="pill-light">👩‍🎨 Artesanas guna</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cultura Guna -->
-                <div class="attraction-card">
-                    <div class="attraction-header">
-                        <img src="https://via.placeholder.com/400x250/5B4B3F/FFFFFF?text=Cultura+Guna" alt="Cultura Guna" style="width: 100%; border-radius: var(--radius-md);">
-                        <div class="pill">👥 Cultura</div>
-                    </div>
-                    <div class="attraction-content">
-                        <h3>Cultura Guna</h3>
-                        <p>Una de las culturas indígenas mejor preservadas de América, con tradiciones ancestrales y gobierno autónomo.</p>
-                        <div class="attraction-highlights">
-                            <span class="pill-light">👥 Cultura preservada</span>
-                            <span class="pill-light">🏛️ Gobierno autónomo</span>
-                            <span class="pill-light">🗣️ Idioma guna</span>
+                <div class="province-map">
+                    <div class="province-map-container">
+                        <div class="interactive-map-container" id="gunaYalaMap" style="height: 500px; border-radius: var(--radius-lg); background: var(--seafoam);">
+                            <!-- El mapa distrital se generará dinámicamente con JavaScript -->
                         </div>
                     </div>
                 </div>
@@ -155,113 +236,230 @@
         </div>
     </section>
 
-    <!-- Cultura y Tradiciones -->
-    <section class="section" style="background-color: var(--island-sand);">
-        <div class="container">
-            <div class="grid grid-2">
-                <div>
-                    <h2>Cultura y Tradiciones Guna</h2>
-                    <p class="body-large mb-lg">La cultura guna es una de las mejor preservadas de América, manteniendo sus tradiciones ancestrales y gobierno autónomo.</p>
-                    
-                    <div class="culture-list">
-                        <div class="culture-item">
-                            <h4>🎨 Molas</h4>
-                            <p>Arte textil único que representa la cosmovisión guna con diseños geométricos y simbólicos.</p>
-                        </div>
-                        
-                        <div class="culture-item">
-                            <h4>🏛️ Gobierno Autónomo</h4>
-                            <p>Sistema de gobierno tradicional con congresos guna que toman decisiones comunitarias.</p>
-                        </div>
-                        
-                        <div class="culture-item">
-                            <h4>🗣️ Idioma Guna</h4>
-                            <p>Lengua materna preservada y enseñada en las comunidades junto con el español.</p>
-                        </div>
-                        
-                        <div class="culture-item">
-                            <h4>🌊 Turismo Sostenible</h4>
-                            <p>Desarrollo turístico controlado que respeta la cultura y el medio ambiente.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <img src="https://via.placeholder.com/500x400/8DBB66/FFFFFF?text=Cultura+Guna+Tradicional" alt="Cultura Guna Tradicional" style="width: 100%; border-radius: var(--radius-lg);">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Islas Destacadas -->
-    <section class="section">
-        <div class="container">
-            <div class="text-center mb-xxl">
-                <h2>Islas Destacadas</h2>
-                <p class="body-large">Conoce algunas de las islas más importantes de Guna Yala</p>
-            </div>
-            
-            <div class="grid grid-2">
-                <div class="island-item">
-                    <h3>🏛️ El Porvenir</h3>
-                    <p>Capital de Guna Yala y punto de entrada principal a la comarca. Centro administrativo y cultural.</p>
-                </div>
-                
-                <div class="island-item">
-                    <h3>🏝️ Ailigandí</h3>
-                    <p>Isla importante con comunidad guna activa y tradiciones bien preservadas.</p>
-                </div>
-                
-                <div class="island-item">
-                    <h3>🏝️ Narganá</h3>
-                    <p>Isla con una de las comunidades guna más grandes y tradicionales.</p>
-                </div>
-                
-                <div class="island-item">
-                    <h3>🏝️ Corazón de Jesús</h3>
-                    <p>Isla conocida por su belleza natural y aguas cristalinas.</p>
-                </div>
-                
-                <div class="island-item">
-                    <h3>🏝️ Playón Chico</h3>
-                    <p>Isla con hermosas playas y comunidad guna tradicional.</p>
-                </div>
-                
-                <div class="island-item">
-                    <h3>🏝️ Ustupu</h3>
-                    <p>Isla importante para la cultura guna con tradiciones ancestrales.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Turismo Sostenible -->
+    <!-- Estadísticas Detalladas de la Comarca -->
     <section class="section" style="background-color: var(--seafoam);">
         <div class="container">
             <div class="text-center mb-xxl">
-                <h2>Turismo Sostenible</h2>
-                <p class="body-large">Guna Yala promueve un turismo que respeta la cultura y el medio ambiente</p>
+                <h2>Estadísticas de Guna Yala</h2>
+                <p class="body-large">Conoce los datos más importantes de esta comarca autónoma</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="stat-card">
+                    <div class="stat-icon">🏝️</div>
+                    <h3>Geografía</h3>
+                    <div class="stat-details">
+                        <div class="stat-item">
+                            <span class="stat-label">Área Total:</span>
+                            <span class="stat-value">2,393 km²</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Distritos:</span>
+                            <span class="stat-value">4</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Islas:</span>
+                            <span class="stat-value">365</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Costa Caribeña:</span>
+                            <span class="stat-value">200+ km</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <h3>Población</h3>
+                    <div class="stat-details">
+                        <div class="stat-item">
+                            <span class="stat-label">Total:</span>
+                            <span class="stat-value">33,000</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Densidad:</span>
+                            <span class="stat-value">14 hab/km²</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Distrito Mayor:</span>
+                            <span class="stat-value">Ustupu</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Crecimiento:</span>
+                            <span class="stat-value">1.2% anual</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">🎨</div>
+                    <h3>Cultura</h3>
+                    <div class="stat-details">
+                        <div class="stat-item">
+                            <span class="stat-label">Molas:</span>
+                            <span class="stat-value">Tradicionales</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Idioma:</span>
+                            <span class="stat-value">Dulegaya</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Gobierno:</span>
+                            <span class="stat-value">Autónomo</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Tradición:</span>
+                            <span class="stat-value">Milenaria</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Distritos de la Comarca -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Distritos de Guna Yala</h2>
+                <p class="body-large">Cada distrito tiene su propia identidad y tradiciones gunas</p>
             </div>
             
             <div class="grid grid-2">
-                <div class="tourism-item">
-                    <h3>🌊 Aguas Cristalinas</h3>
-                    <p>Las aguas del Caribe en Guna Yala son excepcionalmente claras, ideales para snorkeling y buceo.</p>
+                <div class="district-card">
+                    <img src="https://via.placeholder.com/300x200/0F5B55/FFFFFF?text=Ailigandi" alt="Ailigandí" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="district-content">
+                        <h3>Ailigandí</h3>
+                        <p>Distrito con comunidades gunas tradicionales y artesanías auténticas.</p>
+                        <div class="district-highlights">
+                            <span class="pill-light">👥 Guna</span>
+                            <span class="pill-light">🎨 Molas</span>
+                            <span class="pill-light">🌿 Tradición</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="district-card">
+                    <img src="https://via.placeholder.com/300x200/8DBB66/FFFFFF?text=Dugub" alt="Dugub" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="district-content">
+                        <h3>Dugub</h3>
+                        <p>Distrito con islas paradisíacas y cultura guna preservada.</p>
+                        <div class="district-highlights">
+                            <span class="pill-light">🏝️ Islas</span>
+                            <span class="pill-light">🌊 Caribe</span>
+                            <span class="pill-light">🎨 Cultura</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="district-card">
+                    <img src="https://via.placeholder.com/300x200/FF7466/FFFFFF?text=Nargana" alt="Narganá" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="district-content">
+                        <h3>Narganá</h3>
+                        <p>Distrito con desarrollo turístico controlado y aguas cristalinas.</p>
+                        <div class="district-highlights">
+                            <span class="pill-light">🏨 Turismo</span>
+                            <span class="pill-light">🏝️ Islas</span>
+                            <span class="pill-light">🌊 Aguas cristalinas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="district-card">
+                    <img src="https://via.placeholder.com/300x200/2C8AC6/FFFFFF?text=Ustupu" alt="Ustupu" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="district-content">
+                        <h3>Ustupu</h3>
+                        <p>Distrito más poblado con tradiciones gunas vivas y molas auténticas.</p>
+                        <div class="district-highlights">
+                            <span class="pill-light">👥 Población</span>
+                            <span class="pill-light">🎨 Molas</span>
+                            <span class="pill-light">🌿 Tradición</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Las Molas -->
+    <section class="section" style="background-color: var(--island-sand);">
+        <div class="container">
+            <div class="grid grid-2">
+                <div class="mola-image">
+                    <img src="https://via.placeholder.com/600x400/0F5B55/FFFFFF?text=Molas+Tradicionales" alt="Molas Tradicionales" style="width: 100%; border-radius: var(--radius-lg);">
                 </div>
                 
-                <div class="tourism-item">
-                    <h3>🏖️ Playas Vírgenes</h3>
-                    <p>Playas de arena blanca sin desarrollar, perfectas para el descanso y la contemplación.</p>
+                <div>
+                    <h2>Las Molas: Arte Textil Único</h2>
+                    <p class="body-large mb-lg">Las molas son el arte textil más reconocido de Guna Yala, creadas por las mujeres gunas con técnicas ancestrales. Cada mola es una obra de arte única que cuenta historias de la cultura guna y representa elementos de la naturaleza y la cosmovisión indígena.</p>
+                    
+                    <div class="mola-features">
+                        <div class="feature-item">
+                            <div class="pill-light">🎨</div>
+                            <div>
+                                <h4>Arte Ancestral</h4>
+                                <p>Técnicas de bordado que se han transmitido por generaciones.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">👩</div>
+                            <div>
+                                <h4>Arte Femenino</h4>
+                                <p>Las mujeres gunas son las guardianas de esta tradición milenaria.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🌿</div>
+                            <div>
+                                <h4>Naturaleza</h4>
+                                <p>Motivos inspirados en la flora y fauna del Caribe.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Islas Paradisíacas -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <h2>365 Islas del Paraíso</h2>
+                    <p class="body-large mb-lg">Guna Yala cuenta con 365 islas, una para cada día del año. Cada isla tiene su propia personalidad, desde islas habitadas con comunidades gunas hasta islas vírgenes perfectas para el ecoturismo y la contemplación de la naturaleza.</p>
+                    
+                    <div class="island-features">
+                        <div class="feature-item">
+                            <div class="pill-light">🏝️</div>
+                            <div>
+                                <h4>Islas Habitadas</h4>
+                                <p>Comunidades gunas que mantienen sus tradiciones ancestrales.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🌊</div>
+                            <div>
+                                <h4>Aguas Cristalinas</h4>
+                                <p>Algunas de las aguas más cristalinas y limpias del Caribe.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🐠</div>
+                            <div>
+                                <h4>Arrecifes de Coral</h4>
+                                <p>Ecosistemas marinos únicos con gran biodiversidad.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="tourism-item">
-                    <h3>🎨 Arte y Artesanías</h3>
-                    <p>Oportunidad de conocer y adquirir molas auténticas directamente de las artesanas guna.</p>
-                </div>
-                
-                <div class="tourism-item">
-                    <h3>👥 Experiencia Cultural</h3>
-                    <p>Vivencia auténtica de la cultura guna con respeto a sus tradiciones y costumbres.</p>
+                <div class="island-image">
+                    <img src="https://via.placeholder.com/600x400/8DBB66/FFFFFF?text=Islas+Paradisicas" alt="Islas Paradisíacas" style="width: 100%; border-radius: var(--radius-lg);">
                 </div>
             </div>
         </div>
@@ -270,11 +468,11 @@
     <!-- CTA Section -->
     <section class="section" style="background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%); color: white;">
         <div class="container text-center">
-            <h2 style="color: white;">¿Listo para Explorar Guna Yala?</h2>
-            <p class="body-large" style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Descubre las 365 islas caribeñas y la cultura guna preservada.</p>
+            <h2 style="color: white;">¿Listo para Descubrir Guna Yala?</h2>
+            <p class="body-large" style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Explora las 365 islas del Caribe con cultura guna auténtica y aguas cristalinas.</p>
             <div class="hero-actions">
-                <a href="../servicios.html" class="btn" style="background: white; color: var(--jungle-teal);">Nuestros Servicios</a>
-                <a href="../contacto.html" class="btn btn-secondary" style="border-color: white; color: white;">Planificar Viaje</a>
+                <a href="../servicios.html" class="btn" style="background: white; color: var(--jungle-teal);">Nuestros Tours</a>
+                <a href="../contacto.html" class="btn btn-secondary" style="border-color: white; color: white;">Contactar</a>
             </div>
         </div>
     </section>
@@ -317,11 +515,14 @@
     </footer>
 
     <script src="../js/main.js"></script>
-    <script src="../js/svg-loader.js"></script>
+    <script src="../js/province-data.js"></script>
+    <script src="../js/province-map.js"></script>
     <script>
-        // Cargar SVG de Guna Yala
+        // Initialize the interactive district map for Guna Yala
         document.addEventListener('DOMContentLoaded', function() {
-            loadRegionSVG('guna-yala', 'region-map');
+            const gunaYalaData = provinceData['guna-yala'];
+            const gunaYalaMap = new ProvinceMap('gunaYalaMap', gunaYalaData);
+            gunaYalaMap.loadDistrictMap();
         });
     </script>
 </body>

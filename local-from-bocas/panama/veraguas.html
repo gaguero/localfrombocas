@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veraguas - Local From Bocas | Dos Mares</title>
+    <meta name="description" content="Descubre Veraguas, la única provincia con costas en ambos océanos, rica en historia colonial y hermosos paisajes naturales.">
+    <meta name="keywords" content="Veraguas, Panamá, dos mares, Caribe, Pacífico, historia colonial, Santiago">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/svg-maps.css">
+    <link rel="stylesheet" href="../css/geojson-map.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%);
+            background-image: url('https://via.placeholder.com/1920x800/5B4B3F/FFFFFF?text=Veraguas+Dos+Mares');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+        .hero::before {
+            background: rgba(15, 91, 85, 0.7);
+        }
+        .province-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--jungle-teal);
+            font-family: var(--font-display);
+        }
+        .stat-label {
+            color: var(--neutral-gray);
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .district-card, .coast-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        .district-card:hover, .coast-card:hover {
+            transform: translateY(-2px);
+        }
+        .district-content, .coast-content {
+            padding: 1.5rem;
+        }
+        .district-highlights, .coast-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .feature-item .pill-light {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Estilos para las tarjetas de estadísticas */
+        .stat-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-card h3 {
+            color: var(--jungle-teal);
+            margin-bottom: 1.5rem;
+            font-family: var(--font-display);
+        }
+        
+        .stat-details {
+            text-align: left;
+        }
+        
+        .stat-details .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--seafoam);
+        }
+        
+        .stat-details .stat-item:last-child {
+            border-bottom: none;
+        }
+        
+        .stat-details .stat-label {
+            color: var(--neutral-gray);
+            font-weight: 500;
+        }
+        
+        .stat-details .stat-value {
+            color: var(--jungle-teal);
+            font-weight: 700;
+            font-family: var(--font-display);
+        }
+        
+        /* Estilos para el mapa interactivo */
+        .interactive-map-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: var(--seafoam);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 2px solid var(--jungle-teal);
+        }
+        
+        .interactive-map-container svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .province-stats {
+                grid-template-columns: 1fr;
+            }
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .interactive-map-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-logo">Local From Bocas</a>
+            <nav>
+                <ul class="navbar-nav">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="../servicios.html">Servicios</a></li>
+                    <li><a href="../vlogs.html">Vlogs</a></li>
+                    <li><a href="../panama.html" class="active">Panamá</a></li>
+                    <li><a href="../nosotros.html">Nosotros</a></li>
+                    <li><a href="../contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="height: 50vh; min-height: 400px;">
+        <div class="hero-content">
+            <div class="pill mb-md">🌊 Veraguas</div>
+            <h1>Dos Mares</h1>
+            <p class="body-large">Descubre la única provincia con costas en ambos océanos, rica en historia colonial y hermosos paisajes naturales</p>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <h2>Única Provincia con Dos Mares</h2>
+                    <p class="body-large mb-lg">Veraguas es la única provincia de Panamá que tiene costas tanto en el Océano Pacífico como en el Mar Caribe. Esta característica única la convierte en una provincia especial, rica en historia colonial, diversidad natural y oportunidades turísticas excepcionales.</p>
+                    
+                    <div class="province-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">10,677</div>
+                            <div class="stat-label">km² de Territorio</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">226,000</div>
+                            <div class="stat-label">Habitantes</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Distritos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">Océanos</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="province-map">
+                    <div class="province-map-container">
+                        <div class="interactive-map-container" id="veraguasMap" style="height: 500px; border-radius: var(--radius-lg); background: var(--seafoam);">
+                            <!-- El mapa distrital se generará dinámicamente con JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estadísticas Detalladas de la Provincia -->
+    <section class="section" style="background-color: var(--seafoam);">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Estadísticas de Veraguas</h2>
+                <p class="body-large">Conoce los datos más importantes de esta provincia única</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="stat-card">
+                    <div class="stat-icon">🌊</div>
+                    <h3>Geografía</h3>
+                    <div class="stat-details">
+                        <div class="stat-item">
+                            <span class="stat-label">Área Total:</span>
+                            <span class="stat-value">10,677 km²</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Distritos:</span>
+                            <span class="stat-value">12</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Océanos:</span>
+                            <span class="stat-value">2</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Sitios Coloniales:</span>
+                            <span class="stat-value">10</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <h3>Población</h3>
+                    <div class="stat-details">
+                        <div class="stat-item">
+                            <span class="stat-label">Total:</span>
+                            <span class="stat-value">226,000</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Densidad:</span>
+                            <span class="stat-value">21 hab/km²</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Distrito Mayor:</span>
+                            <span class="stat-value">Santiago</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Crecimiento:</span>
+                            <span class="stat-value">1.8% anual</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">🏰</div>
+                    <h3>Historia</h3>
+                    <div class="stat-details">
+                        <div class="stat-item">
+                            <span class="stat-label">Herencia:</span>
+                            <span class="stat-value">Colonial</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Sitios:</span>
+                            <span class="stat-value">10</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Época:</span>
+                            <span class="stat-value">Española</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Importancia:</span>
+                            <span class="stat-value">Histórica</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Distritos Principales -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Distritos Principales</h2>
+                <p class="body-large">Cada distrito tiene su propia identidad y características</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="district-card">
+                    <img src="https://via.placeholder.com/300x200/5B4B3F/FFFFFF?text=Santiago" alt="Santiago" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="district-content">
+                        <h3>Santiago (Capital)</h3>
+                        <p>Capital de la provincia y centro comercial del interior.</p>
+                        <div class="district-highlights">
+                            <span class="pill-light">🏛️ Capital</span>
+                            <span class="pill-light">🏪 Comercio</span>
+                            <span class="pill-light">🌆 Urbano</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="district-card">
+                    <img src="https://via.placeholder.com/300x200/0F5B55/FFFFFF?text=Las+Palmas" alt="Las Palmas" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="district-content">
+                        <h3>Las Palmas</h3>
+                        <p>Distrito costero del Pacífico con playas y pesca.</p>
+                        <div class="district-highlights">
+                            <span class="pill-light">🏖️ Playas</span>
+                            <span class="pill-light">🌊 Pacífico</span>
+                            <span class="pill-light">🐟 Pesca</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="district-card">
+                    <img src="https://via.placeholder.com/300x200/8DBB66/FFFFFF?text=Montijo" alt="Montijo" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="district-content">
+                        <h3>Montijo</h3>
+                        <p>Distrito costero con islas del Pacífico.</p>
+                        <div class="district-highlights">
+                            <span class="pill-light">🏝️ Islas</span>
+                            <span class="pill-light">🌊 Pacífico</span>
+                            <span class="pill-light">🐟 Pesca</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dos Mares -->
+    <section class="section" style="background-color: var(--island-sand);">
+        <div class="container">
+            <div class="grid grid-2">
+                <div class="coast-image">
+                    <img src="https://via.placeholder.com/600x400/5B4B3F/FFFFFF?text=Dos+Mares" alt="Dos Mares" style="width: 100%; border-radius: var(--radius-lg);">
+                </div>
+                
+                <div>
+                    <h2>Única Provincia con Dos Mares</h2>
+                    <p class="body-large mb-lg">Veraguas es la única provincia de Panamá que tiene costas tanto en el Mar Caribe como en el Océano Pacífico. Esta característica única ofrece una diversidad de ecosistemas, playas y oportunidades turísticas excepcionales en una sola provincia.</p>
+                    
+                    <div class="coast-features">
+                        <div class="feature-item">
+                            <div class="pill-light">🌊</div>
+                            <div>
+                                <h4>Mar Caribe</h4>
+                                <p>Aguas cristalinas y playas de arena blanca en el norte.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🏖️</div>
+                            <div>
+                                <h4>Océano Pacífico</h4>
+                                <p>Playas del Pacífico con aguas cálidas en el sur.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🐠</div>
+                            <div>
+                                <h4>Biodiversidad Marina</h4>
+                                <p>Ecosistemas marinos únicos en ambos océanos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historia Colonial -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <h2>Rica Herencia Colonial</h2>
+                    <p class="body-large mb-lg">Veraguas tiene una rica herencia colonial española, con sitios históricos que datan del siglo XVI. La provincia fue un importante centro administrativo y comercial durante la época colonial, y muchos de sus pueblos mantienen la arquitectura y tradiciones de esa época.</p>
+                    
+                    <div class="colonial-features">
+                        <div class="feature-item">
+                            <div class="pill-light">🏰</div>
+                            <div>
+                                <h4>Arquitectura Colonial</h4>
+                                <p>Edificios históricos que preservan el estilo español.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🏛️</div>
+                            <div>
+                                <h4>Sitios Históricos</h4>
+                                <p>10 sitios coloniales de importancia histórica.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🌿</div>
+                            <div>
+                                <h4>Tradiciones</h4>
+                                <p>Cultura y tradiciones que se mantienen vivas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="colonial-image">
+                    <img src="https://via.placeholder.com/600x400/0F5B55/FFFFFF?text=Historia+Colonial" alt="Historia Colonial" style="width: 100%; border-radius: var(--radius-lg);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%); color: white;">
+        <div class="container text-center">
+            <h2 style="color: white;">¿Listo para Descubrir Veraguas?</h2>
+            <p class="body-large" style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Explora la única provincia con dos mares, rica historia colonial y paisajes naturales únicos.</p>
+            <div class="hero-actions">
+                <a href="../servicios.html" class="btn" style="background: white; color: var(--jungle-teal);">Nuestros Tours</a>
+                <a href="../contacto.html" class="btn btn-secondary" style="border-color: white; color: white;">Contactar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Local From Bocas</h3>
+                    <p>Conectando viajeros con la auténtica cultura de Bocas del Toro, Panamá.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <a href="../servicios.html#tours">Tours Históricos</a>
+                    <a href="../servicios.html#merchandise">Mercancía Cultural</a>
+                    <a href="../servicios.html#assistance">Asistencia Personalizada</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Explorar</h3>
+                    <a href="../vlogs.html">Vlogs</a>
+                    <a href="../panama.html">Panamá</a>
+                    <a href="../nosotros.html">Nosotros</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <a href="../contacto.html">Contáctanos</a>
+                    <a href="mailto:info@localfrombocas.com">info@localfrombocas.com</a>
+                    <a href="tel:+507-1234-5678">+507 1234-5678</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Local From Bocas. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/province-data.js"></script>
+    <script src="../js/province-map.js"></script>
+    <script>
+        // Initialize the interactive district map for Veraguas
+        document.addEventListener('DOMContentLoaded', function() {
+            const veraguasData = provinceData['veraguas'];
+            const veraguasMap = new ProvinceMap('veraguasMap', veraguasData);
+            veraguasMap.loadDistrictMap();
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+

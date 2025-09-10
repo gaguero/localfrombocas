@@ -7,6 +7,8 @@
 - **CSS3**: Sistema de diseño personalizado con variables CSS
 - **JavaScript (Vanilla)**: Interactividad sin dependencias externas
 - **Responsive Design**: Mobile-first approach
+- **SVG**: Mapas vectoriales interactivos
+- **GeoJSON**: Datos geográficos reales de Panamá
 
 ### Hosting y Deployment
 - **Railway**: Plataforma de hosting para el sitio web
@@ -17,6 +19,7 @@
 - **VS Code/Cursor**: Editor de código principal
 - **Git**: Control de versiones
 - **Terminal**: Comandos de desarrollo y deployment
+- **Memory Bank**: Sistema de documentación del proyecto
 
 ## Arquitectura del Proyecto
 
@@ -24,10 +27,20 @@
 ```
 local-from-bocas/
 ├── css/                     # Estilos del sistema de diseño
+│   ├── styles.css          # Sistema principal
+│   ├── geojson-map.css     # Estilos de mapas
+│   └── panama-map.css      # Estilos específicos de Panamá
 ├── js/                      # Funcionalidad JavaScript
+│   ├── main.js             # Funcionalidad principal
+│   ├── panama-interactive.js # Mapa interactivo
+│   ├── panama-map.js       # Lógica del mapa
+│   └── svg-loader.js       # Cargador de SVGs
+├── data/                    # Datos geográficos
+│   └── geoBoundaries-PAN-ADM1.geojson
+├── svgs/                    # Archivos SVG de provincias
 ├── images/                  # Assets visuales
-├── content/                 # Contenido dinámico
-└── panama/                  # Subpáginas de provincias
+├── panama/                  # Subpáginas de provincias
+└── content/                 # Contenido dinámico
 ```
 
 ### Sistema de Diseño
@@ -35,6 +48,7 @@ local-from-bocas/
 - **Componentes modulares**: Botones, cards, inputs reutilizables
 - **Grid system**: Layout responsivo basado en CSS Grid
 - **Typography scale**: Jerarquía tipográfica consistente
+- **Mapa interactivo**: Componente reutilizable con posicionamiento inteligente
 
 ## Configuración de Deployment
 
@@ -68,6 +82,12 @@ local-from-bocas/
 - **Optimización**: Compresión automática
 - **Lazy loading**: Carga diferida para mejor performance
 - **Responsive images**: Diferentes tamaños para diferentes dispositivos
+- **SVG**: Mapas vectoriales para escalabilidad perfecta
+
+### Datos Geográficos
+- **GeoJSON**: Formato estándar para datos geográficos
+- **geoBoundaries**: Fuente de datos administrativos de Panamá
+- **Coordenadas precisas**: Datos reales de provincias y comarcas
 
 ## Performance y Optimización
 
@@ -76,18 +96,28 @@ local-from-bocas/
 - **Minificación**: Para producción
 - **Critical CSS**: Estilos críticos inline
 - **Unused CSS**: Eliminación de estilos no utilizados
+- **Responsive design**: Media queries optimizadas
 
 ### JavaScript
 - **Vanilla JS**: Sin dependencias externas
 - **Progressive enhancement**: Funcionalidad básica sin JS
 - **Lazy loading**: Carga diferida de scripts no críticos
 - **Minificación**: Para producción
+- **Event delegation**: Optimización de eventos
+- **RequestAnimationFrame**: Para animaciones suaves
 
 ### Imágenes
 - **WebP format**: Mejor compresión
 - **Responsive images**: srcset para diferentes resoluciones
 - **Lazy loading**: Carga bajo demanda
 - **Optimización**: Compresión automática
+- **SVG**: Mapas vectoriales para escalabilidad
+
+### Mapa Interactivo
+- **GeoJSON optimizado**: Datos comprimidos
+- **SVG renderizado**: Renderizado eficiente
+- **Event listeners**: Optimización de eventos de hover y click
+- **Posicionamiento inteligente**: Cálculos optimizados para popups
 
 ## SEO y Accesibilidad
 
@@ -96,12 +126,15 @@ local-from-bocas/
 - **Structured data**: Schema.org markup
 - **Sitemap**: Generación automática
 - **Robots.txt**: Control de indexación
+- **Contenido geográfico**: Optimización para búsquedas locales
 
 ### Accesibilidad
 - **WCAG AA**: Cumplimiento de estándares
 - **Semantic HTML**: Estructura semántica
 - **ARIA labels**: Para elementos interactivos
 - **Keyboard navigation**: Navegación por teclado
+- **Mapa accesible**: Navegación por teclado en elementos SVG
+- **Contraste**: Cumple estándares de accesibilidad
 
 ## Monitoreo y Analytics
 
@@ -116,6 +149,7 @@ local-from-bocas/
 - **Bounce rate**: Tasa de rebote
 - **Conversion rate**: Tasa de conversión
 - **User engagement**: Tiempo en sitio
+- **Mapa interactions**: Hover y click en provincias
 
 ## Seguridad
 
@@ -124,9 +158,63 @@ local-from-bocas/
 - **Security headers**: Headers de seguridad
 - **Content Security Policy**: Prevención de XSS
 - **Input validation**: Validación de formularios
+- **Sanitización**: Limpieza de datos de entrada
 
 ### Backup y Recuperación
 - **Git history**: Historial completo de cambios
 - **Railway backups**: Backups automáticos del servidor
 - **Content backup**: Respaldo del contenido
 - **Disaster recovery**: Plan de recuperación ante desastres
+
+## Funcionalidades Avanzadas
+
+### Mapa Interactivo
+- **GeoJSON real**: Datos geográficos precisos
+- **Posicionamiento inteligente**: Popups según ubicación
+- **Navegación por click**: Enlaces directos a páginas
+- **Responsive design**: Adaptación a todos los dispositivos
+- **Performance optimizado**: Renderizado eficiente
+
+### Sistema de Popups
+- **Posicionamiento específico**: Por provincia/comarca
+- **Contenido dinámico**: Información en tiempo real
+- **Animaciones suaves**: Transiciones elegantes
+- **Accesibilidad**: Navegación por teclado
+
+### Responsive Design
+- **Mobile-first**: Enfoque desde móvil
+- **Breakpoints inteligentes**: 768px, 1024px
+- **Ancho adaptativo**: 90% desktop, 95% tablet, 100% móvil
+- **Alturas responsivas**: 600px desktop, 500px tablet, 400px móvil
+
+## Configuración de Desarrollo
+
+### Variables de Entorno
+- **NODE_ENV**: development/production
+- **API_URL**: URL de la API (si se implementa)
+- **ANALYTICS_ID**: ID de Google Analytics
+
+### Scripts de Desarrollo
+- **Servidor local**: `python3 -m http.server 8000`
+- **Git workflow**: Feature branches + pull requests
+- **Deployment**: Automático desde GitHub a Railway
+
+## Tecnologías Específicas del Mapa
+
+### GeoJSON
+- **Formato**: Estándar para datos geográficos
+- **Fuente**: geoBoundaries para datos administrativos
+- **Estructura**: Features con geometrías y propiedades
+- **Optimización**: Compresión y minificación
+
+### SVG
+- **Renderizado**: Creación dinámica de elementos SVG
+- **Interactividad**: Eventos de hover y click
+- **Escalabilidad**: Vectorial para cualquier resolución
+- **Accesibilidad**: Navegación por teclado
+
+### JavaScript Avanzado
+- **Async/Await**: Para carga de datos
+- **RequestAnimationFrame**: Para animaciones suaves
+- **Event delegation**: Optimización de eventos
+- **Closures**: Para encapsulación de datos

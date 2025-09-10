@@ -1,0 +1,72 @@
+{
+  "type": "index",
+  "description": "Index of Panama province/comarca GeoJSON files with districts",
+  "created": "2025-09-05T14:24:27.513334",
+  "files": [
+    {
+      "filename": "bocas-del-toro.geojson",
+      "province_name": "Bocas Del Toro",
+      "path": "geojson_output/bocas-del-toro.geojson"
+    },
+    {
+      "filename": "colón-province.geojson",
+      "province_name": "Colón Province",
+      "path": "geojson_output/colón-province.geojson"
+    },
+    {
+      "filename": "darién.geojson",
+      "province_name": "Darién",
+      "path": "geojson_output/darién.geojson"
+    },
+    {
+      "filename": "emberá-wounaan.geojson",
+      "province_name": "Emberá Wounaan",
+      "path": "geojson_output/emberá-wounaan.geojson"
+    },
+    {
+      "filename": "guna-yala.geojson",
+      "province_name": "Guna Yala",
+      "path": "geojson_output/guna-yala.geojson"
+    },
+    {
+      "filename": "herrera.geojson",
+      "province_name": "Herrera",
+      "path": "geojson_output/herrera.geojson"
+    },
+    {
+      "filename": "los-santos.geojson",
+      "province_name": "Los Santos",
+      "path": "geojson_output/los-santos.geojson"
+    },
+    {
+      "filename": "ngäbe-buglé.geojson",
+      "province_name": "Ngäbe Buglé",
+      "path": "geojson_output/ngäbe-buglé.geojson"
+    },
+    {
+      "filename": "panamá-oeste.geojson",
+      "province_name": "Panamá Oeste",
+      "path": "geojson_output/panamá-oeste.geojson"
+    },
+    {
+      "filename": "panamá.geojson",
+      "province_name": "Panamá",
+      "path": "geojson_output/panamá.geojson"
+    },
+    {
+      "filename": "veraguas.geojson",
+      "province_name": "Veraguas",
+      "path": "geojson_output/veraguas.geojson"
+    },
+    {
+      "filename": "chiriquí.geojson",
+      "province_name": "Chiriquí",
+      "path": "geojson_output/chiriquí.geojson"
+    },
+    {
+      "filename": "coclé.geojson",
+      "province_name": "Coclé",
+      "path": "geojson_output/coclé.geojson"
+    }
+  ]
+}

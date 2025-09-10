@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panamá - Local From Bocas | Capital del País</title>
+    <meta name="description" content="Descubre la provincia de Panamá, capital del país con el Casco Antiguo, rascacielos modernos, el Canal de Panamá y una vibrante vida urbana.">
+    <meta name="keywords" content="Panamá, capital, Canal de Panamá, Casco Antiguo, rascacielos, vida urbana">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/svg-maps.css">
+    <link rel="stylesheet" href="../css/geojson-map.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%);
+            background-image: url('https://via.placeholder.com/1920x800/0F5B55/FFFFFF?text=Panama+Capital');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+        .hero::before {
+            background: rgba(15, 91, 85, 0.7);
+        }
+        .province-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--jungle-teal);
+            font-family: var(--font-display);
+        }
+        .stat-label {
+            color: var(--neutral-gray);
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .district-card, .canal-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        .district-card:hover, .canal-card:hover {
+            transform: translateY(-2px);
+        }
+        .district-content, .canal-content {
+            padding: 1.5rem;
+        }
+        .district-highlights, .canal-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .feature-item .pill-light {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Estilos para las tarjetas de estadísticas */
+        .stat-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-card h3 {
+            color: var(--jungle-teal);
+            margin-bottom: 1.5rem;
+            font-family: var(--font-display);
+        }
+        
+        .stat-details {
+            text-align: left;
+        }
+        
+        .stat-details .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--seafoam);
+        }
+        
+        .stat-details .stat-item:last-child {
+            border-bottom: none;
+        }
+        
+        .stat-details .stat-label {
+            color: var(--neutral-gray);
+            font-weight: 500;
+        }
+        
+        .stat-details .stat-value {
+            color: var(--jungle-teal);
+            font-weight: 700;
+            font-family: var(--font-display);
+        }
+        
+        /* Estilos para el mapa interactivo */
+        .interactive-map-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: var(--seafoam);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 2px solid var(--jungle-teal);
+        }
+        
+        .interactive-map-container svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .province-stats {
+                grid-template-columns: 1fr;
+            }
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .interactive-map-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-logo">Local From Bocas</a>
+            <nav>
+                <ul class="navbar-nav">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="../servicios.html">Servicios</a></li>
+                    <li><a href="../vlogs.html">Vlogs</a></li>
+                    <li><a href="../panama.html" class="active">Panamá</a></li>
+                    <li><a href="../nosotros.html">Nosotros</a></li>
+                    <li><a href="../contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="height: 50vh; min-height: 400px;">
+        <div class="hero-content">
+            <div class="pill mb-md">🏙️ Panamá</div>
+            <h1>Capital del País</h1>
+            <p class="body-large">Descubre la provincia capital con el Casco Antiguo, rascacielos modernos, el Canal de Panamá y una vibrante vida urbana</p>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <h2>Centro Financiero y Cultural</h2>
+                    <p class="body-large mb-lg">La provincia de Panamá es el corazón del país, albergando la capital nacional con una mezcla única de historia colonial y modernidad. Aquí se encuentra el famoso Canal de Panamá, el Casco Antiguo declarado Patrimonio de la Humanidad, y una vibrante vida urbana que la convierte en el centro financiero de Centroamérica.</p>
+                    
+                    <div class="province-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">11,951</div>
+                            <div class="stat-label">km² de Territorio</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1,500,000</div>
+                            <div class="stat-label">Habitantes</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">6</div>
+                            <div class="stat-label">Distritos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">200</div>
+                            <div class="stat-label">Rascacielos</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="province-map">
+                    <div class="province-map-container">
+                        <div class="interactive-map-container" id="panamaMap" style="height: 500px; border-radius: var(--radius-lg); background: var(--seafoam);">
+                            <!-- El mapa distrital se generará dinámicamente con JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estadísticas Detalladas de la Provincia -->
+    <section class="section" style="background-color: var(--seafoam);">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Estadísticas de Panamá</h2>
+                <p class="body-large">Conoce los datos más importantes de la provincia capital</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="stat-card">
+                    <div class="stat-icon">🏙️</div>
+                    <h3>Urbano</h3>
+                    <div class="stat-details">
+                        <div class="stat-item">
+                            <span class="stat-label">Población:</span>
+                            <span class="stat-value">1.5M</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Rascacielos:</span>
+                            <span class="stat-value">200+</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Distritos:</span>
+                            <span class="stat-value">6</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Desarrollo:</span>
+                            <span class="stat-value">Moderno</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">🏗️</div>
+                    <h3>Canal</h3>
+                    <div class="stat-details">
+                        <div class="stat-item">
+                            <span class="stat-label">Canal:</span>
+                            <span class="stat-value">De Panamá</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Tráfico:</span>
+                            <span class="stat-value">14,000+ barcos/año</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Expansión:</span>
+                            <span class="stat-value">2016</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Importancia:</span>
+                            <span class="stat-value">Global</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">🏛️</div>
+                    <h3>Historia</h3>
+                    <div class="stat-details">
+                        <div class="stat-item">
+                            <span class="stat-label">Casco Antiguo:</span>
+                            <span class="stat-value">UNESCO</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Sitios Culturales:</span>
+                            <span class="stat-value">15</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Arquitectura:</span>
+                            <span class="stat-value">Colonial</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Patrimonio:</span>
+                            <span class="stat-value">Mundial</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Distritos Principales -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Distritos Principales</h2>
+                <p class="body-large">Cada distrito tiene su propia identidad y función en la capital</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="district-card">
+                    <img src="https://via.placeholder.com/300x200/0F5B55/FFFFFF?text=Panama+Capital" alt="Panamá" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="district-content">
+                        <h3>Panamá (Capital)</h3>
+                        <p>Distrito capital con el Casco Antiguo y rascacielos modernos.</p>
+                        <div class="district-highlights">
+                            <span class="pill-light">🏛️ Casco Antiguo</span>
+                            <span class="pill-light">🏗️ Canal</span>
+                            <span class="pill-light">🌆 Urbano</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="district-card">
+                    <img src="https://via.placeholder.com/300x200/8DBB66/FFFFFF?text=San+Miguelito" alt="San Miguelito" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="district-content">
+                        <h3>San Miguelito</h3>
+                        <p>Distrito residencial y comercial de la capital.</p>
+                        <div class="district-highlights">
+                            <span class="pill-light">🏘️ Residencial</span>
+                            <span class="pill-light">🏪 Comercio</span>
+                            <span class="pill-light">🌆 Urbano</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="district-card">
+                    <img src="https://via.placeholder.com/300x200/FF7466/FFFFFF?text=Tocumen" alt="Tocumen" style="width: 100%; border-radius: var(--radius-md);">
+                    <div class="district-content">
+                        <h3>Tocumen</h3>
+                        <p>Distrito con el aeropuerto internacional y zonas industriales.</p>
+                        <div class="district-highlights">
+                            <span class="pill-light">✈️ Aeropuerto</span>
+                            <span class="pill-light">🏭 Industrial</span>
+                            <span class="pill-light">🌆 Urbano</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Canal de Panamá -->
+    <section class="section" style="background-color: var(--island-sand);">
+        <div class="container">
+            <div class="grid grid-2">
+                <div class="canal-image">
+                    <img src="https://via.placeholder.com/600x400/0F5B55/FFFFFF?text=Canal+de+Panama" alt="Canal de Panamá" style="width: 100%; border-radius: var(--radius-lg);">
+                </div>
+                
+                <div>
+                    <h2>El Canal de Panamá</h2>
+                    <p class="body-large mb-lg">Una de las maravillas de la ingeniería moderna, el Canal de Panamá conecta los océanos Atlántico y Pacífico, facilitando el comercio mundial. Con más de 14,000 barcos transitando anualmente, es una de las rutas marítimas más importantes del planeta.</p>
+                    
+                    <div class="canal-features">
+                        <div class="feature-item">
+                            <div class="pill-light">🌊</div>
+                            <div>
+                                <h4>Conecta Océanos</h4>
+                                <p>Une el Atlántico y el Pacífico a través de Panamá.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🚢</div>
+                            <div>
+                                <h4>Tráfico Mundial</h4>
+                                <p>Más de 14,000 barcos transitan anualmente por el canal.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🏗️</div>
+                            <div>
+                                <h4>Expansión 2016</h4>
+                                <p>Ampliación que permite el paso de barcos más grandes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Casco Antiguo -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <h2>Patrimonio de la Humanidad</h2>
+                    <p class="body-large mb-lg">El Casco Antiguo de Panamá es un distrito histórico declarado Patrimonio de la Humanidad por la UNESCO. Con sus calles empedradas, plazas coloniales y arquitectura española del siglo XVII, es un testimonio vivo de la rica historia de la ciudad.</p>
+                    
+                    <div class="casco-features">
+                        <div class="feature-item">
+                            <div class="pill-light">🏛️</div>
+                            <div>
+                                <h4>Arquitectura Colonial</h4>
+                                <p>Edificios del siglo XVII con estilo arquitectónico español.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🌍</div>
+                            <div>
+                                <h4>Patrimonio UNESCO</h4>
+                                <p>Reconocido como Patrimonio de la Humanidad desde 1997.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="pill-light">🎭</div>
+                            <div>
+                                <h4>Vida Cultural</h4>
+                                <p>Centro de arte, cultura y gastronomía panameña.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="casco-image">
+                    <img src="https://via.placeholder.com/600x400/8DBB66/FFFFFF?text=Casco+Antiguo" alt="Casco Antiguo" style="width: 100%; border-radius: var(--radius-lg);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%); color: white;">
+        <div class="container text-center">
+            <h2 style="color: white;">¿Listo para Descubrir Panamá?</h2>
+            <p class="body-large" style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Explora la capital del país con historia, modernidad y el famoso Canal de Panamá.</p>
+            <div class="hero-actions">
+                <a href="../servicios.html" class="btn" style="background: white; color: var(--jungle-teal);">Nuestros Tours</a>
+                <a href="../contacto.html" class="btn btn-secondary" style="border-color: white; color: white;">Contactar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Local From Bocas</h3>
+                    <p>Conectando viajeros con la auténtica cultura de Bocas del Toro, Panamá.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <a href="../servicios.html#tours">Tours Históricos</a>
+                    <a href="../servicios.html#merchandise">Mercancía Cultural</a>
+                    <a href="../servicios.html#assistance">Asistencia Personalizada</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Explorar</h3>
+                    <a href="../vlogs.html">Vlogs</a>
+                    <a href="../panama.html">Panamá</a>
+                    <a href="../nosotros.html">Nosotros</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <a href="../contacto.html">Contáctanos</a>
+                    <a href="mailto:info@localfrombocas.com">info@localfrombocas.com</a>
+                    <a href="tel:+507-1234-5678">+507 1234-5678</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Local From Bocas. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/province-data.js"></script>
+    <script src="../js/province-map.js"></script>
+    <script>
+        // Initialize the interactive district map for Panamá
+        document.addEventListener('DOMContentLoaded', function() {
+            const panamaData = provinceData['panama'];
+            const panamaMap = new ProvinceMap('panamaMap', panamaData);
+            panamaMap.loadDistrictMap();
+        });
+    </script>
+</body>
+</html>
+
+
