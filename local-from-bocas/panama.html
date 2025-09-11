@@ -673,8 +673,8 @@
         }
         
         .timeline-milestones {
-            position: absolute;
-            top: 100%;
+            position: relative;
+            margin-top: 2rem;
             left: 10%;
             right: 10%;
             height: 60px;
@@ -682,14 +682,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: var(--radius-lg);
+            padding: 1rem;
+            box-shadow: var(--shadow-sm);
         }
         
         .timeline-milestones::before {
             content: '';
             position: absolute;
             top: 50%;
-            left: 12px;
-            right: 12px;
+            left: 20px;
+            right: 20px;
             height: 2px;
             background: linear-gradient(90deg, #8B4513, #2E8B57, #DC143C, #FF8C00, #4169E1);
             z-index: 1;
@@ -3334,13 +3338,16 @@
             
             // Initialize timeline
             function initializeTimeline() {
+                console.log('Initializing timeline with', milestones.length, 'milestones');
                 generateMilestoneDots();
                 updateDeckCard(milestones[0]);
                 moveShipToPosition(0);
+                console.log('Timeline initialized successfully');
             }
             
             // Generate milestone dots
             function generateMilestoneDots() {
+                console.log('Generating milestone dots...');
                 timelineMilestones.innerHTML = '';
                 
                 milestones.forEach((milestone, index) => {
@@ -3373,6 +3380,7 @@
                     
                     timelineMilestones.appendChild(dot);
                 });
+                console.log('Generated', milestones.length, 'milestone dots');
             }
             
             // Get era class for styling
