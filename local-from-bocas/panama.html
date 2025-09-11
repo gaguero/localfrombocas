@@ -718,8 +718,8 @@
         .timeline-milestones {
             position: relative;
             margin-top: 4rem;
-            left: 10%;
-            right: 10%;
+            left: 2%;
+            right: 2%;
             height: 60px;
             z-index: 5;
             display: flex;
@@ -729,14 +729,21 @@
             border-radius: var(--radius-lg);
             padding: 1rem;
             box-shadow: var(--shadow-sm);
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .timeline-milestones::-webkit-scrollbar {
+            display: none;
         }
         
         .timeline-milestones::before {
             content: '';
             position: absolute;
             top: 50%;
-            left: 20px;
-            right: 20px;
+            left: 10px;
+            right: 10px;
             height: 2px;
             background: linear-gradient(90deg, #8B4513, #2E8B57, #DC143C, #FF8C00, #4169E1);
             z-index: 1;
@@ -972,6 +979,17 @@
             
             .timeline-card h3 {
                 font-size: 1.3rem;
+            }
+            
+            .timeline-milestones {
+                left: 1%;
+                right: 1%;
+                padding: 0.5rem;
+            }
+            
+            .milestone-dot {
+                width: 20px;
+                height: 20px;
             }
             
             .timeline-controls {
