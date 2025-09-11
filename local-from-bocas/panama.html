@@ -2354,20 +2354,28 @@
                                     <feComposite operator="in" in="color" in2="inverse" result="shadow"/>
                                     <feComposite operator="over" in="shadow" in2="SourceGraphic"/>
                                 </filter>
+                                <!-- arrow head for measurements -->
+                                <marker id="arrowHead" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto" markerUnits="strokeWidth">
+                                    <path d="M0,0 L6,3 L0,6 z" fill="#333" />
+                                </marker>
                             </defs>
+
+                            <!-- Terrain silhouette (stylized) -->
+                            <path d="M0 80 C60 40, 140 60, 200 35 C260 20, 340 55, 410 40 C480 25, 560 50, 620 30 C700 10, 780 55, 900 35 L900 0 L0 0 Z"
+                                  fill="#2e7d32" opacity="0.25"/>
 
                             <!-- Oceans -->
                             <rect x="0" y="170" width="140" height="110" fill="url(#waterGrad)" opacity="0.9"/>
-                            <text x="70" y="165" text-anchor="middle" class="ocean-label">Pacífico</text>
+                            <text x="70" y="165" text-anchor="middle" class="ocean-label">Océano Atlántico</text>
                             <rect x="760" y="170" width="140" height="110" fill="url(#waterGrad)" opacity="0.9"/>
-                            <text x="830" y="165" text-anchor="middle" class="ocean-label">Atlántico</text>
+                            <text x="830" y="165" text-anchor="middle" class="ocean-label">Océano Pacífico</text>
 
                             <!-- Elevation baseline -->
                             <g fill="none" stroke="#bdbdbd" stroke-width="1">
                                 <line x1="0" y1="170" x2="900" y2="170" stroke-dasharray="4 4"/>
                                 <line x1="0" y1="120" x2="900" y2="120" stroke-dasharray="4 4"/>
                             </g>
-                            <text x="880" y="124" font-size="10" fill="#666">+26m</text>
+                            <text x="880" y="124" font-size="10" fill="#666">+26 m</text>
                             <text x="880" y="174" font-size="10" fill="#666">0m</text>
 
                             <!-- Miraflores (2 cámaras) -->
@@ -2384,6 +2392,10 @@
                                 <circle cx="220" cy="240" r="16" class="hotspot" fill="transparent"/>
                             </g>
 
+                            <!-- Miraflores Lake (small reservoir) -->
+                            <rect x="300" y="145" width="20" height="25" fill="#9fe29f" opacity="0.9"/>
+                            <text x="310" y="140" text-anchor="middle" class="lake-label">Lago Miraflores</text>
+
                             <!-- Pedro Miguel (1 cámara) -->
                             <g class="lock-group" id="pedro-miguel-lock">
                                 <rect x="310" y="100" width="110" height="180" rx="6" fill="url(#concreteGrad)" filter="url(#innerShadow)"/>
@@ -2397,6 +2409,10 @@
                             <rect x="420" y="120" width="210" height="50" fill="#9fe29f" opacity="0.9"/>
                             <text x="525" y="112" text-anchor="middle" class="lake-label">Lago Gatún (26 m)</text>
 
+                            <!-- 26m vertical measurement -->
+                            <line x1="515" y1="170" x2="515" y2="120" stroke="#333" stroke-width="2" marker-start="url(#arrowHead)" marker-end="url(#arrowHead)"/>
+                            <text x="525" y="148" fill="#333" font-size="12">26 m</text>
+
                             <!-- Gatún (3 cámaras) -->
                             <g class="lock-group" id="gatun-lock">
                                 <rect x="630" y="90" width="130" height="190" rx="6" fill="url(#concreteGrad)" filter="url(#innerShadow)"/>
@@ -2409,10 +2425,20 @@
                                 <circle cx="695" cy="240" r="16" class="hotspot" fill="transparent"/>
                             </g>
 
-                            <!-- Canal bed -->
-                            <path d="M140 260 H760" stroke="#8a6b3a" stroke-width="6"/>
-                            <!-- Flow line -->
-                            <path d="M140 165 C 220 160, 400 150, 760 165" stroke="#2E8B57" stroke-width="6" fill="none" class="canal-path"/>
+                            <!-- Canal bed (stylized) -->
+                            <path d="M0 250 C40 245, 80 240, 120 250 L140 250 C170 240, 200 235, 230 245 L300 255 C330 260, 360 255, 420 245 C470 235, 520 235, 570 240 C610 245, 650 250, 690 245 C730 240, 760 240, 900 248 L900 320 L0 320 Z"
+                                  fill="#c9a26a" opacity="0.9"/>
+                            <!-- Ocean datum dashed line -->
+                            <line x1="0" y1="170" x2="900" y2="170" stroke="#7c7c7c" stroke-dasharray="6 6"/>
+
+                            <!-- Bottom distance arrow 82 km -->
+                            <line x1="40" y1="305" x2="860" y2="305" stroke="#333" stroke-width="2" marker-start="url(#arrowHead)" marker-end="url(#arrowHead)"/>
+                            <text x="450" y="300" text-anchor="middle" fill="#333" font-weight="700">82 km</text>
+
+                            <!-- Section labels (bottom) -->
+                            <text x="190" y="285" text-anchor="middle" fill="#7a4e2a" font-weight="700">Esclusas de Miraflores</text>
+                            <text x="365" y="285" text-anchor="middle" fill="#7a4e2a" font-weight="700">Pedro Miguel</text>
+                            <text x="690" y="285" text-anchor="middle" fill="#7a4e2a" font-weight="700">Esclusas de Gatún</text>
                         </svg>
                     </div>
                 </div>
