@@ -546,6 +546,17 @@
             background: #654321;
             border-radius: 4px;
             z-index: 2;
+            transition: all 1s ease-in-out;
+        }
+        
+        .lock-gates.closing {
+            transform: translateX(-50%) scaleY(1.2);
+            background: #4a2c17;
+        }
+        
+        .lock-gates.opening {
+            transform: translateX(-50%) scaleY(0.8);
+            background: #8B4513;
         }
         
         .lock.raising .lock-water {
@@ -633,11 +644,11 @@
         
         .canal-ship {
             position: absolute;
-            top: 35%;
+            top: 45%;
             left: 15%;
             transform: translateY(-50%);
             z-index: 10;
-            transition: all 2s ease-in-out;
+            transition: left 2s ease-in-out;
         }
         
         .ship-body {
@@ -647,16 +658,11 @@
             transition: transform 0.3s ease;
         }
         
-        .canal-ship.in-locks .ship-body {
-            animation: shipBob 1.5s ease-in-out infinite;
+        .canal-ship .ship-body {
+            animation: shipBob 2s ease-in-out infinite;
         }
         
-        .canal-ship.in-lake .ship-body {
-            animation: shipBob 2.5s ease-in-out infinite;
-            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
-        }
-        
-        .canal-ship.in-lake .ship-wake {
+        .canal-ship .ship-wake {
             animation: wakeMove 0.8s linear infinite;
         }
         
@@ -3401,30 +3407,9 @@
                 const shipPosition = 10 + (progress * 80); // 10% to 90%
                 canalShip.style.left = `${shipPosition}%`;
                 
-                // Calculate curved path height
-                const curveHeight = Math.sin(progress * Math.PI) * 15;
-                const baseHeight = 45;
-                
-                // Adjust ship height based on canal profile
-                let shipHeight = baseHeight + curveHeight;
-                
-                if (progress >= 0.45 && progress <= 0.55) {
-                    // Miraflores Locks area
-                    shipHeight -= 10;
-                    canalShip.classList.add('in-locks');
-                } else if (progress >= 0.55 && progress <= 0.75) {
-                    // Pedro Miguel and Gatún Lake
-                    shipHeight -= 18;
-                    canalShip.classList.add('in-lake');
-                } else if (progress >= 0.75 && progress <= 0.85) {
-                    // Gatún Locks area
-                    shipHeight -= 15;
-                    canalShip.classList.add('in-locks');
-                } else {
-                    canalShip.classList.remove('in-locks', 'in-lake');
-                }
-                
-                canalShip.style.top = `${shipHeight}%`;
+                // Ship stays on water line - no vertical movement
+                // Remove any lock/lake classes since ship doesn't move vertically
+                canalShip.classList.remove('in-locks', 'in-lake');
             }
             
             // Animate locks
@@ -3433,7 +3418,9 @@
                 locks.forEach(lock => {
                     lock.classList.remove('raising', 'lowering');
                     const water = lock.querySelector('.lock-water');
+                    const gates = lock.querySelector('.lock-gates');
                     if (water) water.style.height = '30px';
+                    if (gates) gates.classList.remove('closing', 'opening');
                 });
                 
                 // Animate based on progress
@@ -3443,10 +3430,20 @@
                     const lockProgress = (progress - 0.45) / 0.1;
                     const waterLevel = 30 + (lockProgress * 30);
                     
-                    pacificLocks.forEach(lock => {
-                        lock.classList.add('raising');
+                    pacificLocks.forEach((lock, index) => {
                         const water = lock.querySelector('.lock-water');
-                        if (water) water.style.height = `${waterLevel}px`;
+                        const gates = lock.querySelector('.lock-gates');
+                        
+                        // Gates close first, then water rises
+                        if (lockProgress < 0.3) {
+                            if (gates) gates.classList.add('closing');
+                        } else if (lockProgress < 0.7) {
+                            if (gates) gates.classList.remove('closing');
+                            lock.classList.add('raising');
+                            if (water) water.style.height = `${waterLevel}px`;
+                        } else {
+                            if (gates) gates.classList.add('opening');
+                        }
                     });
                 } else if (progress >= 0.75 && progress <= 0.85) {
                     // Gatún Locks
@@ -3454,10 +3451,20 @@
                     const lockProgress = (progress - 0.75) / 0.1;
                     const waterLevel = 30 + (lockProgress * 30);
                     
-                    atlanticLocks.forEach(lock => {
-                        lock.classList.add('raising');
+                    atlanticLocks.forEach((lock, index) => {
                         const water = lock.querySelector('.lock-water');
-                        if (water) water.style.height = `${waterLevel}px`;
+                        const gates = lock.querySelector('.lock-gates');
+                        
+                        // Gates close first, then water rises
+                        if (lockProgress < 0.3) {
+                            if (gates) gates.classList.add('closing');
+                        } else if (lockProgress < 0.7) {
+                            if (gates) gates.classList.remove('closing');
+                            lock.classList.add('raising');
+                            if (water) water.style.height = `${waterLevel}px`;
+                        } else {
+                            if (gates) gates.classList.add('opening');
+                        }
                     });
                 }
             }
