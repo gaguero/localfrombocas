@@ -981,15 +981,9 @@
             fill: #333;
         }
         
-        .hotspot {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .hotspot:hover {
-            r: 12;
-            opacity: 1;
-        }
+        .hotspot { cursor: pointer; }
+        .hotspot[fill="transparent"] { stroke: none; opacity: 0; }
+        .hotspot[fill="transparent"]:hover { opacity: 0.15; fill: #ffffff; }
         
         .canal-path {
             stroke-dasharray: 5,5;
@@ -1099,81 +1093,7 @@
             color: var(--neutral-light);
         }
         
-        /* Modal Styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        
-        .modal-overlay.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            background: white;
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            max-width: 500px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--neutral-light);
-        }
-        
-        .modal-header {
-            margin-bottom: 1.5rem;
-        }
-        
-        .modal-header h3 {
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-        }
-        
-        .modal-year {
-            font-size: 0.9rem;
-            color: var(--neutral-light);
-            font-weight: 600;
-        }
-        
-        .modal-image {
-            width: 100%;
-            height: 200px;
-            background: var(--neutral-lightest);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-        
-        .placeholder-image {
-            font-size: 4rem;
-            opacity: 0.5;
-        }
-        
-        .modal-description {
-            color: var(--neutral-gray);
-            line-height: 1.6;
-        }
+        /* Removed modal styles for simplified infographic */
         
         /* Tooltip Styles */
         .lock-tooltip {
@@ -2461,7 +2381,7 @@
                                 <rect x="213" y="130" width="12" height="110" rx="2" fill="url(#gateGrad)" class="lock-gates"/>
                                 <rect x="288" y="130" width="12" height="110" rx="2" fill="url(#gateGrad)" class="lock-gates"/>
                                 <text x="220" y="85" text-anchor="middle" class="lock-label">Miraflores</text>
-                                <circle cx="220" cy="240" r="9" class="hotspot" fill="#ff6b6b"/>
+                                <circle cx="220" cy="240" r="16" class="hotspot" fill="transparent"/>
                             </g>
 
                             <!-- Pedro Miguel (1 cámara) -->
@@ -2470,7 +2390,7 @@
                                 <rect x="320" y="150" width="90" height="70" fill="url(#waterGrad)" class="lock-water"/>
                                 <rect x="362" y="130" width="12" height="100" rx="2" fill="url(#gateGrad)" class="lock-gates"/>
                                 <text x="365" y="95" text-anchor="middle" class="lock-label">Pedro Miguel</text>
-                                <circle cx="365" cy="235" r="9" class="hotspot" fill="#4ECDC4"/>
+                                <circle cx="365" cy="235" r="16" class="hotspot" fill="transparent"/>
                             </g>
 
                             <!-- Lago Gatún (26m) -->
@@ -2486,7 +2406,7 @@
                                 <rect x="675" y="130" width="10" height="110" rx="2" fill="url(#gateGrad)" class="lock-gates"/>
                                 <rect x="715" y="130" width="10" height="110" rx="2" fill="url(#gateGrad)" class="lock-gates"/>
                                 <text x="695" y="85" text-anchor="middle" class="lock-label">Gatún</text>
-                                <circle cx="695" cy="240" r="9" class="hotspot" fill="#45B7D1"/>
+                                <circle cx="695" cy="240" r="16" class="hotspot" fill="transparent"/>
                             </g>
 
                             <!-- Canal bed -->
@@ -2550,24 +2470,7 @@
         </div>
     </section>
     
-    <!-- Lock Detail Modals -->
-    <div class="modal-overlay" id="lockModal">
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <div class="modal-header">
-                <h3 id="modalTitle">Miraflores Lock</h3>
-                <div class="modal-year" id="modalYear">1914</div>
-            </div>
-            <div class="modal-body">
-                <div class="modal-image" id="modalImage">
-                    <div class="placeholder-image">🔒</div>
-                </div>
-                <div class="modal-description" id="modalDescription">
-                    Las esclusas de Miraflores son las primeras que encuentran los barcos que vienen del Pacífico, elevándolos 16 metros hasta el nivel del Lago Miraflores.
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- No modals for simplified infographic -->
 
     <!-- Cultural Diversity & National Symbols -->
     <section class="section" style="background-color: var(--seafoam);">
@@ -4172,15 +4075,7 @@
                 }
             };
             
-            // Add click listeners to lock groups
-            Object.keys(lockData).forEach(lockId => {
-                const lockElement = document.getElementById(lockId);
-                if (lockElement) {
-                    lockElement.addEventListener('click', () => {
-                        showLockModal(lockData[lockId]);
-                    });
-                }
-            });
+            // No click listeners (no modals). Only tooltips on hover.
             
             // Add hover tooltips
             Object.keys(lockData).forEach(lockId => {
@@ -4201,26 +4096,7 @@
             initializeTradeRoutes();
         });
         
-        // Show lock detail modal
-        function showLockModal(lockData) {
-            const modal = document.getElementById('lockModal');
-            const title = document.getElementById('modalTitle');
-            const year = document.getElementById('modalYear');
-            const description = document.getElementById('modalDescription');
-            
-            title.textContent = lockData.name;
-            year.textContent = lockData.year;
-            description.textContent = lockData.description;
-            
-            modal.classList.add('active');
-        }
-        
-        // Close modal
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal-close') || e.target.classList.contains('modal-overlay')) {
-                document.getElementById('lockModal').classList.remove('active');
-            }
-        });
+        // Simplified: no modal behavior
         
         // Tooltip functionality
         let tooltip = null;
