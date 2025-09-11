@@ -487,7 +487,7 @@
             padding: 0 1rem;
         }
         
-        .locks-atlantic {
+        .locks-pacific {
             position: absolute;
             left: 5%;
             top: -15px;
@@ -495,7 +495,16 @@
             gap: 0.5rem;
         }
         
-        .locks-pacific {
+        .locks-pedro-miguel {
+            position: absolute;
+            left: 50%;
+            top: -15px;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .locks-atlantic {
             position: absolute;
             right: 5%;
             top: -15px;
@@ -565,12 +574,61 @@
             white-space: nowrap;
         }
         
-        .atlantic-locks {
+        .pacific-locks {
             text-align: left;
         }
         
-        .pacific-locks {
+        .pedro-miguel {
+            text-align: center;
+        }
+        
+        .atlantic-locks {
             text-align: right;
+        }
+        
+        /* Deck Card Styles */
+        .deck-card {
+            position: relative;
+            background: white;
+            margin-top: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        .deck-card-content {
+            padding: 2rem;
+        }
+        
+        .deck-card .card-era {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .deck-card .card-year {
+            color: var(--jungle-teal);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .deck-card h3 {
+            color: var(--jungle-teal);
+            margin-bottom: 1rem;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+        }
+        
+        .deck-card p {
+            color: var(--neutral-gray);
+            line-height: 1.6;
+            font-size: 1rem;
         }
         
         .canal-ship {
@@ -1843,7 +1901,27 @@
                             <div class="elevation-indicator">26m</div>
                         </div>
                         <div class="locks-section">
-                            <!-- Atlantic Side - Gatún Locks (3 steps) -->
+                            <!-- Pacific Side - Miraflores Locks -->
+                            <div class="locks-pacific">
+                                <div class="lock step-1">
+                                    <div class="lock-water"></div>
+                                    <div class="lock-gates"></div>
+                                </div>
+                                <div class="lock step-1">
+                                    <div class="lock-water"></div>
+                                    <div class="lock-gates"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Pedro Miguel Lock -->
+                            <div class="locks-pedro-miguel">
+                                <div class="lock step-2">
+                                    <div class="lock-water"></div>
+                                    <div class="lock-gates"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Atlantic Side - Gatún Locks -->
                             <div class="locks-atlantic">
                                 <div class="lock step-1">
                                     <div class="lock-water"></div>
@@ -1858,28 +1936,13 @@
                                     <div class="lock-gates"></div>
                                 </div>
                             </div>
-                            
-                            <!-- Pacific Side - Pedro Miguel + Miraflores Locks -->
-                            <div class="locks-pacific">
-                                <div class="lock step-2 pedro-miguel">
-                                    <div class="lock-water"></div>
-                                    <div class="lock-gates"></div>
-                                </div>
-                                <div class="lock step-1">
-                                    <div class="lock-water"></div>
-                                    <div class="lock-gates"></div>
-                                </div>
-                                <div class="lock step-1">
-                                    <div class="lock-water"></div>
-                                    <div class="lock-gates"></div>
-                                </div>
-                            </div>
                         </div>
                         
                         <!-- Lock Labels -->
                         <div class="lock-labels">
-                            <div class="lock-label atlantic-locks">Esclusas de Gatún (3 pasos)</div>
-                            <div class="lock-label pacific-locks">Pedro Miguel + Miraflores (3 pasos)</div>
+                            <div class="lock-label pacific-locks">Esclusas de Miraflores</div>
+                            <div class="lock-label pedro-miguel">Pedro Miguel</div>
+                            <div class="lock-label atlantic-locks">Esclusas de Gatún</div>
                         </div>
                     </div>
                     
@@ -1895,140 +1958,18 @@
                     <div class="ship-wake"></div>
                 </div>
                 
-                <!-- Timeline Milestones -->
-                <div class="timeline-milestones">
-                    <div class="milestone-dot era-1 active" data-era="1" data-year="10000 BCE" data-title="Primeros Pueblos" data-position="0">
-                        <div class="dot-glow"></div>
-                        <div class="milestone-tooltip">
-                            <div class="tooltip-year">c. 10,000 BCE</div>
-                            <div class="tooltip-title">Primeros Pueblos del Istmo</div>
-                        </div>
-                    </div>
-                    
-                    <div class="milestone-dot era-1" data-era="1" data-year="1501" data-title="Conquista Española" data-position="15">
-                        <div class="dot-glow"></div>
-                        <div class="milestone-tooltip">
-                            <div class="tooltip-year">1501</div>
-                            <div class="tooltip-title">Conquista y Colonización</div>
-                        </div>
-                    </div>
-                    
-                    <div class="milestone-dot era-1" data-era="1" data-year="1600" data-title="Ruta de la Plata" data-position="25">
-                        <div class="dot-glow"></div>
-                        <div class="milestone-tooltip">
-                            <div class="tooltip-year">1600s</div>
-                            <div class="tooltip-title">Ruta de la Plata y Piratería</div>
-                        </div>
-                    </div>
-                    
-                    <div class="milestone-dot era-2" data-era="2" data-year="1821" data-title="Independencia" data-position="35">
-                        <div class="dot-glow"></div>
-                        <div class="milestone-tooltip">
-                            <div class="tooltip-year">1821</div>
-                            <div class="tooltip-title">Independencia de España</div>
-                        </div>
-                    </div>
-                    
-                    <div class="milestone-dot era-2" data-era="2" data-year="1880" data-title="Canal Francés" data-position="45">
-                        <div class="dot-glow"></div>
-                        <div class="milestone-tooltip">
-                            <div class="tooltip-year">1880</div>
-                            <div class="tooltip-title">Fracaso del Canal Francés</div>
-                        </div>
-                    </div>
-                    
-                    <div class="milestone-dot era-3" data-era="3" data-year="1903" data-title="Tratado Hay-Bunau" data-position="55">
-                        <div class="dot-glow"></div>
-                        <div class="milestone-tooltip">
-                            <div class="tooltip-year">1903</div>
-                            <div class="tooltip-title">Tratado Hay-Bunau-Varilla</div>
-                        </div>
-                    </div>
-                    
-                    <div class="milestone-dot era-3" data-era="3" data-year="1914" data-title="Apertura del Canal" data-position="70">
-                        <div class="dot-glow"></div>
-                        <div class="milestone-tooltip">
-                            <div class="tooltip-year">1914</div>
-                            <div class="tooltip-title">Apertura del Canal</div>
-                        </div>
-                    </div>
-                    
-                    <div class="milestone-dot era-3" data-era="3" data-year="1964" data-title="Día de los Mártires" data-position="80">
-                        <div class="dot-glow"></div>
-                        <div class="milestone-tooltip">
-                            <div class="tooltip-year">1964</div>
-                            <div class="tooltip-title">Día de los Mártires</div>
-                        </div>
-                    </div>
-                    
-                    <div class="milestone-dot era-4" data-era="4" data-year="1977" data-title="Tratados Torrijos-Carter" data-position="85">
-                        <div class="dot-glow"></div>
-                        <div class="milestone-tooltip">
-                            <div class="tooltip-year">1977</div>
-                            <div class="tooltip-title">Tratados Torrijos-Carter</div>
-                        </div>
-                    </div>
-                    
-                    <div class="milestone-dot era-4" data-era="4" data-year="1989" data-title="Operación Causa Justa" data-position="90">
-                        <div class="dot-glow"></div>
-                        <div class="milestone-tooltip">
-                            <div class="tooltip-year">1989</div>
-                            <div class="tooltip-title">Operación Causa Justa</div>
-                        </div>
-                    </div>
-                    
-                    <div class="milestone-dot era-5" data-era="5" data-year="1999" data-title="Retorno del Canal" data-position="95">
-                        <div class="dot-glow"></div>
-                        <div class="milestone-tooltip">
-                            <div class="tooltip-year">1999</div>
-                            <div class="tooltip-title">Retorno del Canal</div>
-                        </div>
-                    </div>
-                    
-                    <div class="milestone-dot era-5" data-era="5" data-year="2016" data-title="Expansión del Canal" data-position="100">
-                        <div class="dot-glow"></div>
-                        <div class="milestone-tooltip">
-                            <div class="tooltip-year">2016</div>
-                            <div class="tooltip-title">Expansión del Canal</div>
-                        </div>
-                    </div>
+                <!-- Timeline Milestones Control Bar -->
+                <div class="timeline-milestones" id="timelineMilestones">
+                    <!-- Milestones will be generated by JavaScript -->
                 </div>
                 
-                <!-- Timeline Content Cards -->
-                <div class="timeline-content">
-                    <div class="timeline-card active" id="timeline-era-1">
-                        <div class="card-era era-1">Era Pre-Colombina a Colonia Española</div>
-                        <div class="card-year">c. 10,000 BCE – 1821</div>
-                        <h3>Los Primeros Pueblos del Istmo</h3>
-                        <p>Los pueblos indígenas establecieron las primeras rutas de comercio a través del istmo, creando una red de intercambio que conectaba las culturas del Pacífico y el Caribe mucho antes de la llegada de los europeos.</p>
-                    </div>
-                    
-                    <div class="timeline-card" id="timeline-era-2">
-                        <div class="card-era era-2">Era Colombiana y el Sueño del Canal</div>
-                        <div class="card-year">1821 – 1903</div>
-                        <h3>Independencia y la Búsqueda de un Canal</h3>
-                        <p>Tras la independencia de España, Panamá se une a la Gran Colombia mientras crece el interés internacional por construir un canal que conecte los océanos, culminando en el fallido intento francés.</p>
-                    </div>
-                    
-                    <div class="timeline-card" id="timeline-era-3">
-                        <div class="card-era era-3">Nación Dividida: El Canal y la Zona</div>
-                        <div class="card-year">1903 – 1977</div>
-                        <h3>La Construcción del "Big Ditch"</h3>
-                        <p>Con el apoyo de Estados Unidos, Panamá se independiza de Colombia y se construye el Canal, pero la Zona del Canal se convierte en una fuente de tensión nacionalista que duraría décadas.</p>
-                    </div>
-                    
-                    <div class="timeline-card" id="timeline-era-4">
-                        <div class="card-era era-4">Turbulencia y Transición</div>
-                        <div class="card-year">1968 – 1999</div>
-                        <h3>El Camino hacia la Soberanía</h3>
-                        <p>Desde la era de Torrijos hasta la invasión de 1989, Panamá atraviesa décadas de turbulencia política mientras negocia la devolución del Canal, culminando en los históricos Tratados Torrijos-Carter.</p>
-                    </div>
-                    
-                    <div class="timeline-card" id="timeline-era-5">
-                        <div class="card-era era-5">Panamá en el Siglo XXI</div>
-                        <div class="card-year">2000 – 2025</div>
-                        <h3>Consolidación Democrática y Crecimiento</h3>
-                        <p>Con el retorno del Canal, Panamá se consolida como centro financiero internacional, expande su canal y navega los desafíos de la globalización y las nuevas relaciones geopolíticas.</p>
+                <!-- Deck Card -->
+                <div class="deck-card" id="deckCard">
+                    <div class="deck-card-content">
+                        <div class="card-era" id="cardEra">Era Pre-Colombina</div>
+                        <div class="card-year" id="cardYear">c. 10,000 BCE</div>
+                        <h3 id="cardTitle">Los Primeros Pueblos del Istmo</h3>
+                        <p id="cardDescription">Los pueblos indígenas establecieron las primeras rutas de comercio a través del istmo, creando una red de intercambio que conectaba las culturas del Pacífico y el Caribe mucho antes de la llegada de los europeos.</p>
                     </div>
                 </div>
                 
@@ -3349,159 +3290,200 @@
     </script>
     
     <script>
-        // Canal Timeline functionality
+        // Comprehensive Canal Timeline functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const milestoneDots = document.querySelectorAll('.milestone-dot');
-            const timelineCards = document.querySelectorAll('.timeline-card');
+            // Milestone data structure
+            const milestones = [
+                { id: 1, title: "The First Peoples of the Isthmus", description: "Los pueblos indígenas establecieron las primeras rutas de comercio a través del istmo, creando una red de intercambio que conectaba las culturas del Pacífico y el Caribe mucho antes de la llegada de los europeos.", era: "Pre-Columbian", year: "c. 10,000 BCE", controlBarPosition: 0.00, lock: false, icon: "🏺" },
+                { id: 2, title: "Conquest and Colonization (1501-1519)", description: "Rodrigo de Bastidas fue el primer europeo en explorar las costas de Panamá, iniciando la era colonial española en el istmo que duraría tres siglos.", era: "Spanish Colony", year: "1501-1519", controlBarPosition: 0.10, lock: false, icon: "⚔️" },
+                { id: 3, title: "The Silver Route and the Scourge of Piracy", description: "Panamá se convirtió en el eje de la Ruta de la Plata, transportando tesoros del Perú hacia España, pero también atrajo a piratas como Francis Drake y Henry Morgan.", era: "Spanish Colony", year: "16th-18th Centuries", controlBarPosition: 0.18, lock: false, icon: "🏴‍☠️" },
+                { id: 4, title: "Independence from Spain and Union with Gran Colombia", description: "Panamá se independiza de España y se une a la Gran Colombia, marcando el fin de tres siglos de dominio colonial español.", era: "Colombian Era", year: "1821-1830", controlBarPosition: 0.25, lock: false, icon: "🏛️" },
+                { id: 5, title: "A Neglected Province and the Rise of U.S. Influence", description: "Panamá se convierte en una provincia descuidada de Colombia mientras Estados Unidos aumenta su influencia en la región, especialmente en asuntos del canal.", era: "Colombian Era", year: "1830s-1880s", controlBarPosition: 0.32, lock: false, icon: "🇺🇸" },
+                { id: 6, title: "The French Failure and the Geopolitics of Secession", description: "El intento francés de construir el canal bajo Ferdinand de Lesseps fracasa, pero establece las bases para la futura construcción estadounidense.", era: "Colombian Era", year: "1880-1903", controlBarPosition: 0.40, lock: false, icon: "🔧" },
+                { id: 7, title: "The Hay-Bunau-Varilla Treaty: A Contentious Foundation", description: "Con el apoyo de Estados Unidos, Panamá se independiza de Colombia y se firma el controvertido tratado que otorga derechos del canal a Estados Unidos.", era: "U.S. Zone", year: "1903", controlBarPosition: 0.45, lock: false, icon: "📜" },
+                { id: 8, title: "Building the 'Big Ditch': An Engineering Marvel at Human Cost", description: "La construcción del Canal de Panamá comienza, una obra de ingeniería monumental que revolucionó el comercio mundial pero a un costo humano enorme.", era: "U.S. Zone", year: "1904-1914", controlBarPosition: 0.55, lock: true, icon: "🏗️" },
+                { id: 9, title: "The Canal Zone: An American Enclave and a Source of Panamanian Nationalism", description: "La Zona del Canal se convierte en un enclave estadounidense en territorio panameño, generando tensiones nacionalistas que durarían décadas.", era: "U.S. Zone", year: "1914-1960s", controlBarPosition: 0.63, lock: false, icon: "🚧" },
+                { id: 10, title: "From Flag Riots to Negotiations: The Long Road to Sovereignty", description: "Los disturbios de la bandera de 1964 marcan un punto de inflexión en las relaciones entre Panamá y Estados Unidos, iniciando negociaciones serias.", era: "U.S. Zone", year: "1960s-1970s", controlBarPosition: 0.70, lock: false, icon: "🏴" },
+                { id: 11, title: "The Torrijos Era: Populism, Reform, and the Canal Treaties", description: "Omar Torrijos lidera un gobierno populista que negocia los históricos Tratados Torrijos-Carter, estableciendo la devolución gradual del canal.", era: "Turmoil & Transition", year: "1968-1981", controlBarPosition: 0.75, lock: false, icon: "🤝" },
+                { id: 12, title: "The Noriega Dictatorship: From CIA Asset to International Pariah", description: "Manuel Noriega, ex-agente de la CIA, se convierte en dictador, llevando a Panamá a un período de turbulencia política y aislamiento internacional.", era: "Turmoil & Transition", year: "1983-1989", controlBarPosition: 0.78, lock: false, icon: "👤" },
+                { id: 13, title: "Operation Just Cause: The 1989 U.S. Invasion and its Aftermath", description: "Estados Unidos invade Panamá para derrocar a Noriega, restaurando la democracia pero dejando cicatrices profundas en la sociedad panameña.", era: "Turmoil & Transition", year: "1989", controlBarPosition: 0.82, lock: false, icon: "⚔️" },
+                { id: 14, title: "The Final Handover: Panama Assumes Control of its Greatest Asset", description: "Panamá recupera la soberanía total sobre el Canal, marcando un hito histórico en la consolidación de la nación y su identidad.", era: "Turmoil & Transition", year: "1999", controlBarPosition: 0.85, lock: true, icon: "🎉" },
+                { id: 15, title: "Democratic Consolidation and Political Landscape", description: "Panamá consolida su democracia y desarrolla un panorama político estable, superando las turbulencias del pasado.", era: "21st Century", year: "2000s", controlBarPosition: 0.90, lock: false, icon: "🗳️" },
+                { id: 16, title: "An Economic Hub: Canal Expansion, Growth, and Persistent Inequality", description: "La expansión del canal en 2016 consolida a Panamá como centro económico regional, aunque persisten desafíos de desigualdad social.", era: "21st Century", year: "2010s", controlBarPosition: 0.93, lock: false, icon: "📈" },
+                { id: 17, title: "Contemporary Challenges: Migration, Indigenous Rights, and Social Cohesion", description: "Panamá enfrenta desafíos contemporáneos como la migración, los derechos indígenas y la cohesión social en un mundo globalizado.", era: "21st Century", year: "2020s", controlBarPosition: 0.96, lock: false, icon: "🌍" },
+                { id: 18, title: "Navigating a New Geopolitical Era: Relations with the U.S. and China", description: "Panamá navega las complejas relaciones geopolíticas entre Estados Unidos y China, manteniendo su posición estratégica en el comercio mundial.", era: "21st Century", year: "2020s-2025", controlBarPosition: 1.00, lock: false, icon: "🌐" }
+            ];
+            
+            // DOM elements
             const canalShip = document.getElementById('canalShip');
+            const timelineMilestones = document.getElementById('timelineMilestones');
+            const deckCard = document.getElementById('deckCard');
+            const cardEra = document.getElementById('cardEra');
+            const cardYear = document.getElementById('cardYear');
+            const cardTitle = document.getElementById('cardTitle');
+            const cardDescription = document.getElementById('cardDescription');
             const playBtn = document.getElementById('playTimeline');
             const pauseBtn = document.getElementById('pauseTimeline');
             const resetBtn = document.getElementById('resetTimeline');
             const locks = document.querySelectorAll('.lock');
             
-            let currentPosition = 0;
+            // State variables
+            let currentMilestoneIndex = 0;
             let isPlaying = false;
             let animationInterval;
-            let currentEra = 1;
             
-            // Position milestones in a straight line below the animation
-            milestoneDots.forEach(dot => {
-                // Milestones are now positioned using flexbox in CSS
-                // No need to set individual positions
-            });
-            
-            // Move ship to milestone position synced with lock water levels
-            function moveShipToPosition(position, era) {
-                // Calculate horizontal position (10% to 90% range)
-                const shipPosition = 10 + (position * 0.8);
-                canalShip.style.left = `${shipPosition}%`;
-                
-                // Remove all state classes
-                canalShip.classList.remove('in-locks', 'in-lake');
-                
-                // Calculate curved path height based on position
-                const curveHeight = Math.sin((position / 100) * Math.PI) * 15; // Sine wave for smooth curve
-                const baseHeight = 45; // Base height at 45%
-                
-                // Adjust ship height to sync with lock water levels
-                if (position >= 0 && position <= 25) {
-                    // Atlantic Ocean to Gatún Locks (0-25%)
-                    const lockProgress = position / 25; // 0 to 1
-                    // Ship rises with water level in locks
-                    const waterLevel = 30 + (lockProgress * 30); // 30px to 60px water height
-                    const shipHeight = baseHeight + curveHeight - (waterLevel * 0.3); // Ship follows water level
-                    canalShip.style.top = `${shipHeight}%`;
-                    if (position >= 15) canalShip.classList.add('in-locks');
-                } else if (position >= 25 && position <= 75) {
-                    // Gatún Lake area (25-75%) - highest elevation
-                    const shipHeight = baseHeight + curveHeight - 18; // Highest point (lake level)
-                    canalShip.style.top = `${shipHeight}%`;
-                    canalShip.classList.add('in-lake');
-                } else if (position >= 75 && position <= 100) {
-                    // Pedro Miguel + Miraflores Locks to Pacific (75-100%)
-                    const lockProgress = (position - 75) / 25; // 0 to 1
-                    // Ship descends with water level in locks
-                    const waterLevel = 60 - (lockProgress * 30); // 60px to 30px water height
-                    const shipHeight = baseHeight + curveHeight - 18 + (waterLevel * 0.3); // Ship follows water level
-                    canalShip.style.top = `${shipHeight}%`;
-                    if (position >= 80) canalShip.classList.add('in-locks');
-                } else {
-                    // Default ocean level
-                    canalShip.style.top = `${baseHeight + curveHeight}%`;
-                }
+            // Initialize timeline
+            function initializeTimeline() {
+                generateMilestoneDots();
+                updateDeckCard(milestones[0]);
+                moveShipToPosition(0);
             }
             
-            // Animate locks based on ship position with water level sync
-            function animateLocks(position) {
+            // Generate milestone dots
+            function generateMilestoneDots() {
+                timelineMilestones.innerHTML = '';
+                
+                milestones.forEach((milestone, index) => {
+                    const dot = document.createElement('div');
+                    dot.className = `milestone-dot era-${getEraClass(milestone.era)} ${index === 0 ? 'active' : ''}`;
+                    dot.dataset.index = index;
+                    dot.innerHTML = `
+                        <div class="dot-glow"></div>
+                        <div class="milestone-tooltip">
+                            <div class="tooltip-year">${milestone.year}</div>
+                            <div class="tooltip-title">${milestone.title}</div>
+                        </div>
+                    `;
+                    
+                    // Add click event
+                    dot.addEventListener('click', () => goToMilestone(index));
+                    
+                    // Add hover effects
+                    dot.addEventListener('mouseenter', function() {
+                        if (!this.classList.contains('active')) {
+                            this.style.transform = 'scale(1.2)';
+                        }
+                    });
+                    
+                    dot.addEventListener('mouseleave', function() {
+                        if (!this.classList.contains('active')) {
+                            this.style.transform = 'scale(1)';
+                        }
+                    });
+                    
+                    timelineMilestones.appendChild(dot);
+                });
+            }
+            
+            // Get era class for styling
+            function getEraClass(era) {
+                const eraMap = {
+                    'Pre-Columbian': 1,
+                    'Spanish Colony': 1,
+                    'Colombian Era': 2,
+                    'U.S. Zone': 3,
+                    'Turmoil & Transition': 4,
+                    '21st Century': 5
+                };
+                return eraMap[era] || 1;
+            }
+            
+            // Move ship to position
+            function moveShipToPosition(progress) {
+                const shipPosition = 10 + (progress * 80); // 10% to 90%
+                canalShip.style.left = `${shipPosition}%`;
+                
+                // Calculate curved path height
+                const curveHeight = Math.sin(progress * Math.PI) * 15;
+                const baseHeight = 45;
+                
+                // Adjust ship height based on canal profile
+                let shipHeight = baseHeight + curveHeight;
+                
+                if (progress >= 0.45 && progress <= 0.55) {
+                    // Miraflores Locks area
+                    shipHeight -= 10;
+                    canalShip.classList.add('in-locks');
+                } else if (progress >= 0.55 && progress <= 0.75) {
+                    // Pedro Miguel and Gatún Lake
+                    shipHeight -= 18;
+                    canalShip.classList.add('in-lake');
+                } else if (progress >= 0.75 && progress <= 0.85) {
+                    // Gatún Locks area
+                    shipHeight -= 15;
+                    canalShip.classList.add('in-locks');
+                } else {
+                    canalShip.classList.remove('in-locks', 'in-lake');
+                }
+                
+                canalShip.style.top = `${shipHeight}%`;
+            }
+            
+            // Animate locks
+            function animateLocks(progress) {
                 // Reset all locks
                 locks.forEach(lock => {
                     lock.classList.remove('raising', 'lowering');
+                    const water = lock.querySelector('.lock-water');
+                    if (water) water.style.height = '30px';
                 });
                 
-                if (position >= 0 && position <= 25) {
-                    // Atlantic side - Gatún Locks (3 steps)
-                    const lockProgress = position / 25;
-                    const atlanticLocks = document.querySelectorAll('.locks-atlantic .lock');
-                    
-                    // Calculate water level based on ship position
-                    const waterLevel = 30 + (lockProgress * 30); // 30px to 60px
-                    
-                    if (lockProgress < 0.33) {
-                        atlanticLocks[0].classList.add('raising');
-                        atlanticLocks[0].querySelector('.lock-water').style.height = `${waterLevel}px`;
-                    } else if (lockProgress < 0.66) {
-                        atlanticLocks[1].classList.add('raising');
-                        atlanticLocks[1].querySelector('.lock-water').style.height = `${waterLevel}px`;
-                    } else {
-                        atlanticLocks[2].classList.add('raising');
-                        atlanticLocks[2].querySelector('.lock-water').style.height = `${waterLevel}px`;
-                    }
-                } else if (position >= 75 && position <= 100) {
-                    // Pacific side - Pedro Miguel + Miraflores Locks
-                    const lockProgress = (position - 75) / 25;
+                // Animate based on progress
+                if (progress >= 0.45 && progress <= 0.55) {
+                    // Miraflores Locks
                     const pacificLocks = document.querySelectorAll('.locks-pacific .lock');
+                    const lockProgress = (progress - 0.45) / 0.1;
+                    const waterLevel = 30 + (lockProgress * 30);
                     
-                    // Calculate water level based on ship position (descending)
-                    const waterLevel = 60 - (lockProgress * 30); // 60px to 30px
+                    pacificLocks.forEach(lock => {
+                        lock.classList.add('raising');
+                        const water = lock.querySelector('.lock-water');
+                        if (water) water.style.height = `${waterLevel}px`;
+                    });
+                } else if (progress >= 0.75 && progress <= 0.85) {
+                    // Gatún Locks
+                    const atlanticLocks = document.querySelectorAll('.locks-atlantic .lock');
+                    const lockProgress = (progress - 0.75) / 0.1;
+                    const waterLevel = 30 + (lockProgress * 30);
                     
-                    if (lockProgress < 0.33) {
-                        pacificLocks[0].classList.add('raising'); // Pedro Miguel
-                        pacificLocks[0].querySelector('.lock-water').style.height = `${waterLevel}px`;
-                    } else if (lockProgress < 0.66) {
-                        pacificLocks[1].classList.add('raising'); // Miraflores 1
-                        pacificLocks[1].querySelector('.lock-water').style.height = `${waterLevel}px`;
-                    } else {
-                        pacificLocks[2].classList.add('raising'); // Miraflores 2
-                        pacificLocks[2].querySelector('.lock-water').style.height = `${waterLevel}px`;
-                    }
+                    atlanticLocks.forEach(lock => {
+                        lock.classList.add('raising');
+                        const water = lock.querySelector('.lock-water');
+                        if (water) water.style.height = `${waterLevel}px`;
+                    });
                 }
             }
             
-            // Show era card and update current era
-            function showEraCard(era) {
-                timelineCards.forEach(card => card.classList.remove('active'));
-                const targetCard = document.getElementById(`timeline-era-${era}`);
-                if (targetCard) {
-                    targetCard.classList.add('active');
-                }
-                currentEra = era;
+            // Update deck card
+            function updateDeckCard(milestone) {
+                cardEra.textContent = milestone.era;
+                cardEra.className = `card-era era-${getEraClass(milestone.era)}`;
+                cardYear.textContent = milestone.year;
+                cardTitle.textContent = milestone.title;
+                cardDescription.textContent = milestone.description;
+                
+                // Add fade effect
+                deckCard.style.opacity = '0.7';
+                setTimeout(() => {
+                    deckCard.style.opacity = '1';
+                }, 150);
             }
             
-            // Click milestone functionality
-            milestoneDots.forEach((dot, index) => {
-                dot.addEventListener('click', function() {
-                    // Remove active class from all dots
-                    milestoneDots.forEach(d => d.classList.remove('active'));
-                    
-                    // Add active class to clicked dot
-                    this.classList.add('active');
-                    
-                    // Get position and era
-                    const position = parseInt(this.getAttribute('data-position'));
-                    const era = this.getAttribute('data-era');
-                    
-                    // Move ship, animate locks, and show card
-                    moveShipToPosition(position, era);
-                    animateLocks(position);
-                    showEraCard(era);
-                    
-                    // Update current position
-                    currentPosition = position;
+            // Go to specific milestone
+            function goToMilestone(index) {
+                currentMilestoneIndex = index;
+                const milestone = milestones[index];
+                
+                // Update active dot
+                document.querySelectorAll('.milestone-dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
                 });
                 
-                // Hover effects
-                dot.addEventListener('mouseenter', function() {
-                    if (!this.classList.contains('active')) {
-                        this.style.transform = 'scale(1.2)';
-                    }
-                });
-                
-                dot.addEventListener('mouseleave', function() {
-                    if (!this.classList.contains('active')) {
-                        this.style.transform = 'scale(1)';
-                    }
-                });
-            });
+                // Move ship and animate
+                moveShipToPosition(milestone.controlBarPosition);
+                animateLocks(milestone.controlBarPosition);
+                updateDeckCard(milestone);
+            }
             
             // Auto-play functionality
             function startAutoPlay() {
@@ -3511,33 +3493,9 @@
                 playBtn.style.display = 'none';
                 pauseBtn.style.display = 'flex';
                 
-                let position = 0;
-                const milestones = Array.from(milestoneDots).sort((a, b) => 
-                    parseInt(a.getAttribute('data-position')) - parseInt(b.getAttribute('data-position'))
-                );
-                
                 animationInterval = setInterval(() => {
-                    // Remove active from all dots
-                    milestoneDots.forEach(d => d.classList.remove('active'));
-                    
-                    // Activate current milestone
-                    if (milestones[position]) {
-                        milestones[position].classList.add('active');
-                        const era = milestones[position].getAttribute('data-era');
-                        const milestonePosition = parseInt(milestones[position].getAttribute('data-position'));
-                        
-                        // Move ship, animate locks, and show card
-                        moveShipToPosition(milestonePosition, era);
-                        animateLocks(milestonePosition);
-                        showEraCard(era);
-                        
-                        currentPosition = milestonePosition;
-                    }
-                    
-                    position++;
-                    if (position >= milestones.length) {
-                        position = 0;
-                    }
+                    currentMilestoneIndex = (currentMilestoneIndex + 1) % milestones.length;
+                    goToMilestone(currentMilestoneIndex);
                 }, 3000);
             }
             
@@ -3550,31 +3508,16 @@
             
             function resetTimeline() {
                 stopAutoPlay();
-                milestoneDots.forEach(d => d.classList.remove('active'));
-                timelineCards.forEach(c => c.classList.remove('active'));
-                
-                // Reset locks
-                locks.forEach(lock => {
-                    lock.classList.remove('raising', 'lowering');
-                });
-                
-                // Reset to first milestone
-                const firstDot = milestoneDots[0];
-                firstDot.classList.add('active');
-                moveShipToPosition(0, 1);
-                animateLocks(0);
-                showEraCard(1);
-                currentPosition = 0;
-                currentEra = 1;
+                goToMilestone(0);
             }
             
-            // Control button events
+            // Event listeners
             playBtn.addEventListener('click', startAutoPlay);
             pauseBtn.addEventListener('click', stopAutoPlay);
             resetBtn.addEventListener('click', resetTimeline);
             
-            // Initialize with first milestone
-            resetTimeline();
+            // Initialize
+            initializeTimeline();
         });
         
         // Photo gallery lightbox functionality
