@@ -901,6 +901,305 @@
             z-index: 10;
         }
         
+        /* Panama Canal Interactive Cross-Section Styles */
+        .canal-interactive-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        .canal-cross-section {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .cross-section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .canal-svg-container {
+            width: 100%;
+            height: 300px;
+            overflow: visible;
+        }
+        
+        .canal-svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .ocean-section {
+            opacity: 0.8;
+        }
+        
+        .ocean-label, .lake-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            fill: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .lock-group {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lock-group:hover {
+            transform: scale(1.05);
+        }
+        
+        .lock-structure {
+            stroke: #654321;
+            stroke-width: 2;
+        }
+        
+        .lock-water {
+            opacity: 0.8;
+        }
+        
+        .lock-gates {
+            stroke: #654321;
+            stroke-width: 1;
+        }
+        
+        .lock-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            fill: #333;
+        }
+        
+        .hotspot {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .hotspot:hover {
+            r: 12;
+            opacity: 1;
+        }
+        
+        .canal-path {
+            stroke-dasharray: 5,5;
+            animation: canalFlow 3s linear infinite;
+        }
+        
+        @keyframes canalFlow {
+            0% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: 20; }
+        }
+        
+        .canal-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--neutral-gray);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-detail {
+            font-size: 0.8rem;
+            color: var(--neutral-light);
+        }
+        
+        .global-trade-map {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .trade-map-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .trade-routes {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .route {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: var(--radius-sm);
+            background: var(--neutral-lightest);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .route:hover {
+            background: var(--seafoam);
+            transform: translateX(5px);
+        }
+        
+        .route-icon {
+            font-size: 1.5rem;
+        }
+        
+        .route-label {
+            font-weight: 600;
+            color: var(--neutral-gray);
+            flex: 1;
+        }
+        
+        .route-detail {
+            font-size: 0.8rem;
+            color: var(--neutral-light);
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--neutral-light);
+        }
+        
+        .modal-header {
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-header h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .modal-year {
+            font-size: 0.9rem;
+            color: var(--neutral-light);
+            font-weight: 600;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 200px;
+            background: var(--neutral-lightest);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .placeholder-image {
+            font-size: 4rem;
+            opacity: 0.5;
+        }
+        
+        .modal-description {
+            color: var(--neutral-gray);
+            line-height: 1.6;
+        }
+        
+        /* Tooltip Styles */
+        .lock-tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-md);
+            font-size: 0.8rem;
+            z-index: 1000;
+            pointer-events: none;
+            white-space: nowrap;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .tooltip-name {
+            font-weight: 600;
+            color: #FFD700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .tooltip-year {
+            font-size: 0.7rem;
+            color: #87CEEB;
+            margin-bottom: 0.25rem;
+        }
+        
+        .tooltip-fact {
+            font-size: 0.7rem;
+            color: #98FB98;
+        }
+        
         .control-btn {
             width: 40px;
             height: 40px;
@@ -999,6 +1298,36 @@
             .timeline-controls {
                 top: 10px;
                 right: 10px;
+            }
+            
+            .canal-interactive-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .canal-stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem;
+            }
+            
+            .stat-card {
+                padding: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .canal-svg-container {
+                height: 250px;
+            }
+            
+            .trade-routes {
+                gap: 0.5rem;
+            }
+            
+            .route {
+                padding: 0.5rem;
             }
             
             .control-btn {
@@ -2064,58 +2393,137 @@
         </div>
     </section>
 
-    <!-- Panama Canal Feature -->
+    <!-- Panama Canal Interactive Cross-Section -->
     <section class="section">
         <div class="container">
             <div class="text-center mb-xxl">
-                <h2>El Canal de Panamá en Números</h2>
-                <p class="body-large">Una obra de ingeniería que conecta el mundo</p>
+                <h2>El Canal de Panamá: Ingeniería en Acción</h2>
+                <p class="body-large">Explora la mecánica del canal más importante del mundo</p>
             </div>
             
-            <div class="canal-infographic">
-                <div class="canal-stats">
-                    <div class="canal-stat-card">
-                        <div class="canal-stat-icon">🚢</div>
-                        <div class="canal-stat-number">14,000+</div>
-                        <div class="canal-stat-label">Barcos por Año</div>
-                    </div>
-                    <div class="canal-stat-card">
-                        <div class="canal-stat-icon">🌍</div>
-                        <div class="canal-stat-number">6%</div>
-                        <div class="canal-stat-label">del Comercio Mundial</div>
-                    </div>
-                    <div class="canal-stat-card">
-                        <div class="canal-stat-icon">⏱️</div>
-                        <div class="canal-stat-number">8-10</div>
-                        <div class="canal-stat-label">Horas de Cruce</div>
-                    </div>
-                    <div class="canal-stat-card">
-                        <div class="canal-stat-icon">📏</div>
-                        <div class="canal-stat-number">82</div>
-                        <div class="canal-stat-label">km de Longitud</div>
+            <div class="canal-interactive-container">
+                <!-- Interactive Cross-Section -->
+                <div class="canal-cross-section">
+                    <div class="cross-section-title">Corte Transversal del Canal</div>
+                    <div class="canal-svg-container">
+                        <svg viewBox="0 0 800 300" class="canal-svg">
+                            <!-- Pacific Ocean -->
+                            <rect x="0" y="100" width="120" height="100" fill="#4682B4" class="ocean-section"/>
+                            <text x="60" y="90" text-anchor="middle" class="ocean-label">Océano Pacífico</text>
+                            
+                            <!-- Miraflores Locks -->
+                            <g class="lock-group" id="miraflores-lock">
+                                <rect x="120" y="120" width="80" height="60" fill="#8B4513" class="lock-structure"/>
+                                <rect x="130" y="130" width="60" height="40" fill="#87CEEB" class="lock-water"/>
+                                <rect x="150" y="110" width="20" height="20" fill="#654321" class="lock-gates"/>
+                                <text x="160" y="105" text-anchor="middle" class="lock-label">Miraflores</text>
+                                <circle cx="160" cy="160" r="8" fill="#FF6B6B" class="hotspot" opacity="0.8"/>
+                            </g>
+                            
+                            <!-- Pedro Miguel Lock -->
+                            <g class="lock-group" id="pedro-miguel-lock">
+                                <rect x="200" y="130" width="60" height="40" fill="#8B4513" class="lock-structure"/>
+                                <rect x="210" y="140" width="40" height="20" fill="#87CEEB" class="lock-water"/>
+                                <rect x="220" y="120" width="20" height="15" fill="#654321" class="lock-gates"/>
+                                <text x="230" y="115" text-anchor="middle" class="lock-label">Pedro Miguel</text>
+                                <circle cx="230" cy="150" r="8" fill="#4ECDC4" class="hotspot" opacity="0.8"/>
+                            </g>
+                            
+                            <!-- Gatún Lake -->
+                            <rect x="260" y="140" width="200" height="20" fill="#98FB98" class="lake-section"/>
+                            <text x="360" y="135" text-anchor="middle" class="lake-label">Lago Gatún (26m)</text>
+                            
+                            <!-- Gatún Locks -->
+                            <g class="lock-group" id="gatun-lock">
+                                <rect x="460" y="120" width="80" height="60" fill="#8B4513" class="lock-structure"/>
+                                <rect x="470" y="130" width="60" height="40" fill="#87CEEB" class="lock-water"/>
+                                <rect x="490" y="110" width="20" height="20" fill="#654321" class="lock-gates"/>
+                                <text x="500" y="105" text-anchor="middle" class="lock-label">Gatún</text>
+                                <circle cx="500" cy="160" r="8" fill="#45B7D1" class="hotspot" opacity="0.8"/>
+                            </g>
+                            
+                            <!-- Atlantic Ocean -->
+                            <rect x="540" y="100" width="120" height="100" fill="#4682B4" class="ocean-section"/>
+                            <text x="600" y="90" text-anchor="middle" class="ocean-label">Océano Atlántico</text>
+                            
+                            <!-- Canal Path -->
+                            <path d="M120 150 Q200 140 280 150 Q360 150 440 150 Q520 150 540 150" 
+                                  stroke="#2E8B57" stroke-width="8" fill="none" class="canal-path"/>
+                        </svg>
                     </div>
                 </div>
                 
-                <div class="canal-animation">
-                    <div class="canal-visual">
-                        <div class="canal-water"></div>
-                        <div class="ship-animation">
-                            <div class="ship">🚢</div>
-                        </div>
-                        <div class="canal-locks">
-                            <div class="lock lock-1"></div>
-                            <div class="lock lock-2"></div>
-                            <div class="lock lock-3"></div>
-                        </div>
+                <!-- Key Stats Snapshot -->
+                <div class="canal-stats-grid">
+                    <div class="stat-card" data-stat="ships">
+                        <div class="stat-icon">🚢</div>
+                        <div class="stat-number" id="shipsCounter">0</div>
+                        <div class="stat-label">Barcos por Año</div>
+                        <div class="stat-detail">14,000+ transits</div>
                     </div>
-                    <div class="canal-description">
-                        <h3>Conectando Océanos</h3>
-                        <p>El Canal de Panamá es una de las obras de ingeniería más impresionantes del mundo, permitiendo que los barcos crucen de un océano al otro en solo unas horas, evitando el peligroso viaje alrededor del Cabo de Hornos.</p>
+                    <div class="stat-card" data-stat="tonnage">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-number" id="tonnageCounter">0</div>
+                        <div class="stat-label">Toneladas</div>
+                        <div class="stat-detail">500+ millones</div>
+                    </div>
+                    <div class="stat-card" data-stat="economic">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-number">6%</div>
+                        <div class="stat-label">Comercio Mundial</div>
+                        <div class="stat-detail">del tráfico marítimo</div>
+                    </div>
+                    <div class="stat-card" data-stat="time">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-number">8-10</div>
+                        <div class="stat-label">Horas de Cruce</div>
+                        <div class="stat-detail">vs 2 semanas por Cabo de Hornos</div>
+                    </div>
+                </div>
+                
+                <!-- Mini Global Trade Map -->
+                <div class="global-trade-map">
+                    <div class="trade-map-title">Rutas Globales del Canal</div>
+                    <div class="trade-routes">
+                        <div class="route route-asia" data-route="asia">
+                            <div class="route-icon">🌏</div>
+                            <div class="route-label">Asia-Pacífico</div>
+                            <div class="route-detail">Contenedores, Electrónicos</div>
+                        </div>
+                        <div class="route route-europe" data-route="europe">
+                            <div class="route-icon">🌍</div>
+                            <div class="route-label">Europa-Atlántico</div>
+                            <div class="route-detail">Automóviles, Maquinaria</div>
+                        </div>
+                        <div class="route route-americas" data-route="americas">
+                            <div class="route-icon">🌎</div>
+                            <div class="route-label">Américas</div>
+                            <div class="route-detail">Commodities, Energía</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    
+    <!-- Lock Detail Modals -->
+    <div class="modal-overlay" id="lockModal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-header">
+                <h3 id="modalTitle">Miraflores Lock</h3>
+                <div class="modal-year" id="modalYear">1914</div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image" id="modalImage">
+                    <div class="placeholder-image">🔒</div>
+                </div>
+                <div class="modal-description" id="modalDescription">
+                    Las esclusas de Miraflores son las primeras que encuentran los barcos que vienen del Pacífico, elevándolos 16 metros hasta el nivel del Lago Miraflores.
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Cultural Diversity & National Symbols -->
     <section class="section" style="background-color: var(--seafoam);">
@@ -3694,6 +4102,156 @@
             });
         });
     </script>
+    
+    <script>
+        // Panama Canal Interactive Cross-Section
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lock data
+            const lockData = {
+                'miraflores-lock': {
+                    name: 'Esclusas de Miraflores',
+                    year: '1914',
+                    fact: 'Primeras esclusas del Pacífico',
+                    description: 'Las esclusas de Miraflores son las primeras que encuentran los barcos que vienen del Pacífico, elevándolos 16 metros hasta el nivel del Lago Miraflores. Construidas en 1914, son una maravilla de la ingeniería hidráulica.'
+                },
+                'pedro-miguel-lock': {
+                    name: 'Esclusa de Pedro Miguel',
+                    year: '1914',
+                    fact: 'Esclusa intermedia única',
+                    description: 'La esclusa de Pedro Miguel es la única esclusa de una sola cámara en el canal original. Eleva los barcos 9.5 metros desde el Lago Miraflores hasta el nivel del Lago Gatún, completando el ascenso total.'
+                },
+                'gatun-lock': {
+                    name: 'Esclusas de Gatún',
+                    year: '1914',
+                    fact: 'Las más grandes del mundo',
+                    description: 'Las esclusas de Gatún son las más grandes del mundo en su época. Descienden los barcos 26 metros desde el Lago Gatún hasta el nivel del Océano Atlántico, completando el cruce del canal.'
+                }
+            };
+            
+            // Add click listeners to lock groups
+            Object.keys(lockData).forEach(lockId => {
+                const lockElement = document.getElementById(lockId);
+                if (lockElement) {
+                    lockElement.addEventListener('click', () => {
+                        showLockModal(lockData[lockId]);
+                    });
+                }
+            });
+            
+            // Add hover tooltips
+            Object.keys(lockData).forEach(lockId => {
+                const lockElement = document.getElementById(lockId);
+                if (lockElement) {
+                    const data = lockData[lockId];
+                    lockElement.addEventListener('mouseenter', (e) => {
+                        showTooltip(e, data.name, data.year, data.fact);
+                    });
+                    lockElement.addEventListener('mouseleave', hideTooltip);
+                }
+            });
+            
+            // Initialize animated counters
+            initializeCounters();
+            
+            // Add route hover effects
+            initializeTradeRoutes();
+        });
+        
+        // Show lock detail modal
+        function showLockModal(lockData) {
+            const modal = document.getElementById('lockModal');
+            const title = document.getElementById('modalTitle');
+            const year = document.getElementById('modalYear');
+            const description = document.getElementById('modalDescription');
+            
+            title.textContent = lockData.name;
+            year.textContent = lockData.year;
+            description.textContent = lockData.description;
+            
+            modal.classList.add('active');
+        }
+        
+        // Close modal
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-close') || e.target.classList.contains('modal-overlay')) {
+                document.getElementById('lockModal').classList.remove('active');
+            }
+        });
+        
+        // Tooltip functionality
+        let tooltip = null;
+        
+        function showTooltip(event, name, year, fact) {
+            hideTooltip();
+            
+            tooltip = document.createElement('div');
+            tooltip.className = 'lock-tooltip';
+            tooltip.innerHTML = `
+                <div class="tooltip-name">${name}</div>
+                <div class="tooltip-year">${year}</div>
+                <div class="tooltip-fact">${fact}</div>
+            `;
+            
+            document.body.appendChild(tooltip);
+            
+            const rect = event.target.getBoundingClientRect();
+            tooltip.style.left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + 'px';
+            tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + 'px';
+        }
+        
+        function hideTooltip() {
+            if (tooltip) {
+                tooltip.remove();
+                tooltip = null;
+            }
+        }
+        
+        // Animated counters
+        function initializeCounters() {
+            const shipsCounter = document.getElementById('shipsCounter');
+            const tonnageCounter = document.getElementById('tonnageCounter');
+            
+            // Animate ships counter
+            animateCounter(shipsCounter, 0, 14000, 2000);
+            
+            // Animate tonnage counter
+            animateCounter(tonnageCounter, 0, 500, 2500);
+        }
+        
+        function animateCounter(element, start, end, duration) {
+            const startTime = performance.now();
+            
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const current = Math.floor(start + (end - start) * progress);
+                element.textContent = current.toLocaleString();
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+            
+            requestAnimationFrame(updateCounter);
+        }
+        
+        // Trade routes
+        function initializeTradeRoutes() {
+            const routes = document.querySelectorAll('.route');
+            
+            routes.forEach(route => {
+                route.addEventListener('mouseenter', (e) => {
+                    e.target.style.transform = 'translateX(10px) scale(1.02)';
+                });
+                
+                route.addEventListener('mouseleave', (e) => {
+                    e.target.style.transform = 'translateX(0) scale(1)';
+                });
+            });
+        }
+    </script>
+    
 <script src="js/dynamic-css.js"></script>
 
 </body>
