@@ -420,16 +420,15 @@
         
         .canal-path {
             position: absolute;
-            left: 10%;
-            right: 10%;
-            top: 45%;
+            left: 2%;
+            right: 2%;
+            top: 50%;
             transform: translateY(-50%);
             height: 40px;
             background: linear-gradient(90deg, #4682B4, #87CEEB, #4682B4);
             border-radius: 20px;
             box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 3;
-            clip-path: polygon(0% 50%, 20% 30%, 40% 35%, 60% 25%, 80% 30%, 100% 50%);
         }
         
         .canal-water {
@@ -677,7 +676,7 @@
         .canal-ship {
             position: absolute;
             top: 50%;
-            left: 15%;
+            left: 2%;
             transform: translateY(-50%);
             z-index: 10;
             transition: left 2s ease-in-out;
@@ -3464,7 +3463,11 @@
             
             // Move ship to position
             function moveShipToPosition(progress) {
-                const shipPosition = 10 + (progress * 80); // 10% to 90%
+                // Calculate ship position to align with milestone dots
+                // Start at the first milestone position and move in a straight line
+                const startPosition = 2; // Start at 2% (first milestone area)
+                const endPosition = 98; // End at 98% (last milestone area)
+                const shipPosition = startPosition + (progress * (endPosition - startPosition));
                 canalShip.style.left = `${shipPosition}%`;
                 
                 // Ship stays strictly on water line - no vertical movement
