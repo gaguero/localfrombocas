@@ -487,30 +487,8 @@
             padding: 0 1rem;
         }
         
-        .locks-pacific {
-            position: absolute;
-            left: 5%;
-            top: -15px;
-            display: flex;
-            gap: 0.5rem;
-        }
         
-        .locks-pedro-miguel {
-            position: absolute;
-            left: 50%;
-            top: -15px;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 0.5rem;
-        }
         
-        .locks-atlantic {
-            position: absolute;
-            right: 5%;
-            top: -15px;
-            display: flex;
-            gap: 0.5rem;
-        }
         
         .lock {
             width: 40px;
@@ -526,46 +504,11 @@
         .lock.step-2 { height: 70px; }
         .lock.step-3 { height: 80px; }
         
-        .lock-water {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(180deg, #4682B4, #87CEEB);
-            transition: height 2s ease-in-out;
-            height: 30px;
-        }
         
-        .lock-gates {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 20px;
-            background: #654321;
-            border-radius: 4px;
-            z-index: 2;
-            transition: all 1s ease-in-out;
-        }
         
-        .lock-gates.closing {
-            transform: translateX(-50%) scaleY(1.2);
-            background: #4a2c17;
-        }
         
-        .lock-gates.opening {
-            transform: translateX(-50%) scaleY(0.8);
-            background: #8B4513;
-        }
         
-        .lock.raising .lock-water {
-            height: 60px;
-        }
         
-        .lock.lowering .lock-water {
-            height: 15px;
-        }
         
         .lock-labels {
             position: absolute;
@@ -1910,49 +1853,13 @@
                             <div class="lake-label">Lago Gatún</div>
                             <div class="elevation-indicator">26m</div>
                         </div>
-                        <div class="locks-section">
-                            <!-- Pacific Side - Miraflores Locks -->
-                            <div class="locks-pacific">
-                                <div class="lock step-1">
-                                    <div class="lock-water"></div>
-                                    <div class="lock-gates"></div>
-                                </div>
-                                <div class="lock step-1">
-                                    <div class="lock-water"></div>
-                                    <div class="lock-gates"></div>
-                                </div>
-                            </div>
-                            
-                            <!-- Pedro Miguel Lock -->
-                            <div class="locks-pedro-miguel">
-                                <div class="lock step-2">
-                                    <div class="lock-water"></div>
-                                    <div class="lock-gates"></div>
-                                </div>
-                            </div>
-                            
-                            <!-- Atlantic Side - Gatún Locks -->
-                            <div class="locks-atlantic">
-                                <div class="lock step-1">
-                                    <div class="lock-water"></div>
-                                    <div class="lock-gates"></div>
-                                </div>
-                                <div class="lock step-2">
-                                    <div class="lock-water"></div>
-                                    <div class="lock-gates"></div>
-                                </div>
-                                <div class="lock step-3">
-                                    <div class="lock-water"></div>
-                                    <div class="lock-gates"></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Lock Labels -->
-                        <div class="lock-labels">
-                            <div class="lock-label pacific-locks">Esclusas de Miraflores</div>
-                            <div class="lock-label pedro-miguel">Pedro Miguel</div>
-                            <div class="lock-label atlantic-locks">Esclusas de Gatún</div>
+                    </div>
+                    
+                    <div class="canal-route">
+                        <div class="canal-water"></div>
+                        <div class="gatum-lake">
+                            <div class="lake-label">Lago Gatún</div>
+                            <div class="elevation-indicator">26m</div>
                         </div>
                     </div>
                     
@@ -3335,7 +3242,6 @@
             const playBtn = document.getElementById('playTimeline');
             const pauseBtn = document.getElementById('pauseTimeline');
             const resetBtn = document.getElementById('resetTimeline');
-            const locks = document.querySelectorAll('.lock');
             
             // State variables
             let currentMilestoneIndex = 0;
@@ -3413,52 +3319,11 @@
             }
             
             // Animate locks
-            function animateLocks(progress) {
-                // Reset all locks
-                locks.forEach(lock => {
-                    lock.classList.remove('raising', 'lowering');
-                    const water = lock.querySelector('.lock-water');
-                    const gates = lock.querySelector('.lock-gates');
-                    if (water) water.style.height = '30px';
-                    if (gates) gates.classList.remove('closing', 'opening');
-                });
-                
-                // Animate based on progress
-                if (progress >= 0.45 && progress <= 0.55) {
-                    // Miraflores Locks
-                    const pacificLocks = document.querySelectorAll('.locks-pacific .lock');
-                    const lockProgress = (progress - 0.45) / 0.1;
-                    const waterLevel = 30 + (lockProgress * 30);
-                    
-                    pacificLocks.forEach((lock, index) => {
-                        const water = lock.querySelector('.lock-water');
-                        const gates = lock.querySelector('.lock-gates');
-                        
-                        // Gates close first, then water rises
-                        if (lockProgress < 0.3) {
-                            if (gates) gates.classList.add('closing');
-                        } else if (lockProgress < 0.7) {
-                            if (gates) gates.classList.remove('closing');
-                            lock.classList.add('raising');
-                            if (water) water.style.height = `${waterLevel}px`;
-                        } else {
                             if (gates) gates.classList.add('opening');
                         }
                     });
                 } else if (progress >= 0.75 && progress <= 0.85) {
                     // Gatún Locks
-                    const atlanticLocks = document.querySelectorAll('.locks-atlantic .lock');
-                    const lockProgress = (progress - 0.75) / 0.1;
-                    const waterLevel = 30 + (lockProgress * 30);
-                    
-                    atlanticLocks.forEach((lock, index) => {
-                        const water = lock.querySelector('.lock-water');
-                        const gates = lock.querySelector('.lock-gates');
-                        
-                        // Gates close first, then water rises
-                        if (lockProgress < 0.3) {
-                            if (gates) gates.classList.add('closing');
-                        } else if (lockProgress < 0.7) {
                             if (gates) gates.classList.remove('closing');
                             lock.classList.add('raising');
                             if (water) water.style.height = `${waterLevel}px`;
