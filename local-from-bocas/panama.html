@@ -616,22 +616,36 @@
         
         .timeline-milestones {
             position: absolute;
-            top: 0;
-            left: 15%;
-            right: 15%;
-            height: 100%;
+            top: 100%;
+            left: 10%;
+            right: 10%;
+            height: 60px;
             z-index: 5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .timeline-milestones::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 12px;
+            right: 12px;
+            height: 2px;
+            background: linear-gradient(90deg, #8B4513, #2E8B57, #DC143C, #FF8C00, #4169E1);
+            z-index: 1;
         }
         
         .milestone-dot {
-            position: absolute;
+            position: relative;
             width: 24px;
             height: 24px;
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 6;
-            transform: translate(-50%, -50%);
+            flex-shrink: 0;
         }
         
         .milestone-dot.era-1 {
@@ -660,12 +674,12 @@
         }
         
         .milestone-dot:hover {
-            transform: translate(-50%, -50%) scale(1.3);
+            transform: scale(1.3);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
         }
         
         .milestone-dot.active {
-            transform: translate(-50%, -50%) scale(1.4);
+            transform: scale(1.4);
             box-shadow: 0 0 25px rgba(255, 255, 255, 1);
         }
         
@@ -3350,26 +3364,13 @@
             let animationInterval;
             let currentEra = 1;
             
-            // Position milestones based on their data-position attribute following curved path
+            // Position milestones in a straight line below the animation
             milestoneDots.forEach(dot => {
-                const position = parseInt(dot.getAttribute('data-position'));
-                const dotPosition = 10 + (position * 0.8); // Match ship positioning
-                dot.style.left = `${dotPosition}%`;
-                
-                // Calculate curved path height for milestone dots
-                const curveHeight = Math.sin((position / 100) * Math.PI) * 15;
-                const baseHeight = 45;
-                
-                // Adjust dot height based on position
-                let dotHeight = baseHeight + curveHeight;
-                if (position >= 25 && position <= 75) {
-                    dotHeight += 15; // Higher in lake area
-                }
-                
-                dot.style.top = `${dotHeight}%`;
+                // Milestones are now positioned using flexbox in CSS
+                // No need to set individual positions
             });
             
-            // Move ship to milestone position following curved path
+            // Move ship to milestone position synced with lock water levels
             function moveShipToPosition(position, era) {
                 // Calculate horizontal position (10% to 90% range)
                 const shipPosition = 10 + (position * 0.8);
@@ -3382,22 +3383,26 @@
                 const curveHeight = Math.sin((position / 100) * Math.PI) * 15; // Sine wave for smooth curve
                 const baseHeight = 45; // Base height at 45%
                 
-                // Adjust ship height based on accurate canal profile
+                // Adjust ship height to sync with lock water levels
                 if (position >= 0 && position <= 25) {
                     // Atlantic Ocean to Gatún Locks (0-25%)
                     const lockProgress = position / 25; // 0 to 1
-                    const shipHeight = baseHeight + curveHeight + (lockProgress * 15); // Rise to lake level
+                    // Ship rises with water level in locks
+                    const waterLevel = 30 + (lockProgress * 30); // 30px to 60px water height
+                    const shipHeight = baseHeight + curveHeight - (waterLevel * 0.3); // Ship follows water level
                     canalShip.style.top = `${shipHeight}%`;
                     if (position >= 15) canalShip.classList.add('in-locks');
                 } else if (position >= 25 && position <= 75) {
                     // Gatún Lake area (25-75%) - highest elevation
-                    const shipHeight = baseHeight + curveHeight + 15; // Highest point
+                    const shipHeight = baseHeight + curveHeight - 18; // Highest point (lake level)
                     canalShip.style.top = `${shipHeight}%`;
                     canalShip.classList.add('in-lake');
                 } else if (position >= 75 && position <= 100) {
                     // Pedro Miguel + Miraflores Locks to Pacific (75-100%)
                     const lockProgress = (position - 75) / 25; // 0 to 1
-                    const shipHeight = baseHeight + curveHeight + 15 - (lockProgress * 15); // Descend to ocean
+                    // Ship descends with water level in locks
+                    const waterLevel = 60 - (lockProgress * 30); // 60px to 30px water height
+                    const shipHeight = baseHeight + curveHeight - 18 + (waterLevel * 0.3); // Ship follows water level
                     canalShip.style.top = `${shipHeight}%`;
                     if (position >= 80) canalShip.classList.add('in-locks');
                 } else {
@@ -3406,7 +3411,7 @@
                 }
             }
             
-            // Animate locks based on ship position
+            // Animate locks based on ship position with water level sync
             function animateLocks(position) {
                 // Reset all locks
                 locks.forEach(lock => {
@@ -3418,24 +3423,36 @@
                     const lockProgress = position / 25;
                     const atlanticLocks = document.querySelectorAll('.locks-atlantic .lock');
                     
+                    // Calculate water level based on ship position
+                    const waterLevel = 30 + (lockProgress * 30); // 30px to 60px
+                    
                     if (lockProgress < 0.33) {
                         atlanticLocks[0].classList.add('raising');
+                        atlanticLocks[0].querySelector('.lock-water').style.height = `${waterLevel}px`;
                     } else if (lockProgress < 0.66) {
                         atlanticLocks[1].classList.add('raising');
+                        atlanticLocks[1].querySelector('.lock-water').style.height = `${waterLevel}px`;
                     } else {
                         atlanticLocks[2].classList.add('raising');
+                        atlanticLocks[2].querySelector('.lock-water').style.height = `${waterLevel}px`;
                     }
                 } else if (position >= 75 && position <= 100) {
                     // Pacific side - Pedro Miguel + Miraflores Locks
                     const lockProgress = (position - 75) / 25;
                     const pacificLocks = document.querySelectorAll('.locks-pacific .lock');
                     
+                    // Calculate water level based on ship position (descending)
+                    const waterLevel = 60 - (lockProgress * 30); // 60px to 30px
+                    
                     if (lockProgress < 0.33) {
                         pacificLocks[0].classList.add('raising'); // Pedro Miguel
+                        pacificLocks[0].querySelector('.lock-water').style.height = `${waterLevel}px`;
                     } else if (lockProgress < 0.66) {
                         pacificLocks[1].classList.add('raising'); // Miraflores 1
+                        pacificLocks[1].querySelector('.lock-water').style.height = `${waterLevel}px`;
                     } else {
                         pacificLocks[2].classList.add('raising'); // Miraflores 2
+                        pacificLocks[2].querySelector('.lock-water').style.height = `${waterLevel}px`;
                     }
                 }
             }
@@ -3475,13 +3492,13 @@
                 // Hover effects
                 dot.addEventListener('mouseenter', function() {
                     if (!this.classList.contains('active')) {
-                        this.style.transform = 'translate(-50%, -50%) scale(1.2)';
+                        this.style.transform = 'scale(1.2)';
                     }
                 });
                 
                 dot.addEventListener('mouseleave', function() {
                     if (!this.classList.contains('active')) {
-                        this.style.transform = 'translate(-50%, -50%) scale(1)';
+                        this.style.transform = 'scale(1)';
                     }
                 });
             });
