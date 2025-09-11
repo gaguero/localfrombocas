@@ -269,6 +269,1382 @@
                 grid-template-columns: 1fr;
             }
         }
+        
+        /* Country Snapshot Styles */
+        .country-snapshot-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .snapshot-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(15, 91, 85, 0.1);
+        }
+        
+        .snapshot-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .snapshot-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .snapshot-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--jungle-teal);
+            font-family: var(--font-display);
+            margin-bottom: 0.5rem;
+        }
+        
+        .snapshot-label {
+            color: var(--neutral-gray);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .country-snapshot-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .country-snapshot-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .snapshot-card {
+                padding: 1.5rem;
+            }
+        }
+        
+        /* Canal Timeline Styles */
+        .canal-timeline-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #87CEEB 100%);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .canal-background {
+            position: relative;
+            height: 300px;
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #87CEEB 100%);
+            overflow: hidden;
+        }
+        
+        .ocean {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 15%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .pacific-ocean {
+            left: 0;
+            background: linear-gradient(135deg, #4682B4, #87CEEB);
+        }
+        
+        .atlantic-ocean {
+            right: 0;
+            background: linear-gradient(135deg, #87CEEB, #4682B4);
+        }
+        
+        .ocean-label {
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+        }
+        
+        .waves {
+            width: 100%;
+            height: 20px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.3) 10px,
+                rgba(255, 255, 255, 0.3) 20px
+            );
+            animation: waveMove 2s linear infinite;
+        }
+        
+        .canal-route {
+            position: absolute;
+            left: 15%;
+            right: 15%;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 60px;
+            background: linear-gradient(90deg, #4682B4, #87CEEB, #4682B4);
+            border-radius: 30px;
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .canal-water {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, #4682B4, #87CEEB, #4682B4);
+            border-radius: 30px;
+            animation: waterFlow 3s ease-in-out infinite;
+        }
+        
+        .gatum-lake {
+            position: absolute;
+            left: 25%;
+            right: 25%;
+            top: -40px;
+            height: 120px;
+            background: linear-gradient(90deg, #87CEEB, #98FB98, #87CEEB);
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+        }
+        
+        .lake-label {
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 0.5rem;
+        }
+        
+        .elevation-indicator {
+            color: #FFD700;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.25rem 0.5rem;
+            border-radius: 10px;
+            border: 2px solid #FFD700;
+        }
+        
+        .locks-section {
+            position: absolute;
+            top: -15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+        
+        .locks-atlantic {
+            position: absolute;
+            left: 5%;
+            top: -15px;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .locks-pacific {
+            position: absolute;
+            right: 5%;
+            top: -15px;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .lock {
+            width: 40px;
+            height: 80px;
+            background: #8B4513;
+            border-radius: 6px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .lock.step-1 { height: 60px; }
+        .lock.step-2 { height: 70px; }
+        .lock.step-3 { height: 80px; }
+        
+        .lock-water {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, #4682B4, #87CEEB);
+            transition: height 2s ease-in-out;
+            height: 30px;
+        }
+        
+        .lock-gates {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 20px;
+            background: #654321;
+            border-radius: 4px;
+            z-index: 2;
+        }
+        
+        .lock.raising .lock-water {
+            height: 60px;
+        }
+        
+        .lock.lowering .lock-water {
+            height: 15px;
+        }
+        
+        .lock-labels {
+            position: absolute;
+            top: -35px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+        
+        .lock-label {
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            white-space: nowrap;
+        }
+        
+        .atlantic-locks {
+            text-align: left;
+        }
+        
+        .pacific-locks {
+            text-align: right;
+        }
+        
+        .canal-ship {
+            position: absolute;
+            top: 35%;
+            left: 15%;
+            transform: translateY(-50%);
+            z-index: 10;
+            transition: all 2s ease-in-out;
+        }
+        
+        .ship-body {
+            font-size: 2.5rem;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            animation: shipBob 2s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+        
+        .canal-ship.in-locks .ship-body {
+            animation: shipBob 1.5s ease-in-out infinite;
+        }
+        
+        .canal-ship.in-lake .ship-body {
+            animation: shipBob 2.5s ease-in-out infinite;
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+        }
+        
+        .canal-ship.in-lake .ship-wake {
+            animation: wakeMove 0.8s linear infinite;
+        }
+        
+        .ship-wake {
+            position: absolute;
+            top: 50%;
+            left: -20px;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            border-radius: 2px;
+            animation: wakeMove 1s linear infinite;
+        }
+        
+        .timeline-milestones {
+            position: absolute;
+            top: 0;
+            left: 15%;
+            right: 15%;
+            height: 100%;
+            z-index: 5;
+        }
+        
+        .milestone-dot {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 6;
+        }
+        
+        .milestone-dot.era-1 {
+            background: #8B4513;
+            border: 3px solid #A0522D;
+        }
+        
+        .milestone-dot.era-2 {
+            background: #2E8B57;
+            border: 3px solid #3CB371;
+        }
+        
+        .milestone-dot.era-3 {
+            background: #DC143C;
+            border: 3px solid #FF6347;
+        }
+        
+        .milestone-dot.era-4 {
+            background: #FF8C00;
+            border: 3px solid #FFA500;
+        }
+        
+        .milestone-dot.era-5 {
+            background: #4169E1;
+            border: 3px solid #6495ED;
+        }
+        
+        .milestone-dot:hover {
+            transform: translateY(-50%) scale(1.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+        
+        .milestone-dot.active {
+            transform: translateY(-50%) scale(1.4);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 1);
+        }
+        
+        .dot-glow {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: inherit;
+            opacity: 0;
+            animation: pulse 2s infinite;
+        }
+        
+        .milestone-dot.active .dot-glow {
+            opacity: 0.6;
+        }
+        
+        .milestone-tooltip {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .milestone-dot:hover .milestone-tooltip {
+            opacity: 1;
+        }
+        
+        .tooltip-year {
+            font-weight: 700;
+            color: #FFD700;
+        }
+        
+        .tooltip-title {
+            font-size: 0.7rem;
+            margin-top: 0.25rem;
+        }
+        
+        .timeline-content {
+            position: relative;
+            background: white;
+            padding: 2rem;
+            min-height: 200px;
+        }
+        
+        .timeline-card {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        .timeline-card.active {
+            display: block;
+        }
+        
+        .card-era {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .card-era.era-1 { background: #8B4513; }
+        .card-era.era-2 { background: #2E8B57; }
+        .card-era.era-3 { background: #DC143C; }
+        .card-era.era-4 { background: #FF8C00; }
+        .card-era.era-5 { background: #4169E1; }
+        
+        .card-year {
+            color: var(--jungle-teal);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-card h3 {
+            color: var(--jungle-teal);
+            margin-bottom: 1rem;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+        }
+        
+        .timeline-card p {
+            color: var(--neutral-gray);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        .timeline-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+        
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--jungle-teal);
+        }
+        
+        .control-btn:hover {
+            background: white;
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        @keyframes waveMove {
+            0% { transform: translateX(-20px); }
+            100% { transform: translateX(20px); }
+        }
+        
+        @keyframes waterFlow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+        
+        @keyframes shipBob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        @keyframes wakeMove {
+            0% { opacity: 0; transform: translateX(-10px); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: translateX(10px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 0.3; }
+            100% { transform: scale(1); opacity: 0.6; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .canal-background {
+                height: 250px;
+            }
+            
+            .ocean {
+                width: 12%;
+            }
+            
+            .ocean-label {
+                font-size: 0.9rem;
+            }
+            
+            .lock-label {
+                font-size: 0.6rem;
+            }
+            
+            .timeline-content {
+                padding: 1.5rem;
+            }
+            
+            .timeline-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .timeline-controls {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .control-btn {
+                width: 35px;
+                height: 35px;
+            }
+        }
+        
+        /* Canal Infographic Styles */
+        .canal-infographic {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .canal-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .canal-stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(15, 91, 85, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .canal-stat-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .canal-stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .canal-stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--jungle-teal);
+            font-family: var(--font-display);
+            margin-bottom: 0.5rem;
+        }
+        
+        .canal-stat-label {
+            color: var(--neutral-gray);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .canal-animation {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .canal-visual {
+            position: relative;
+            height: 200px;
+            background: linear-gradient(90deg, #87CEEB 0%, #4682B4 50%, #87CEEB 100%);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        
+        .canal-water {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, #87CEEB 0%, #4682B4 50%, #87CEEB 100%);
+            animation: waterFlow 3s ease-in-out infinite;
+        }
+        
+        .ship-animation {
+            position: absolute;
+            top: 50%;
+            left: -50px;
+            transform: translateY(-50%);
+            animation: shipMove 8s linear infinite;
+        }
+        
+        .ship {
+            font-size: 2rem;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        }
+        
+        .canal-locks {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 2rem;
+        }
+        
+        .lock {
+            width: 40px;
+            height: 60px;
+            background: #8B4513;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .lock::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #654321;
+            border-radius: 50%;
+        }
+        
+        .canal-description h3 {
+            color: var(--jungle-teal);
+            margin-bottom: 1rem;
+            font-family: var(--font-display);
+        }
+        
+        .canal-description p {
+            color: var(--neutral-gray);
+            line-height: 1.6;
+        }
+        
+        @keyframes waterFlow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+        
+        @keyframes shipMove {
+            0% { left: -50px; }
+            100% { left: calc(100% + 50px); }
+        }
+        
+        @media (max-width: 1024px) {
+            .canal-infographic {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .canal-stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .canal-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .canal-visual {
+                height: 150px;
+            }
+        }
+        
+        /* Cultural Diversity & National Symbols Styles */
+        .cultural-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .cultural-diversity h3,
+        .national-symbols h3 {
+            color: var(--jungle-teal);
+            margin-bottom: 2rem;
+            font-family: var(--font-display);
+            text-align: center;
+        }
+        
+        .cultural-map {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .cultural-groups {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cultural-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .group-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        
+        .cultural-group.indigenous .group-color {
+            background: #FF6B6B;
+        }
+        
+        .cultural-group.afro-caribbean .group-color {
+            background: #4ECDC4;
+        }
+        
+        .cultural-group.mestizo .group-color {
+            background: #45B7D1;
+        }
+        
+        .cultural-map-visual {
+            height: 200px;
+            background: #f8f9fa;
+            border-radius: var(--radius-md);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .panama-outline {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: linear-gradient(45deg, #e8f4f8, #d1e7dd);
+        }
+        
+        .indigenous-areas,
+        .afro-caribbean-areas,
+        .mestizo-areas {
+            position: absolute;
+            border-radius: 50%;
+        }
+        
+        .indigenous-areas {
+            top: 20%;
+            left: 10%;
+            width: 30px;
+            height: 30px;
+            background: #FF6B6B;
+        }
+        
+        .afro-caribbean-areas {
+            top: 60%;
+            left: 15%;
+            width: 25px;
+            height: 25px;
+            background: #4ECDC4;
+        }
+        
+        .mestizo-areas {
+            top: 40%;
+            right: 20%;
+            width: 40px;
+            height: 40px;
+            background: #45B7D1;
+        }
+        
+        .symbols-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .symbol-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease;
+        }
+        
+        .symbol-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .symbol-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .symbol-name {
+            color: var(--jungle-teal);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .cultural-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .symbols-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .symbols-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Biodiversity Showcase Styles */
+        .biodiversity-carousel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .species-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease;
+        }
+        
+        .species-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .species-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .species-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .species-card:hover .species-image img {
+            transform: scale(1.05);
+        }
+        
+        .species-info {
+            padding: 1.5rem;
+        }
+        
+        .species-info h3 {
+            color: var(--jungle-teal);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-display);
+        }
+        
+        .species-info p {
+            color: var(--neutral-gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .biodiversity-carousel {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .biodiversity-carousel {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Festivals Calendar Styles */
+        .festivals-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .festival-calendar {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+        
+        .calendar-header {
+            background: linear-gradient(135deg, var(--jungle-teal), var(--ocean-blue));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .calendar-header h3 {
+            margin-bottom: 1rem;
+            font-family: var(--font-display);
+        }
+        
+        .calendar-legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+        
+        .legend-color.cultural {
+            background: #FF6B6B;
+        }
+        
+        .legend-color.religious {
+            background: #4ECDC4;
+        }
+        
+        .legend-color.agricultural {
+            background: #45B7D1;
+        }
+        
+        .calendar-months {
+            padding: 2rem;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .month-section {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 1.5rem;
+        }
+        
+        .month-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .month-title {
+            color: var(--jungle-teal);
+            font-family: var(--font-display);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .festival-events {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .festival-event {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .festival-event.cultural {
+            background: rgba(255, 107, 107, 0.1);
+            border-left-color: #FF6B6B;
+        }
+        
+        .festival-event.religious {
+            background: rgba(78, 205, 196, 0.1);
+            border-left-color: #4ECDC4;
+        }
+        
+        .festival-event.agricultural {
+            background: rgba(69, 183, 209, 0.1);
+            border-left-color: #45B7D1;
+        }
+        
+        .festival-event:hover {
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .event-date {
+            font-weight: 700;
+            color: var(--jungle-teal);
+            min-width: 80px;
+            font-size: 0.9rem;
+        }
+        
+        .event-info {
+            flex: 1;
+        }
+        
+        .event-name {
+            font-weight: 600;
+            color: var(--jungle-teal);
+            margin-bottom: 0.25rem;
+        }
+        
+        .event-location {
+            color: var(--neutral-gray);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .calendar-legend {
+                gap: 1rem;
+            }
+            
+            .festival-event {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .event-date {
+                min-width: auto;
+            }
+        }
+        
+        /* Photo Gallery Styles */
+        .photo-mosaic {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        
+        .photo-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .lightbox-content {
+            position: relative;
+            margin: auto;
+            padding: 0;
+            width: 90%;
+            max-width: 1200px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .lightbox-close:hover {
+            color: var(--jungle-teal);
+        }
+        
+        #lightboxImage {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+        }
+        
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Conversion Deck Styles */
+        .province-exploration,
+        .content-carousel {
+            margin-bottom: 3rem;
+        }
+        
+        .province-exploration h3,
+        .content-carousel h3 {
+            color: var(--jungle-teal);
+            margin-bottom: 2rem;
+            font-family: var(--font-display);
+            text-align: center;
+        }
+        
+        .province-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .province-mini-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .province-mini-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .province-mini-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .province-mini-card h4 {
+            padding: 1rem;
+            text-align: center;
+            color: var(--jungle-teal);
+            font-family: var(--font-display);
+            margin: 0;
+        }
+        
+        .content-slider {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .content-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .content-info {
+            padding: 1.5rem;
+        }
+        
+        .content-info h4 {
+            color: var(--jungle-teal);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-display);
+        }
+        
+        .content-info p {
+            color: var(--neutral-gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .photo-mosaic {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .photo-mosaic {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .photo-item.large {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+            
+            .province-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .content-slider {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .photo-mosaic {
+                grid-template-columns: 1fr;
+            }
+            
+            .photo-item.large {
+                grid-column: span 1;
+            }
+        }
+        
+        /* Newsletter CTA Styles */
+        .newsletter-cta {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+        }
+        
+        .newsletter-input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter-input-group input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+        }
+        
+        .newsletter-input-group input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .newsletter-cta {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .newsletter-input-group {
+                flex-direction: column;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -322,7 +1698,7 @@
                     </div>
     </div>
 
-    <!-- Panama Overview - Segunda Sección -->
+    <!-- Country Snapshot - Segunda Sección -->
     <section class="section">
         <div class="container">
             <div class="text-center mb-xxl">
@@ -330,22 +1706,897 @@
                 <p class="body-large mb-lg">Panamá es mucho más que su famoso canal. Es un país que conecta dos océanos y dos continentes, creando una diversidad única de ecosistemas, culturas y tradiciones.</p>
             </div>
             
-            <div class="panama-stats" style="max-width: 800px; margin: 0 auto;">
-                <div class="stat-item">
-                    <div class="stat-number">10</div>
-                    <div class="stat-label">Provincias</div>
+            <!-- Country Snapshot Cards -->
+            <div class="country-snapshot-grid">
+                <div class="snapshot-card">
+                    <div class="snapshot-icon">👥</div>
+                    <div class="snapshot-content">
+                        <div class="snapshot-number">4.3M</div>
+                        <div class="snapshot-label">Población</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">Comarcas Indígenas</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">75,517</div>
-                    <div class="stat-label">km² de Territorio</div>
+                <div class="snapshot-card">
+                    <div class="snapshot-icon">🏛️</div>
+                    <div class="snapshot-content">
+                        <div class="snapshot-number">13</div>
+                        <div class="snapshot-label">Provincias & Comarcas</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">4.3M</div>
-                    <div class="stat-label">Habitantes</div>
+                </div>
+                <div class="snapshot-card">
+                    <div class="snapshot-icon">🏙️</div>
+                    <div class="snapshot-content">
+                        <div class="snapshot-number">Ciudad de Panamá</div>
+                        <div class="snapshot-label">Capital</div>
+                    </div>
+                </div>
+                <div class="snapshot-card">
+                    <div class="snapshot-icon">🗣️</div>
+                    <div class="snapshot-content">
+                        <div class="snapshot-number">Español</div>
+                        <div class="snapshot-label">Idioma Oficial</div>
+                    </div>
+                </div>
+                <div class="snapshot-card">
+                    <div class="snapshot-icon">💵</div>
+                    <div class="snapshot-content">
+                        <div class="snapshot-number">Balboa</div>
+                        <div class="snapshot-label">Moneda</div>
+                    </div>
+                </div>
+                <div class="snapshot-card">
+                    <div class="snapshot-icon">🕐</div>
+                    <div class="snapshot-content">
+                        <div class="snapshot-number">UTC-5</div>
+                        <div class="snapshot-label">Zona Horaria</div>
+                    </div>
+                </div>
+                <div class="snapshot-card">
+                    <div class="snapshot-icon">🌿</div>
+                    <div class="snapshot-content">
+                        <div class="snapshot-number">25%</div>
+                        <div class="snapshot-label">Territorio Protegido</div>
+                    </div>
+                </div>
+                <div class="snapshot-card">
+                    <div class="snapshot-icon">🌊</div>
+                    <div class="snapshot-content">
+                        <div class="snapshot-number">2</div>
+                        <div class="snapshot-label">Océanos</div>
+                    </div>
+                </div>
+                <div class="snapshot-card">
+                    <div class="snapshot-icon">🏗️</div>
+                    <div class="snapshot-content">
+                        <div class="snapshot-number">1914</div>
+                        <div class="snapshot-label">Canal Inaugurado</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Canal Timeline -->
+    <section class="section" style="background-color: var(--seafoam);">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Historia de Panamá: Un Viaje por el Canal del Tiempo</h2>
+                <p class="body-large">Navega a través de la historia de Panamá mientras el barco recorre el Canal de Pacífico a Atlántico</p>
+            </div>
+            
+            <div class="canal-timeline-container">
+                <!-- Canal Background -->
+                <div class="canal-background">
+                    <div class="ocean pacific-ocean">
+                        <div class="ocean-label">Océano Pacífico</div>
+                        <div class="waves"></div>
+                    </div>
+                    
+                    <div class="canal-route">
+                        <div class="canal-water"></div>
+                        <div class="gatum-lake">
+                            <div class="lake-label">Lago Gatún</div>
+                            <div class="elevation-indicator">26m</div>
+                        </div>
+                        <div class="locks-section">
+                            <!-- Atlantic Side - Gatún Locks (3 steps) -->
+                            <div class="locks-atlantic">
+                                <div class="lock step-1">
+                                    <div class="lock-water"></div>
+                                    <div class="lock-gates"></div>
+                                </div>
+                                <div class="lock step-2">
+                                    <div class="lock-water"></div>
+                                    <div class="lock-gates"></div>
+                                </div>
+                                <div class="lock step-3">
+                                    <div class="lock-water"></div>
+                                    <div class="lock-gates"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Pacific Side - Pedro Miguel + Miraflores Locks -->
+                            <div class="locks-pacific">
+                                <div class="lock step-2 pedro-miguel">
+                                    <div class="lock-water"></div>
+                                    <div class="lock-gates"></div>
+                                </div>
+                                <div class="lock step-1">
+                                    <div class="lock-water"></div>
+                                    <div class="lock-gates"></div>
+                                </div>
+                                <div class="lock step-1">
+                                    <div class="lock-water"></div>
+                                    <div class="lock-gates"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Lock Labels -->
+                        <div class="lock-labels">
+                            <div class="lock-label atlantic-locks">Esclusas de Gatún (3 pasos)</div>
+                            <div class="lock-label pacific-locks">Pedro Miguel + Miraflores (3 pasos)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="ocean atlantic-ocean">
+                        <div class="ocean-label">Océano Atlántico</div>
+                        <div class="waves"></div>
+                    </div>
+                </div>
+                
+                <!-- Animated Ship -->
+                <div class="canal-ship" id="canalShip">
+                    <div class="ship-body">🚢</div>
+                    <div class="ship-wake"></div>
+                </div>
+                
+                <!-- Timeline Milestones -->
+                <div class="timeline-milestones">
+                    <div class="milestone-dot era-1 active" data-era="1" data-year="10000 BCE" data-title="Primeros Pueblos" data-position="0">
+                        <div class="dot-glow"></div>
+                        <div class="milestone-tooltip">
+                            <div class="tooltip-year">c. 10,000 BCE</div>
+                            <div class="tooltip-title">Primeros Pueblos del Istmo</div>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-dot era-1" data-era="1" data-year="1501" data-title="Conquista Española" data-position="15">
+                        <div class="dot-glow"></div>
+                        <div class="milestone-tooltip">
+                            <div class="tooltip-year">1501</div>
+                            <div class="tooltip-title">Conquista y Colonización</div>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-dot era-1" data-era="1" data-year="1600" data-title="Ruta de la Plata" data-position="25">
+                        <div class="dot-glow"></div>
+                        <div class="milestone-tooltip">
+                            <div class="tooltip-year">1600s</div>
+                            <div class="tooltip-title">Ruta de la Plata y Piratería</div>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-dot era-2" data-era="2" data-year="1821" data-title="Independencia" data-position="35">
+                        <div class="dot-glow"></div>
+                        <div class="milestone-tooltip">
+                            <div class="tooltip-year">1821</div>
+                            <div class="tooltip-title">Independencia de España</div>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-dot era-2" data-era="2" data-year="1880" data-title="Canal Francés" data-position="45">
+                        <div class="dot-glow"></div>
+                        <div class="milestone-tooltip">
+                            <div class="tooltip-year">1880</div>
+                            <div class="tooltip-title">Fracaso del Canal Francés</div>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-dot era-3" data-era="3" data-year="1903" data-title="Tratado Hay-Bunau" data-position="55">
+                        <div class="dot-glow"></div>
+                        <div class="milestone-tooltip">
+                            <div class="tooltip-year">1903</div>
+                            <div class="tooltip-title">Tratado Hay-Bunau-Varilla</div>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-dot era-3" data-era="3" data-year="1914" data-title="Apertura del Canal" data-position="70">
+                        <div class="dot-glow"></div>
+                        <div class="milestone-tooltip">
+                            <div class="tooltip-year">1914</div>
+                            <div class="tooltip-title">Apertura del Canal</div>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-dot era-3" data-era="3" data-year="1964" data-title="Día de los Mártires" data-position="80">
+                        <div class="dot-glow"></div>
+                        <div class="milestone-tooltip">
+                            <div class="tooltip-year">1964</div>
+                            <div class="tooltip-title">Día de los Mártires</div>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-dot era-4" data-era="4" data-year="1977" data-title="Tratados Torrijos-Carter" data-position="85">
+                        <div class="dot-glow"></div>
+                        <div class="milestone-tooltip">
+                            <div class="tooltip-year">1977</div>
+                            <div class="tooltip-title">Tratados Torrijos-Carter</div>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-dot era-4" data-era="4" data-year="1989" data-title="Operación Causa Justa" data-position="90">
+                        <div class="dot-glow"></div>
+                        <div class="milestone-tooltip">
+                            <div class="tooltip-year">1989</div>
+                            <div class="tooltip-title">Operación Causa Justa</div>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-dot era-5" data-era="5" data-year="1999" data-title="Retorno del Canal" data-position="95">
+                        <div class="dot-glow"></div>
+                        <div class="milestone-tooltip">
+                            <div class="tooltip-year">1999</div>
+                            <div class="tooltip-title">Retorno del Canal</div>
+                        </div>
+                    </div>
+                    
+                    <div class="milestone-dot era-5" data-era="5" data-year="2016" data-title="Expansión del Canal" data-position="100">
+                        <div class="dot-glow"></div>
+                        <div class="milestone-tooltip">
+                            <div class="tooltip-year">2016</div>
+                            <div class="tooltip-title">Expansión del Canal</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Timeline Content Cards -->
+                <div class="timeline-content">
+                    <div class="timeline-card active" id="timeline-era-1">
+                        <div class="card-era era-1">Era Pre-Colombina a Colonia Española</div>
+                        <div class="card-year">c. 10,000 BCE – 1821</div>
+                        <h3>Los Primeros Pueblos del Istmo</h3>
+                        <p>Los pueblos indígenas establecieron las primeras rutas de comercio a través del istmo, creando una red de intercambio que conectaba las culturas del Pacífico y el Caribe mucho antes de la llegada de los europeos.</p>
+                    </div>
+                    
+                    <div class="timeline-card" id="timeline-era-2">
+                        <div class="card-era era-2">Era Colombiana y el Sueño del Canal</div>
+                        <div class="card-year">1821 – 1903</div>
+                        <h3>Independencia y la Búsqueda de un Canal</h3>
+                        <p>Tras la independencia de España, Panamá se une a la Gran Colombia mientras crece el interés internacional por construir un canal que conecte los océanos, culminando en el fallido intento francés.</p>
+                    </div>
+                    
+                    <div class="timeline-card" id="timeline-era-3">
+                        <div class="card-era era-3">Nación Dividida: El Canal y la Zona</div>
+                        <div class="card-year">1903 – 1977</div>
+                        <h3>La Construcción del "Big Ditch"</h3>
+                        <p>Con el apoyo de Estados Unidos, Panamá se independiza de Colombia y se construye el Canal, pero la Zona del Canal se convierte en una fuente de tensión nacionalista que duraría décadas.</p>
+                    </div>
+                    
+                    <div class="timeline-card" id="timeline-era-4">
+                        <div class="card-era era-4">Turbulencia y Transición</div>
+                        <div class="card-year">1968 – 1999</div>
+                        <h3>El Camino hacia la Soberanía</h3>
+                        <p>Desde la era de Torrijos hasta la invasión de 1989, Panamá atraviesa décadas de turbulencia política mientras negocia la devolución del Canal, culminando en los históricos Tratados Torrijos-Carter.</p>
+                    </div>
+                    
+                    <div class="timeline-card" id="timeline-era-5">
+                        <div class="card-era era-5">Panamá en el Siglo XXI</div>
+                        <div class="card-year">2000 – 2025</div>
+                        <h3>Consolidación Democrática y Crecimiento</h3>
+                        <p>Con el retorno del Canal, Panamá se consolida como centro financiero internacional, expande su canal y navega los desafíos de la globalización y las nuevas relaciones geopolíticas.</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Controls -->
+                <div class="timeline-controls">
+                    <button class="control-btn" id="playTimeline">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </button>
+                    <button class="control-btn" id="pauseTimeline">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        </svg>
+                    </button>
+                    <button class="control-btn" id="resetTimeline">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Panama Canal Feature -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>El Canal de Panamá en Números</h2>
+                <p class="body-large">Una obra de ingeniería que conecta el mundo</p>
+            </div>
+            
+            <div class="canal-infographic">
+                <div class="canal-stats">
+                    <div class="canal-stat-card">
+                        <div class="canal-stat-icon">🚢</div>
+                        <div class="canal-stat-number">14,000+</div>
+                        <div class="canal-stat-label">Barcos por Año</div>
+                    </div>
+                    <div class="canal-stat-card">
+                        <div class="canal-stat-icon">🌍</div>
+                        <div class="canal-stat-number">6%</div>
+                        <div class="canal-stat-label">del Comercio Mundial</div>
+                    </div>
+                    <div class="canal-stat-card">
+                        <div class="canal-stat-icon">⏱️</div>
+                        <div class="canal-stat-number">8-10</div>
+                        <div class="canal-stat-label">Horas de Cruce</div>
+                    </div>
+                    <div class="canal-stat-card">
+                        <div class="canal-stat-icon">📏</div>
+                        <div class="canal-stat-number">82</div>
+                        <div class="canal-stat-label">km de Longitud</div>
+                    </div>
+                </div>
+                
+                <div class="canal-animation">
+                    <div class="canal-visual">
+                        <div class="canal-water"></div>
+                        <div class="ship-animation">
+                            <div class="ship">🚢</div>
+                        </div>
+                        <div class="canal-locks">
+                            <div class="lock lock-1"></div>
+                            <div class="lock lock-2"></div>
+                            <div class="lock lock-3"></div>
+                        </div>
+                    </div>
+                    <div class="canal-description">
+                        <h3>Conectando Océanos</h3>
+                        <p>El Canal de Panamá es una de las obras de ingeniería más impresionantes del mundo, permitiendo que los barcos crucen de un océano al otro en solo unas horas, evitando el peligroso viaje alrededor del Cabo de Hornos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cultural Diversity & National Symbols -->
+    <section class="section" style="background-color: var(--seafoam);">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Diversidad Cultural y Símbolos Nacionales</h2>
+                <p class="body-large">Un país rico en tradiciones y símbolos que representan nuestra identidad</p>
+            </div>
+            
+            <div class="cultural-section">
+                <!-- Cultural Diversity Map -->
+                <div class="cultural-diversity">
+                    <h3>Diversidad Cultural</h3>
+                    <div class="cultural-map">
+                        <div class="cultural-groups">
+                            <div class="cultural-group indigenous">
+                                <div class="group-color"></div>
+                                <span>Comarcas Indígenas</span>
+                            </div>
+                            <div class="cultural-group afro-caribbean">
+                                <div class="group-color"></div>
+                                <span>Herencia Afrocaribeña</span>
+                            </div>
+                            <div class="cultural-group mestizo">
+                                <div class="group-color"></div>
+                                <span>Mayoría Mestiza</span>
+                            </div>
+                        </div>
+                        <div class="cultural-map-visual">
+                            <div class="panama-outline">
+                                <div class="indigenous-areas"></div>
+                                <div class="afro-caribbean-areas"></div>
+                                <div class="mestizo-areas"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- National Symbols Grid -->
+                <div class="national-symbols">
+                    <h3>Símbolos Nacionales</h3>
+                    <div class="symbols-grid">
+                        <div class="symbol-card">
+                            <div class="symbol-icon">🏴</div>
+                            <div class="symbol-name">Bandera</div>
+                        </div>
+                        <div class="symbol-card">
+                            <div class="symbol-icon">🎵</div>
+                            <div class="symbol-name">Himno Nacional</div>
+                        </div>
+                        <div class="symbol-card">
+                            <div class="symbol-icon">🛡️</div>
+                            <div class="symbol-name">Escudo de Armas</div>
+                        </div>
+                        <div class="symbol-card">
+                            <div class="symbol-icon">🦅</div>
+                            <div class="symbol-name">Águila Harpía</div>
+                        </div>
+                        <div class="symbol-card">
+                            <div class="symbol-icon">🌸</div>
+                            <div class="symbol-name">Orquídea del Espíritu Santo</div>
+                        </div>
+                        <div class="symbol-card">
+                            <div class="symbol-icon">🌳</div>
+                            <div class="symbol-name">Árbol Nacional</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biodiversity Showcase -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Biodiversidad Excepcional</h2>
+                <p class="body-large">Especies icónicas que hacen de Panamá un paraíso natural</p>
+            </div>
+            
+            <div class="biodiversity-carousel">
+                <div class="species-card">
+                    <div class="species-image">
+                        <img src="https://via.placeholder.com/300x200/0F5B55/FFFFFF?text=Aguila+Harpia" alt="Águila Harpía">
+                    </div>
+                    <div class="species-info">
+                        <h3>Águila Harpía</h3>
+                        <p>Ave nacional de Panamá, una de las águilas más poderosas del mundo</p>
+                    </div>
+                </div>
+                
+                <div class="species-card">
+                    <div class="species-image">
+                        <img src="https://via.placeholder.com/300x200/FFD700/FFFFFF?text=Rana+Dorada" alt="Rana Dorada">
+                    </div>
+                    <div class="species-info">
+                        <h3>Rana Dorada</h3>
+                        <p>Especie endémica de Panamá, símbolo de conservación</p>
+                    </div>
+                </div>
+                
+                <div class="species-card">
+                    <div class="species-image">
+                        <img src="https://via.placeholder.com/300x200/8DBB66/FFFFFF?text=Perezoso" alt="Perezoso">
+                    </div>
+                    <div class="species-info">
+                        <h3>Perezoso</h3>
+                        <p>Mamífero emblemático de los bosques tropicales panameños</p>
+                    </div>
+                </div>
+                
+                <div class="species-card">
+                    <div class="species-image">
+                        <img src="https://via.placeholder.com/300x200/4682B4/FFFFFF?text=Tortugas+Marinas" alt="Tortugas Marinas">
+                    </div>
+                    <div class="species-info">
+                        <h3>Tortugas Marinas</h3>
+                        <p>Importantes sitios de anidación en las costas panameñas</p>
+                    </div>
+                </div>
+                
+                <div class="species-card">
+                    <div class="species-image">
+                        <img src="https://via.placeholder.com/300x200/FF69B4/FFFFFF?text=Orquideas" alt="Orquídeas">
+                    </div>
+                    <div class="species-info">
+                        <h3>Orquídeas</h3>
+                        <p>Más de 1,200 especies, incluyendo la flor nacional</p>
+                    </div>
+                </div>
+                
+                <div class="species-card">
+                    <div class="species-image">
+                        <img src="https://via.placeholder.com/300x200/87CEEB/FFFFFF?text=Ballenas" alt="Ballenas">
+                    </div>
+                    <div class="species-info">
+                        <h3>Ballenas</h3>
+                        <p>Migración anual de ballenas jorobadas en el Pacífico</p>
+                    </div>
+                </div>
+                
+                <div class="species-card">
+                    <div class="species-image">
+                        <img src="https://via.placeholder.com/300x200/8B4513/FFFFFF?text=Monos" alt="Monos">
+                    </div>
+                    <div class="species-info">
+                        <h3>Monos</h3>
+                        <p>Diversas especies de primates en los bosques tropicales</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-lg">
+                <a href="#" class="btn btn-primary">Conocer Más sobre Biodiversidad</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Festivals Overview -->
+    <section class="section" style="background-color: var(--seafoam);">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Festivales y Celebraciones</h2>
+                <p class="body-large">Descubre la rica tradición cultural de Panamá a través de sus festivales</p>
+            </div>
+            
+            <div class="festivals-container">
+                <div class="festival-calendar">
+                    <div class="calendar-header">
+                        <h3>Calendario de Festivales 2024</h3>
+                        <div class="calendar-legend">
+                            <div class="legend-item">
+                                <div class="legend-color cultural"></div>
+                                <span>Cultural</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color religious"></div>
+                                <span>Religioso</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color agricultural"></div>
+                                <span>Agrícola</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="calendar-months">
+                        <!-- January -->
+                        <div class="month-section">
+                            <h4 class="month-title">Enero</h4>
+                            <div class="festival-events">
+                                <div class="festival-event cultural">
+                                    <div class="event-date">3-7 Ene</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Encuentro Folklórico del Canajagua y Fiesta de Reyes</div>
+                                        <div class="event-location">📍 Macaracas, Los Santos</div>
+                                    </div>
+                                </div>
+                                <div class="festival-event agricultural">
+                                    <div class="event-date">8-19 Ene</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Feria de las Flores y del Café</div>
+                                        <div class="event-location">📍 Boquete, Chiriquí</div>
+                                    </div>
+                                </div>
+                                <div class="festival-event cultural">
+                                    <div class="event-date">11 Ene</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Desfile de las Mil Polleras</div>
+                                        <div class="event-location">📍 Las Tablas, Los Santos</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- February -->
+                        <div class="month-section">
+                            <h4 class="month-title">Febrero</h4>
+                            <div class="festival-events">
+                                <div class="festival-event cultural">
+                                    <div class="event-date">12-16 Feb</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Festival Folklórico Internacional del Almojábano con Queso</div>
+                                        <div class="event-location">📍 Dolega, Chiriquí</div>
+                                    </div>
+                                </div>
+                                <div class="festival-event cultural">
+                                    <div class="event-date">1-4 Mar</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Carnavales</div>
+                                        <div class="event-location">📍 Todo el País</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- March -->
+                        <div class="month-section">
+                            <h4 class="month-title">Marzo</h4>
+                            <div class="festival-events">
+                                <div class="festival-event cultural">
+                                    <div class="event-date">1-2 Mar</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Gran Feria Afroantillana</div>
+                                        <div class="event-location">📍 Ciudad de Panamá</div>
+                                    </div>
+                                </div>
+                                <div class="festival-event cultural">
+                                    <div class="event-date">13-16 Mar</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Festival de la Cumbia Chorrerana</div>
+                                        <div class="event-location">📍 La Chorrera, Panamá Oeste</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- April -->
+                        <div class="month-section">
+                            <h4 class="month-title">Abril</h4>
+                            <div class="festival-events">
+                                <div class="festival-event agricultural">
+                                    <div class="event-date">2-6 Abr</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Feria de Veraguas</div>
+                                        <div class="event-location">📍 Soná, Veraguas</div>
+                                    </div>
+                                </div>
+                                <div class="festival-event agricultural">
+                                    <div class="event-date">10-13 Abr</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Festival Nacional de la Caña de Azúcar</div>
+                                        <div class="event-location">📍 Coclé</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- June -->
+                        <div class="month-section">
+                            <h4 class="month-title">Junio</h4>
+                            <div class="festival-events">
+                                <div class="festival-event religious">
+                                    <div class="event-date">14-29 Jun</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Fiesta del Corpus Christi</div>
+                                        <div class="event-location">📍 La Villa, Los Santos</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- July -->
+                        <div class="month-section">
+                            <h4 class="month-title">Julio</h4>
+                            <div class="festival-events">
+                                <div class="festival-event cultural">
+                                    <div class="event-date">19-23 Jul</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Fiestas Patronales de Santa Librada & Festival Nacional de la Pollera</div>
+                                        <div class="event-location">📍 Las Tablas, Los Santos</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- August -->
+                        <div class="month-section">
+                            <h4 class="month-title">Agosto</h4>
+                            <div class="festival-events">
+                                <div class="festival-event cultural">
+                                    <div class="event-date">14-17 Ago</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Festival Nacional del Manito</div>
+                                        <div class="event-location">📍 Ocú, Herrera</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- September -->
+                        <div class="month-section">
+                            <h4 class="month-title">Septiembre</h4>
+                            <div class="festival-events">
+                                <div class="festival-event cultural">
+                                    <div class="event-date">5-8 Sep</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Feria de Chiriquí Grande</div>
+                                        <div class="event-location">📍 Bocas del Toro</div>
+                                    </div>
+                                </div>
+                                <div class="festival-event cultural">
+                                    <div class="event-date">20-28 Sep</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Festival Nacional de la Mejorana</div>
+                                        <div class="event-location">📍 Guararé, Los Santos</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- October -->
+                        <div class="month-section">
+                            <h4 class="month-title">Octubre</h4>
+                            <div class="festival-events">
+                                <div class="festival-event cultural">
+                                    <div class="event-date">2-5 Oct</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Festival del Sombrero de Junco</div>
+                                        <div class="event-location">📍 Los Santos</div>
+                                    </div>
+                                </div>
+                                <div class="festival-event cultural">
+                                    <div class="event-date">15-19 Oct</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Festival Nacional del Toro Guapo</div>
+                                        <div class="event-location">📍 Antón, Coclé</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- November -->
+                        <div class="month-section">
+                            <h4 class="month-title">Noviembre</h4>
+                            <div class="festival-events">
+                                <div class="festival-event cultural">
+                                    <div class="event-date">3-5 Nov</div>
+                                    <div class="event-info">
+                                        <div class="event-name">Festival Folklórico de la Pollera Veragüense</div>
+                                        <div class="event-location">📍 Soná, Veraguas</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- December -->
+                        <div class="month-section">
+                            <h4 class="month-title">Diciembre</h4>
+                            <div class="festival-events">
+                                <div class="festival-event cultural">
+                                    <div class="event-date">25 Dic</div>
+                                    <div class="event-info">
+                                        <div class="event-name">El Topón de La Pintada</div>
+                                        <div class="event-location">📍 La Pintada, Coclé</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Photo Gallery -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Galería de Panamá</h2>
+                <p class="body-large">Descubre la belleza de Panamá a través de nuestras imágenes</p>
+            </div>
+            
+            <div class="photo-mosaic">
+                <div class="photo-item large">
+                    <img src="https://via.placeholder.com/600x400/0F5B55/FFFFFF?text=Canal+de+Panama" alt="Canal de Panamá" data-caption="El Canal de Panamá, una maravilla de la ingeniería mundial">
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/300x400/8DBB66/FFFFFF?text=Casco+Viejo" alt="Casco Viejo" data-caption="El histórico Casco Viejo de Ciudad de Panamá">
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/300x200/FF7466/FFFFFF?text=San+Blas" alt="San Blas" data-caption="Las hermosas islas de San Blas">
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/300x300/2C8AC6/FFFFFF?text=Boquete" alt="Boquete" data-caption="Boquete, la Suiza de Panamá">
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/300x200/5B4B3F/FFFFFF?text=Darien" alt="Darién" data-caption="La selva virgen del Darién">
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/300x400/8DBB66/FFFFFF?text=Volcan+Baru" alt="Volcán Barú" data-caption="El majestuoso Volcán Barú">
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/300x200/FF69B4/FFFFFF?text=Orquideas" alt="Orquídeas" data-caption="Las hermosas orquídeas panameñas">
+                </div>
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/300x300/87CEEB/FFFFFF?text=Playa" alt="Playa" data-caption="Playas paradisíacas del Pacífico">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="photoLightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img id="lightboxImage" src="" alt="">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- Conversion Deck -->
+    <section class="section" style="background-color: var(--seafoam);">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Explora Panamá</h2>
+                <p class="body-large">Descubre cada provincia y comarca, y encuentra contenido especializado</p>
+            </div>
+            
+            <!-- Province Grid -->
+            <div class="province-exploration">
+                <h3>Provincias y Comarcas</h3>
+                <div class="province-grid">
+                    <div class="province-mini-card" data-province="bocas-del-toro">
+                        <img src="https://via.placeholder.com/200x150/0F5B55/FFFFFF?text=Bocas+del+Toro" alt="Bocas del Toro">
+                        <h4>Bocas del Toro</h4>
+                    </div>
+                    <div class="province-mini-card" data-province="chiriqui">
+                        <img src="https://via.placeholder.com/200x150/8DBB66/FFFFFF?text=Chiriqui" alt="Chiriquí">
+                        <h4>Chiriquí</h4>
+                    </div>
+                    <div class="province-mini-card" data-province="cocle">
+                        <img src="https://via.placeholder.com/200x150/FF7466/FFFFFF?text=Cocle" alt="Coclé">
+                        <h4>Coclé</h4>
+                    </div>
+                    <div class="province-mini-card" data-province="colon">
+                        <img src="https://via.placeholder.com/200x150/2C8AC6/FFFFFF?text=Colon" alt="Colón">
+                        <h4>Colón</h4>
+                    </div>
+                    <div class="province-mini-card" data-province="darien">
+                        <img src="https://via.placeholder.com/200x150/5B4B3F/FFFFFF?text=Darien" alt="Darién">
+                        <h4>Darién</h4>
+                    </div>
+                    <div class="province-mini-card" data-province="herrera">
+                        <img src="https://via.placeholder.com/200x150/8DBB66/FFFFFF?text=Herrera" alt="Herrera">
+                        <h4>Herrera</h4>
+                    </div>
+                    <div class="province-mini-card" data-province="los-santos">
+                        <img src="https://via.placeholder.com/200x150/FF7466/FFFFFF?text=Los+Santos" alt="Los Santos">
+                        <h4>Los Santos</h4>
+                    </div>
+                    <div class="province-mini-card" data-province="panama">
+                        <img src="https://via.placeholder.com/200x150/0F5B55/FFFFFF?text=Panama" alt="Panamá">
+                        <h4>Panamá</h4>
+                    </div>
+                    <div class="province-mini-card" data-province="panama-oeste">
+                        <img src="https://via.placeholder.com/200x150/2C8AC6/FFFFFF?text=Panama+Oeste" alt="Panamá Oeste">
+                        <h4>Panamá Oeste</h4>
+                    </div>
+                    <div class="province-mini-card" data-province="veraguas">
+                        <img src="https://via.placeholder.com/200x150/5B4B3F/FFFFFF?text=Veraguas" alt="Veraguas">
+                        <h4>Veraguas</h4>
+                    </div>
+                    <div class="province-mini-card" data-province="guna-yala">
+                        <img src="https://via.placeholder.com/200x150/0F5B55/FFFFFF?text=Guna+Yala" alt="Guna Yala">
+                        <h4>Guna Yala</h4>
+                    </div>
+                    <div class="province-mini-card" data-province="embera-wounaan">
+                        <img src="https://via.placeholder.com/200x150/8DBB66/FFFFFF?text=Embera-Wounaan" alt="Emberá-Wounaan">
+                        <h4>Emberá-Wounaan</h4>
+                    </div>
+                    <div class="province-mini-card" data-province="ngabe-bugle">
+                        <img src="https://via.placeholder.com/200x150/FF7466/FFFFFF?text=Ngabe-Bugle" alt="Ngäbe-Buglé">
+                        <h4>Ngäbe-Buglé</h4>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Country-Level Content Carousel -->
+            <div class="content-carousel">
+                <h3>Contenido Especializado</h3>
+                <div class="content-slider">
+                    <div class="content-card">
+                        <img src="https://via.placeholder.com/300x200/FF69B4/FFFFFF?text=LGBTQ+Travel" alt="LGBTQ+ Travel">
+                        <div class="content-info">
+                            <h4>Viajes LGBTQ+</h4>
+                            <p>Guía completa para viajeros LGBTQ+ en Panamá</p>
+                            <a href="#" class="btn btn-sm">Leer Más</a>
+                        </div>
+                    </div>
+                    <div class="content-card">
+                        <img src="https://via.placeholder.com/300x200/87CEEB/FFFFFF?text=Family+Travel" alt="Family Travel">
+                        <div class="content-info">
+                            <h4>Viajes en Familia</h4>
+                            <p>Destinos perfectos para toda la familia</p>
+                            <a href="#" class="btn btn-sm">Leer Más</a>
+                        </div>
+                    </div>
+                    <div class="content-card">
+                        <img src="https://via.placeholder.com/300x200/90EE90/FFFFFF?text=Accessibility" alt="Accessibility">
+                        <div class="content-info">
+                            <h4>Accesibilidad</h4>
+                            <p>Panamá accesible para todos</p>
+                            <a href="#" class="btn btn-sm">Leer Más</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -617,6 +2868,54 @@
             <div class="hero-actions">
                 <a href="servicios.html" class="btn" style="background: white; color: var(--jungle-teal);">Nuestros Servicios</a>
                 <a href="contacto.html" class="btn btn-secondary" style="border-color: white; color: white;">Planificar Viaje</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter CTA Section -->
+    <section class="section" style="background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%); color: white;">
+        <div class="container">
+            <div class="newsletter-cta">
+                <div class="newsletter-content">
+                    <h2 style="color: white; margin-bottom: 1rem;">Mantente Conectado</h2>
+                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Recibe las últimas noticias sobre Panamá, festivales y ofertas especiales directamente en tu correo.</p>
+                    
+                    <form class="newsletter-form" id="newsletterForm">
+                        <div class="newsletter-input-group">
+                            <input type="email" placeholder="Tu correo electrónico" required>
+                            <button type="submit" class="btn" style="background: white; color: var(--jungle-teal);">Suscribirse</button>
+                        </div>
+                        <p class="newsletter-disclaimer" style="color: rgba(255,255,255,0.7); font-size: 0.8rem; margin-top: 1rem;">
+                            Al suscribirte, aceptas recibir emails de Local From Bocas. Puedes cancelar en cualquier momento.
+                        </p>
+                    </form>
+                </div>
+                
+                <div class="social-media">
+                    <h3 style="color: white; margin-bottom: 1rem;">Síguenos</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" title="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" title="YouTube">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" title="TikTok">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1002,6 +3301,298 @@
 
         // Cargar el mapa cuando se carga la página
         document.addEventListener('DOMContentLoaded', loadPanamaMap);
+    </script>
+    
+    <script>
+        // Canal Timeline functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const milestoneDots = document.querySelectorAll('.milestone-dot');
+            const timelineCards = document.querySelectorAll('.timeline-card');
+            const canalShip = document.getElementById('canalShip');
+            const playBtn = document.getElementById('playTimeline');
+            const pauseBtn = document.getElementById('pauseTimeline');
+            const resetBtn = document.getElementById('resetTimeline');
+            const locks = document.querySelectorAll('.lock');
+            
+            let currentPosition = 0;
+            let isPlaying = false;
+            let animationInterval;
+            let currentEra = 1;
+            
+            // Position milestones based on their data-position attribute
+            milestoneDots.forEach(dot => {
+                const position = parseInt(dot.getAttribute('data-position'));
+                dot.style.left = `${position}%`;
+            });
+            
+            // Move ship to milestone position with accurate canal profile
+            function moveShipToPosition(position, era) {
+                const shipPosition = 15 + (position * 0.7); // 15% to 85% range
+                canalShip.style.left = `${shipPosition}%`;
+                
+                // Remove all state classes
+                canalShip.classList.remove('in-locks', 'in-lake');
+                
+                // Adjust ship height based on accurate canal profile
+                if (position >= 0 && position <= 25) {
+                    // Atlantic Ocean to Gatún Locks (0-25%)
+                    const lockProgress = position / 25; // 0 to 1
+                    const shipHeight = 35 + (lockProgress * 20); // Rise to 55% (Gatún Lake level)
+                    canalShip.style.top = `${shipHeight}%`;
+                    if (position >= 15) canalShip.classList.add('in-locks');
+                } else if (position >= 25 && position <= 75) {
+                    // Gatún Lake area (25-75%) - highest elevation
+                    canalShip.style.top = '25%'; // Highest point (26m above sea level)
+                    canalShip.classList.add('in-lake');
+                } else if (position >= 75 && position <= 100) {
+                    // Pedro Miguel + Miraflores Locks to Pacific (75-100%)
+                    const lockProgress = (position - 75) / 25; // 0 to 1
+                    const shipHeight = 25 + (lockProgress * 10); // Descend from 25% to 35%
+                    canalShip.style.top = `${shipHeight}%`;
+                    if (position >= 80) canalShip.classList.add('in-locks');
+                } else {
+                    // Default ocean level
+                    canalShip.style.top = '35%';
+                }
+            }
+            
+            // Animate locks based on ship position
+            function animateLocks(position) {
+                // Reset all locks
+                locks.forEach(lock => {
+                    lock.classList.remove('raising', 'lowering');
+                });
+                
+                if (position >= 0 && position <= 25) {
+                    // Atlantic side - Gatún Locks (3 steps)
+                    const lockProgress = position / 25;
+                    const atlanticLocks = document.querySelectorAll('.locks-atlantic .lock');
+                    
+                    if (lockProgress < 0.33) {
+                        atlanticLocks[0].classList.add('raising');
+                    } else if (lockProgress < 0.66) {
+                        atlanticLocks[1].classList.add('raising');
+                    } else {
+                        atlanticLocks[2].classList.add('raising');
+                    }
+                } else if (position >= 75 && position <= 100) {
+                    // Pacific side - Pedro Miguel + Miraflores Locks
+                    const lockProgress = (position - 75) / 25;
+                    const pacificLocks = document.querySelectorAll('.locks-pacific .lock');
+                    
+                    if (lockProgress < 0.33) {
+                        pacificLocks[0].classList.add('raising'); // Pedro Miguel
+                    } else if (lockProgress < 0.66) {
+                        pacificLocks[1].classList.add('raising'); // Miraflores 1
+                    } else {
+                        pacificLocks[2].classList.add('raising'); // Miraflores 2
+                    }
+                }
+            }
+            
+            // Show era card and update current era
+            function showEraCard(era) {
+                timelineCards.forEach(card => card.classList.remove('active'));
+                const targetCard = document.getElementById(`timeline-era-${era}`);
+                if (targetCard) {
+                    targetCard.classList.add('active');
+                }
+                currentEra = era;
+            }
+            
+            // Click milestone functionality
+            milestoneDots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    // Remove active class from all dots
+                    milestoneDots.forEach(d => d.classList.remove('active'));
+                    
+                    // Add active class to clicked dot
+                    this.classList.add('active');
+                    
+                    // Get position and era
+                    const position = parseInt(this.getAttribute('data-position'));
+                    const era = this.getAttribute('data-era');
+                    
+                    // Move ship, animate locks, and show card
+                    moveShipToPosition(position, era);
+                    animateLocks(position);
+                    showEraCard(era);
+                    
+                    // Update current position
+                    currentPosition = position;
+                });
+                
+                // Hover effects
+                dot.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = 'translateY(-50%) scale(1.2)';
+                    }
+                });
+                
+                dot.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = 'translateY(-50%) scale(1)';
+                    }
+                });
+            });
+            
+            // Auto-play functionality
+            function startAutoPlay() {
+                if (isPlaying) return;
+                
+                isPlaying = true;
+                playBtn.style.display = 'none';
+                pauseBtn.style.display = 'flex';
+                
+                let position = 0;
+                const milestones = Array.from(milestoneDots).sort((a, b) => 
+                    parseInt(a.getAttribute('data-position')) - parseInt(b.getAttribute('data-position'))
+                );
+                
+                animationInterval = setInterval(() => {
+                    // Remove active from all dots
+                    milestoneDots.forEach(d => d.classList.remove('active'));
+                    
+                    // Activate current milestone
+                    if (milestones[position]) {
+                        milestones[position].classList.add('active');
+                        const era = milestones[position].getAttribute('data-era');
+                        const milestonePosition = parseInt(milestones[position].getAttribute('data-position'));
+                        
+                        // Move ship, animate locks, and show card
+                        moveShipToPosition(milestonePosition, era);
+                        animateLocks(milestonePosition);
+                        showEraCard(era);
+                        
+                        currentPosition = milestonePosition;
+                    }
+                    
+                    position++;
+                    if (position >= milestones.length) {
+                        position = 0;
+                    }
+                }, 3000);
+            }
+            
+            function stopAutoPlay() {
+                isPlaying = false;
+                playBtn.style.display = 'flex';
+                pauseBtn.style.display = 'none';
+                clearInterval(animationInterval);
+            }
+            
+            function resetTimeline() {
+                stopAutoPlay();
+                milestoneDots.forEach(d => d.classList.remove('active'));
+                timelineCards.forEach(c => c.classList.remove('active'));
+                
+                // Reset locks
+                locks.forEach(lock => {
+                    lock.classList.remove('raising', 'lowering');
+                });
+                
+                // Reset to first milestone
+                const firstDot = milestoneDots[0];
+                firstDot.classList.add('active');
+                moveShipToPosition(0, 1);
+                animateLocks(0);
+                showEraCard(1);
+                currentPosition = 0;
+                currentEra = 1;
+            }
+            
+            // Control button events
+            playBtn.addEventListener('click', startAutoPlay);
+            pauseBtn.addEventListener('click', stopAutoPlay);
+            resetBtn.addEventListener('click', resetTimeline);
+            
+            // Initialize with first milestone
+            resetTimeline();
+        });
+        
+        // Photo gallery lightbox functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const photoItems = document.querySelectorAll('.photo-item');
+            const lightbox = document.getElementById('photoLightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            
+            photoItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const img = this.querySelector('img');
+                    const caption = img.getAttribute('data-caption');
+                    
+                    lightboxImage.src = img.src;
+                    lightboxImage.alt = img.alt;
+                    lightboxCaption.textContent = caption;
+                    lightbox.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            lightboxClose.addEventListener('click', function() {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+        
+        // Province mini cards functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const provinceCards = document.querySelectorAll('.province-mini-card');
+            
+            provinceCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const province = this.getAttribute('data-province');
+                    window.location.href = `panama/${province}.html`;
+                });
+            });
+        });
+        
+        // Newsletter form functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsletterForm = document.getElementById('newsletterForm');
+            
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                
+                // Simple validation
+                if (email && email.includes('@')) {
+                    alert('¡Gracias por suscribirte! Te mantendremos informado sobre las últimas noticias de Panamá.');
+                    this.reset();
+                } else {
+                    alert('Por favor, ingresa un correo electrónico válido.');
+                }
+            });
+        });
+        
+        // Smooth scrolling for internal links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
     </script>
 <script src="js/dynamic-css.js"></script>
 
