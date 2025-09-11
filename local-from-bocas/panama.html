@@ -342,7 +342,7 @@
         
         .canal-background {
             position: relative;
-            height: 300px;
+            height: 350px;
             background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #87CEEB 100%);
             overflow: hidden;
         }
@@ -479,16 +479,41 @@
         
         .locks-section {
             position: absolute;
-            top: -15px;
+            top: 50%;
             left: 0;
             right: 0;
             display: flex;
             justify-content: space-between;
             padding: 0 1rem;
+            transform: translateY(-50%);
         }
         
+        .locks-pacific {
+            position: absolute;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
         
+        .locks-pedro-miguel {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 0.5rem;
+        }
         
+        .locks-atlantic {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
         
         .lock {
             width: 40px;
@@ -504,20 +529,84 @@
         .lock.step-2 { height: 70px; }
         .lock.step-3 { height: 80px; }
         
+        .lock-water {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, #4682B4, #87CEEB);
+            transition: height 2s ease-in-out;
+            height: 30px;
+        }
         
+        .lock-gates {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 20px;
+            background: #654321;
+            border-radius: 4px;
+            z-index: 2;
+            transition: all 1s ease-in-out;
+            display: flex;
+            gap: 2px;
+        }
         
+        .lock-gates::before,
+        .lock-gates::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 13px;
+            height: 20px;
+            background: #654321;
+            border-radius: 2px;
+            transition: all 1s ease-in-out;
+        }
         
+        .lock-gates::before {
+            left: 0;
+        }
         
+        .lock-gates::after {
+            right: 0;
+        }
         
+        .lock.gates-closing .lock-gates::before {
+            transform: translateX(-5px);
+        }
+        
+        .lock.gates-closing .lock-gates::after {
+            transform: translateX(5px);
+        }
+        
+        .lock.gates-opening .lock-gates::before {
+            transform: translateX(5px);
+        }
+        
+        .lock.gates-opening .lock-gates::after {
+            transform: translateX(-5px);
+        }
+        
+        .lock.raising .lock-water {
+            height: 60px;
+        }
+        
+        .lock.lowering .lock-water {
+            height: 15px;
+        }
         
         .lock-labels {
             position: absolute;
-            top: -35px;
+            top: 50%;
             left: 0;
             right: 0;
             display: flex;
             justify-content: space-between;
             padding: 0 1rem;
+            transform: translateY(-120px);
         }
         
         .lock-label {
@@ -587,7 +676,7 @@
         
         .canal-ship {
             position: absolute;
-            top: 45%;
+            top: 50%;
             left: 15%;
             transform: translateY(-50%);
             z-index: 10;
@@ -601,11 +690,16 @@
             transition: transform 0.3s ease;
         }
         
-        .canal-ship .ship-body {
-            animation: shipBob 2s ease-in-out infinite;
+        .canal-ship.in-locks .ship-body {
+            animation: shipBob 1.5s ease-in-out infinite;
         }
         
-        .canal-ship .ship-wake {
+        .canal-ship.in-lake .ship-body {
+            animation: shipBob 2.5s ease-in-out infinite;
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+        }
+        
+        .canal-ship.in-lake .ship-wake {
             animation: wakeMove 0.8s linear infinite;
         }
         
@@ -623,7 +717,7 @@
         
         .timeline-milestones {
             position: relative;
-            margin-top: 2rem;
+            margin-top: 4rem;
             left: 10%;
             right: 10%;
             height: 60px;
@@ -1853,13 +1947,49 @@
                             <div class="lake-label">Lago Gatún</div>
                             <div class="elevation-indicator">26m</div>
                         </div>
-                    </div>
-                    
-                    <div class="canal-route">
-                        <div class="canal-water"></div>
-                        <div class="gatum-lake">
-                            <div class="lake-label">Lago Gatún</div>
-                            <div class="elevation-indicator">26m</div>
+                        <div class="locks-section">
+                            <!-- Pacific Side - Miraflores Locks -->
+                            <div class="locks-pacific">
+                                <div class="lock step-1">
+                                    <div class="lock-water"></div>
+                                    <div class="lock-gates"></div>
+                                </div>
+                                <div class="lock step-1">
+                                    <div class="lock-water"></div>
+                                    <div class="lock-gates"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Pedro Miguel Lock -->
+                            <div class="locks-pedro-miguel">
+                                <div class="lock step-2">
+                                    <div class="lock-water"></div>
+                                    <div class="lock-gates"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Atlantic Side - Gatún Locks -->
+                            <div class="locks-atlantic">
+                                <div class="lock step-1">
+                                    <div class="lock-water"></div>
+                                    <div class="lock-gates"></div>
+                                </div>
+                                <div class="lock step-2">
+                                    <div class="lock-water"></div>
+                                    <div class="lock-gates"></div>
+                                </div>
+                                <div class="lock step-3">
+                                    <div class="lock-water"></div>
+                                    <div class="lock-gates"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Lock Labels -->
+                        <div class="lock-labels">
+                            <div class="lock-label pacific-locks">Esclusas de Miraflores</div>
+                            <div class="lock-label pedro-miguel">Pedro Miguel</div>
+                            <div class="lock-label atlantic-locks">Esclusas de Gatún</div>
                         </div>
                     </div>
                     
@@ -3242,6 +3372,7 @@
             const playBtn = document.getElementById('playTimeline');
             const pauseBtn = document.getElementById('pauseTimeline');
             const resetBtn = document.getElementById('resetTimeline');
+            const locks = document.querySelectorAll('.lock');
             
             // State variables
             let currentMilestoneIndex = 0;
@@ -3313,22 +3444,75 @@
                 const shipPosition = 10 + (progress * 80); // 10% to 90%
                 canalShip.style.left = `${shipPosition}%`;
                 
-                // Ship stays on water line - no vertical movement
-                // Remove any lock/lake classes since ship doesn't move vertically
-                canalShip.classList.remove('in-locks', 'in-lake');
+                // Ship stays strictly on water line - no vertical movement
+                // Only add classes for visual effects, not positioning
+                if (progress >= 0.45 && progress <= 0.55) {
+                    // Miraflores Locks area
+                    canalShip.classList.add('in-locks');
+                    canalShip.classList.remove('in-lake');
+                } else if (progress >= 0.55 && progress <= 0.75) {
+                    // Pedro Miguel and Gatún Lake
+                    canalShip.classList.add('in-lake');
+                    canalShip.classList.remove('in-locks');
+                } else if (progress >= 0.75 && progress <= 0.85) {
+                    // Gatún Locks area
+                    canalShip.classList.add('in-locks');
+                    canalShip.classList.remove('in-lake');
+                } else {
+                    canalShip.classList.remove('in-locks', 'in-lake');
+                }
             }
             
             // Animate locks
-                            if (gates) gates.classList.add('opening');
+            function animateLocks(progress) {
+                // Reset all locks
+                locks.forEach(lock => {
+                    lock.classList.remove('raising', 'lowering', 'gates-closing', 'gates-opening');
+                    const water = lock.querySelector('.lock-water');
+                    if (water) water.style.height = '30px';
+                });
+                
+                // Animate based on progress
+                if (progress >= 0.45 && progress <= 0.55) {
+                    // Miraflores Locks
+                    const pacificLocks = document.querySelectorAll('.locks-pacific .lock');
+                    const lockProgress = (progress - 0.45) / 0.1;
+                    
+                    pacificLocks.forEach((lock, index) => {
+                        // Gates close first
+                        if (lockProgress < 0.3) {
+                            lock.classList.add('gates-closing');
+                        } else if (lockProgress < 0.7) {
+                            // Water rises
+                            lock.classList.add('raising');
+                            const water = lock.querySelector('.lock-water');
+                            const waterLevel = 30 + ((lockProgress - 0.3) / 0.4) * 30;
+                            if (water) water.style.height = `${waterLevel}px`;
+                        } else {
+                            // Gates open
+                            lock.classList.remove('gates-closing');
+                            lock.classList.add('gates-opening');
                         }
                     });
                 } else if (progress >= 0.75 && progress <= 0.85) {
                     // Gatún Locks
-                            if (gates) gates.classList.remove('closing');
+                    const atlanticLocks = document.querySelectorAll('.locks-atlantic .lock');
+                    const lockProgress = (progress - 0.75) / 0.1;
+                    
+                    atlanticLocks.forEach((lock, index) => {
+                        // Gates close first
+                        if (lockProgress < 0.3) {
+                            lock.classList.add('gates-closing');
+                        } else if (lockProgress < 0.7) {
+                            // Water rises
                             lock.classList.add('raising');
+                            const water = lock.querySelector('.lock-water');
+                            const waterLevel = 30 + ((lockProgress - 0.3) / 0.4) * 30;
                             if (water) water.style.height = `${waterLevel}px`;
                         } else {
-                            if (gates) gates.classList.add('opening');
+                            // Gates open
+                            lock.classList.remove('gates-closing');
+                            lock.classList.add('gates-opening');
                         }
                     });
                 }
