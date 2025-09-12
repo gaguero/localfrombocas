@@ -2319,144 +2319,27 @@
         </div>
     </section>
 
-    <!-- Panama Canal Interactive Cross-Section -->
+    <!-- Panama Canal: Data & Analysis -->
     <section class="section">
         <div class="container">
             <div class="text-center mb-xxl">
-                <h2>El Canal de Panamá: Ingeniería en Acción</h2>
-                <p class="body-large">Explora la mecánica del canal más importante del mundo</p>
+                <h2>El Canal de Panamá: Datos y Análisis</h2>
+                <p class="body-large">Métricas clave del canal más importante del mundo</p>
             </div>
             
-            <div class="canal-interactive-container">
-                <!-- Interactive Cross-Section -->
-                <div class="canal-cross-section">
-                    <div class="cross-section-title">Corte Transversal del Canal</div>
-                    <div class="canal-svg-container">
-                        <svg viewBox="0 0 900 320" class="canal-svg">
-                            <defs>
-                                <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#6ec1ff"/>
-                                    <stop offset="100%" stop-color="#2f8bd6"/>
-                                </linearGradient>
-                                <linearGradient id="concreteGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#b9b9b9"/>
-                                    <stop offset="100%" stop-color="#8c8c8c"/>
-                                </linearGradient>
-                                <linearGradient id="gateGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#6b4a2f"/>
-                                    <stop offset="100%" stop-color="#3f2c1f"/>
-                                </linearGradient>
-                                <filter id="innerShadow" x="-50%" y="-50%" width="200%" height="200%">
-                                    <feOffset dx="0" dy="2"/>
-                                    <feGaussianBlur stdDeviation="2" result="offset-blur"/>
-                                    <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"/>
-                                    <feFlood flood-color="#000" flood-opacity="0.25" result="color"/>
-                                    <feComposite operator="in" in="color" in2="inverse" result="shadow"/>
-                                    <feComposite operator="over" in="shadow" in2="SourceGraphic"/>
-                                </filter>
-                                <!-- arrow head for measurements -->
-                                <marker id="arrowHead" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto" markerUnits="strokeWidth">
-                                    <path d="M0,0 L6,3 L0,6 z" fill="#333" />
-                                </marker>
-                            </defs>
-
-                            <!-- Terrain silhouette (stylized) -->
-                            <path d="M0 80 C60 40, 140 60, 200 35 C260 20, 340 55, 410 40 C480 25, 560 50, 620 30 C700 10, 780 55, 900 35 L900 0 L0 0 Z"
-                                  fill="#2e7d32" opacity="0.25"/>
-
-                            <!-- Oceans -->
-                            <rect x="0" y="170" width="140" height="110" fill="url(#waterGrad)" opacity="0.9"/>
-                            <text x="70" y="165" text-anchor="middle" class="ocean-label">Océano Atlántico</text>
-                            <rect x="760" y="170" width="140" height="110" fill="url(#waterGrad)" opacity="0.9"/>
-                            <text x="830" y="165" text-anchor="middle" class="ocean-label">Océano Pacífico</text>
-
-                            <!-- Elevation baseline -->
-                            <g fill="none" stroke="#bdbdbd" stroke-width="1">
-                                <line x1="0" y1="170" x2="900" y2="170" stroke-dasharray="4 4"/>
-                                <line x1="0" y1="120" x2="900" y2="120" stroke-dasharray="4 4"/>
-                            </g>
-                            <text x="880" y="124" font-size="10" fill="#666">+26 m</text>
-                            <text x="880" y="174" font-size="10" fill="#666">0m</text>
-
-                            <!-- Miraflores (2 cámaras) - lado Pacífico (derecha) -->
-                            <g class="lock-group" id="miraflores-lock">
-                                <rect x="720" y="90" width="160" height="190" rx="6" fill="url(#concreteGrad)" filter="url(#innerShadow)"/>
-                                <!-- cámaras (descenso hacia Pacífico) -->
-                                <rect x="730" y="145" width="65" height="85" fill="url(#waterGrad)" class="lock-water"/>
-                                <rect x="805" y="150" width="65" height="80" fill="url(#waterGrad)" class="lock-water"/>
-                                <!-- compuertas -->
-                                <rect x="793" y="130" width="12" height="110" rx="2" fill="url(#gateGrad)" class="lock-gates"/>
-                                <rect x="868" y="130" width="12" height="110" rx="2" fill="url(#gateGrad)" class="lock-gates"/>
-                                <text x="800" y="85" text-anchor="middle" class="lock-label">Miraflores</text>
-                                <circle cx="800" cy="240" r="16" class="hotspot" fill="transparent"/>
-                            </g>
-
-                            <!-- Miraflores Lake (small reservoir) -->
-                            <rect x="665" y="145" width="30" height="25" fill="#9fe29f" opacity="0.9"/>
-                            <text x="680" y="140" text-anchor="middle" class="lake-label">Lago Miraflores</text>
-
-                            <!-- Pedro Miguel (1 cámara) -->
-                            <g class="lock-group" id="pedro-miguel-lock">
-                                <rect x="310" y="100" width="110" height="180" rx="6" fill="url(#concreteGrad)" filter="url(#innerShadow)"/>
-                                <rect x="320" y="150" width="90" height="70" fill="url(#waterGrad)" class="lock-water"/>
-                                <rect x="362" y="130" width="12" height="100" rx="2" fill="url(#gateGrad)" class="lock-gates"/>
-                                <text x="365" y="95" text-anchor="middle" class="lock-label">Pedro Miguel</text>
-                                <circle cx="365" cy="235" r="16" class="hotspot" fill="transparent"/>
-                            </g>
-
-                            <!-- Lago Gatún (26 m) - plateau central -->
-                            <rect x="290" y="120" width="240" height="50" fill="#9fe29f" opacity="0.9"/>
-                            <text x="410" y="112" text-anchor="middle" class="lake-label">Lago Gatún (26 m)</text>
-
-                            <!-- 26 m vertical measurement -->
-                            <line x1="410" y1="170" x2="410" y2="120" stroke="#333" stroke-width="2" marker-start="url(#arrowHead)" marker-end="url(#arrowHead)"/>
-                            <text x="420" y="148" fill="#333" font-size="12">26 m</text>
-
-                            <!-- Gatún (3 cámaras) - lado Atlántico (izquierda) -->
-                            <g class="lock-group" id="gatun-lock">
-                                <rect x="140" y="90" width="130" height="190" rx="6" fill="url(#concreteGrad)" filter="url(#innerShadow)"/>
-                                <!-- cámaras (ascenso en tres pasos) -->
-                                <rect x="150" y="150" width="35" height="80" fill="url(#waterGrad)" class="lock-water"/>
-                                <rect x="190" y="145" width="35" height="85" fill="url(#waterGrad)" class="lock-water"/>
-                                <rect x="230" y="140" width="35" height="90" fill="url(#waterGrad)" class="lock-water"/>
-                                <!-- compuertas -->
-                                <rect x="185" y="130" width="10" height="110" rx="2" fill="url(#gateGrad)" class="lock-gates"/>
-                                <rect x="225" y="130" width="10" height="110" rx="2" fill="url(#gateGrad)" class="lock-gates"/>
-                                <text x="205" y="85" text-anchor="middle" class="lock-label">Gatún</text>
-                                <circle cx="205" cy="240" r="16" class="hotspot" fill="transparent"/>
-                            </g>
-
-                            <!-- Canal bed (stylized) -->
-                            <path d="M0 250 C40 245, 80 240, 120 250 L140 250 C170 240, 200 235, 230 245 L300 255 C330 260, 360 255, 420 245 C470 235, 520 235, 570 240 C610 245, 650 250, 690 245 C730 240, 760 240, 900 248 L900 320 L0 320 Z"
-                                  fill="#c9a26a" opacity="0.9"/>
-                            <!-- Ocean datum dashed line -->
-                            <line x1="0" y1="170" x2="900" y2="170" stroke="#7c7c7c" stroke-dasharray="6 6"/>
-
-                            <!-- Bottom distance arrow 82 km -->
-                            <line x1="40" y1="305" x2="860" y2="305" stroke="#333" stroke-width="2" marker-start="url(#arrowHead)" marker-end="url(#arrowHead)"/>
-                            <text x="450" y="300" text-anchor="middle" fill="#333" font-weight="700">82 km</text>
-
-                            <!-- Section labels (bottom) -->
-                            <text x="800" y="285" text-anchor="middle" fill="#7a4e2a" font-weight="700">Esclusas de Miraflores</text>
-                            <text x="595" y="285" text-anchor="middle" fill="#7a4e2a" font-weight="700">Pedro Miguel</text>
-                            <text x="205" y="285" text-anchor="middle" fill="#7a4e2a" font-weight="700">Esclusas de Gatún</text>
-                        </svg>
-                    </div>
-                </div>
-                
-                <!-- Key Stats Snapshot -->
-                <div class="canal-stats-grid">
+            <!-- Key Metrics Dashboard -->
+            <div class="canal-stats-grid mb-xxl">
                     <div class="stat-card" data-stat="ships">
                         <div class="stat-icon">🚢</div>
                         <div class="stat-number" id="shipsCounter">0</div>
                         <div class="stat-label">Barcos por Año</div>
-                        <div class="stat-detail">14,000+ transits</div>
+                    <div class="stat-detail">14,000 transits</div>
                     </div>
                     <div class="stat-card" data-stat="tonnage">
                         <div class="stat-icon">📦</div>
                         <div class="stat-number" id="tonnageCounter">0</div>
                         <div class="stat-label">Toneladas</div>
-                        <div class="stat-detail">500+ millones</div>
+                    <div class="stat-detail">500M toneladas</div>
                     </div>
                     <div class="stat-card" data-stat="economic">
                         <div class="stat-icon">💰</div>
@@ -2468,36 +2351,339 @@
                         <div class="stat-icon">⏱️</div>
                         <div class="stat-number">8-10</div>
                         <div class="stat-label">Horas de Cruce</div>
-                        <div class="stat-detail">vs 2 semanas por Cabo de Hornos</div>
+                    <div class="stat-detail">vs 2 semanas Cabo Hornos</div>
                     </div>
                 </div>
                 
-                <!-- Mini Global Trade Map -->
-                <div class="global-trade-map">
-                    <div class="trade-map-title">Rutas Globales del Canal</div>
-                    <div class="trade-routes">
-                        <div class="route route-asia" data-route="asia">
-                            <div class="route-icon">🌏</div>
-                            <div class="route-label">Asia-Pacífico</div>
-                            <div class="route-detail">Contenedores, Electrónicos</div>
+            <!-- Top Users by Country -->
+            <div class="canal-data-section mb-xxl">
+                <h3 class="text-center mb-lg">🌍 Principales Usuarios por País</h3>
+                <div class="data-grid">
+                    <div class="data-item">
+                        <div class="country-flag">🇺🇸</div>
+                        <div class="country-name">Estados Unidos</div>
+                        <div class="country-percentage">73%</div>
+                        <div class="country-detail">Bienes hacia/desde EE.UU.</div>
                         </div>
-                        <div class="route route-europe" data-route="europe">
-                            <div class="route-icon">🌍</div>
-                            <div class="route-label">Europa-Atlántico</div>
-                            <div class="route-detail">Automóviles, Maquinaria</div>
+                    <div class="data-item">
+                        <div class="country-flag">🇨🇳</div>
+                        <div class="country-name">China</div>
+                        <div class="country-percentage">21%</div>
+                        <div class="country-detail">Segundo mayor usuario</div>
                         </div>
-                        <div class="route route-americas" data-route="americas">
-                            <div class="route-icon">🌎</div>
-                            <div class="route-label">Américas</div>
-                            <div class="route-detail">Commodities, Energía</div>
+                    <div class="data-item">
+                        <div class="country-flag">🇯🇵</div>
+                        <div class="country-name">Japón</div>
+                        <div class="country-percentage">15%</div>
+                        <div class="country-detail">Importaciones de energía</div>
                         </div>
+                    <div class="data-item">
+                        <div class="country-flag">🇨🇱</div>
+                        <div class="country-name">Chile</div>
+                        <div class="country-percentage">10%</div>
+                        <div class="country-detail">Principal usuario latinoamericano</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="country-flag">🇰🇷</div>
+                        <div class="country-name">Corea del Sur</div>
+                        <div class="country-percentage">9%</div>
+                        <div class="country-detail">Socio comercial asiático</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cargo by Segment -->
+            <div class="canal-data-section mb-xxl">
+                <h3 class="text-center mb-lg">📦 Carga por Segmento</h3>
+                <div class="cargo-grid">
+                    <div class="cargo-item">
+                        <div class="cargo-icon">📦</div>
+                        <div class="cargo-name">Contenedores</div>
+                        <div class="cargo-percentage">35%</div>
+                        <div class="cargo-detail">Bienes terminados</div>
+                    </div>
+                    <div class="cargo-item">
+                        <div class="cargo-icon">🌾</div>
+                        <div class="cargo-name">Carga Seca</div>
+                        <div class="cargo-percentage">22%</div>
+                        <div class="cargo-detail">Granos, minerales, carbón</div>
+                    </div>
+                    <div class="cargo-item">
+                        <div class="cargo-icon">🧪</div>
+                        <div class="cargo-name">Quimiqueros</div>
+                        <div class="cargo-percentage">16%</div>
+                        <div class="cargo-detail">Productos químicos</div>
+                    </div>
+                    <div class="cargo-item">
+                        <div class="cargo-icon">⛽</div>
+                        <div class="cargo-name">LNG & LPG</div>
+                        <div class="cargo-percentage">14%</div>
+                        <div class="cargo-detail">Gas natural y petróleo</div>
+                    </div>
+                    <div class="cargo-item">
+                        <div class="cargo-icon">🚗</div>
+                        <div class="cargo-name">Vehículos</div>
+                        <div class="cargo-percentage">6%</div>
+                        <div class="cargo-detail">Autos y camiones</div>
+                    </div>
+                    <div class="cargo-item">
+                        <div class="cargo-icon">🛢️</div>
+                        <div class="cargo-name">Petroleros</div>
+                        <div class="cargo-percentage">7%</div>
+                        <div class="cargo-detail">Crudo y derivados</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vessel Types & Tolls -->
+            <div class="canal-data-section mb-xxl">
+                <h3 class="text-center mb-lg">🚢 Tipos de Barcos y Peajes</h3>
+                
+                <!-- Historical Construction Context -->
+                <div class="construction-context">
+                    <div class="construction-note">
+                        <div class="construction-icon">🏗️</div>
+                        <div class="construction-text">
+                            <strong>Esclusas Panamax:</strong> Construidas por Estados Unidos (1904-1914)<br>
+                            <strong>Esclusas Neo-Panamax:</strong> Construidas completamente por Panamá (2007-2016)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vessel-comparison">
+                    <div class="vessel-type">
+                        <div class="vessel-icon">🚢</div>
+                        <div class="vessel-name">Neo-Panamax</div>
+                        <div class="vessel-stats">
+                            <div class="stat">55% transitos</div>
+                            <div class="stat">75% tonelaje</div>
+                        </div>
+                        <div class="vessel-detail">Nuevas esclusas expandidas</div>
+                    </div>
+                    <div class="vessel-type">
+                        <div class="vessel-icon">⛵</div>
+                        <div class="vessel-name">Panamax</div>
+                        <div class="vessel-stats">
+                            <div class="stat">45% transitos</div>
+                            <div class="stat">Menor tonelaje</div>
+                        </div>
+                        <div class="vessel-detail">Tamaño original máximo</div>
+                    </div>
+                </div>
+                <div class="toll-info">
+                    <div class="toll-average">💰 Promedio: $250,000</div>
+                    <div class="toll-maximum">💎 Máximo: $1.2M+</div>
+                </div>
+            </div>
+
+            <!-- Drought Impact -->
+            <div class="canal-data-section">
+                <h3 class="text-center mb-lg">💧 Impacto de la Sequía</h3>
+                <div class="drought-impact">
+                    <div class="drought-item">
+                        <div class="drought-icon">💧</div>
+                        <div class="drought-title">Niveles de Agua</div>
+                        <div class="drought-detail">Lago Gatún: <strong>80 pies</strong> (normal: 89 pies)</div>
+                    </div>
+                    <div class="drought-item">
+                        <div class="drought-icon">📉</div>
+                        <div class="drought-title">Transitos Diarios</div>
+                        <div class="drought-detail">De <strong>36-38</strong> a <strong>22</strong> barcos</div>
+                    </div>
+                    <div class="drought-item">
+                        <div class="drought-icon">⏳</div>
+                        <div class="drought-title">Tiempos de Espera</div>
+                        <div class="drought-detail">De <strong>5-7 días</strong> a <strong>20+ días</strong></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- No modals for simplified infographic -->
+    <!-- Population Demographics -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-xxl">
+                <h2>Demografía Panameña: Crecimiento y Distribución</h2>
+                <p class="body-large">Evolución poblacional desde 1911 hasta 2023</p>
+            </div>
+            
+            <!-- Population Timeline -->
+            <div class="population-timeline mb-xxl">
+                <h3 class="text-center mb-lg">📈 Crecimiento Poblacional</h3>
+                <div class="timeline-context">
+                    <p class="context-note">*Datos de 1911 corresponden al primer censo oficial realizado en Panamá</p>
+                </div>
+                <div class="timeline-stats">
+                    <div class="timeline-item">
+                        <div class="year">1911*</div>
+                        <div class="population">336,742</div>
+                        <div class="growth">Primer censo</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">2023</div>
+                        <div class="population">4,064,780</div>
+                        <div class="growth">+12x</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gender Distribution -->
+            <div class="gender-distribution mb-xxl">
+                <h3 class="text-center mb-lg">👨‍👩‍👧‍👦 Distribución por Sexo</h3>
+                <div class="gender-stats">
+                    <div class="gender-card male">
+                        <div class="gender-number">2,014,818</div>
+                        <div class="gender-label">Hombres (49.6%)</div>
+                    </div>
+                    <div class="gender-card female">
+                        <div class="gender-number">2,049,962</div>
+                        <div class="gender-label">Mujeres (50.4%)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Provincial Distribution -->
+            <div class="provincial-population mb-xxl">
+                <h3 class="text-center mb-lg">🏛️ Distribución Provincial y Comarcas</h3>
+                <div class="province-grid">
+                    <div class="province-item">
+                        <div class="province-name">Panamá</div>
+                        <div class="province-population">1,439,575</div>
+                        <div class="province-percentage">35.4%</div>
+                    </div>
+                    <div class="province-item">
+                        <div class="province-name">Panamá Oeste</div>
+                        <div class="province-population">653,665</div>
+                        <div class="province-percentage">16.1%</div>
+                    </div>
+                    <div class="province-item">
+                        <div class="province-name">Chiriquí</div>
+                        <div class="province-population">471,071</div>
+                        <div class="province-percentage">11.6%</div>
+                    </div>
+                    <div class="province-item">
+                        <div class="province-name">Colón</div>
+                        <div class="province-population">281,956</div>
+                        <div class="province-percentage">6.9%</div>
+                    </div>
+                    <div class="province-item">
+                        <div class="province-name">Coclé</div>
+                        <div class="province-population">268,264</div>
+                        <div class="province-percentage">6.6%</div>
+                    </div>
+                    <div class="province-item">
+                        <div class="province-name">Veraguas</div>
+                        <div class="province-population">259,791</div>
+                        <div class="province-percentage">6.4%</div>
+                    </div>
+                    <div class="province-item">
+                        <div class="province-name">Bocas del Toro</div>
+                        <div class="province-population">159,228</div>
+                        <div class="province-percentage">3.9%</div>
+                    </div>
+                    <div class="province-item">
+                        <div class="province-name">Herrera</div>
+                        <div class="province-population">122,071</div>
+                        <div class="province-percentage">3.0%</div>
+                    </div>
+                    <div class="province-item">
+                        <div class="province-name">Los Santos</div>
+                        <div class="province-population">98,466</div>
+                        <div class="province-percentage">2.4%</div>
+                    </div>
+                    <div class="province-item">
+                        <div class="province-name">Darién</div>
+                        <div class="province-population">54,235</div>
+                        <div class="province-percentage">1.3%</div>
+                    </div>
+                    <div class="province-item comarca-item">
+                        <div class="province-name">Ngäbe Buglé</div>
+                        <div class="province-population">212,084</div>
+                        <div class="province-percentage">5.2%</div>
+                    </div>
+                    <div class="province-item comarca-item">
+                        <div class="province-name">Kuna Yala</div>
+                        <div class="province-population">32,016</div>
+                        <div class="province-percentage">0.8%</div>
+                    </div>
+                    <div class="province-item comarca-item">
+                        <div class="province-name">Emberá-Wounaan</div>
+                        <div class="province-population">12,358</div>
+                        <div class="province-percentage">0.3%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ethnic Distribution -->
+            <div class="ethnic-distribution mb-xxl">
+                <h3 class="text-center mb-lg">🌍 Distribución Étnica</h3>
+                <div class="ethnic-overview">
+                    <div class="ethnic-group afrodescendant">
+                        <div class="ethnic-number">1,286,857</div>
+                        <div class="ethnic-label">Afrodescendientes (31.7%)</div>
+                    </div>
+                    <div class="ethnic-group indigenous">
+                        <div class="ethnic-number">698,114</div>
+                        <div class="ethnic-label">Indígenas (17.2%)</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Indigenous Groups -->
+            <div class="indigenous-groups mb-xxl">
+                <h3 class="text-center mb-lg">👥 Grupos Indígenas</h3>
+                <div class="indigenous-grid">
+                    <div class="indigenous-group">
+                        <div class="group-name">Ngäbe</div>
+                        <div class="group-population">444,878</div>
+                        <div class="group-percentage">64.9%</div>
+                    </div>
+                    <div class="indigenous-group">
+                        <div class="group-name">Kuna</div>
+                        <div class="group-population">112,319</div>
+                        <div class="group-percentage">16.4%</div>
+                    </div>
+                    <div class="indigenous-group">
+                        <div class="group-name">Emberá</div>
+                        <div class="group-population">51,657</div>
+                        <div class="group-percentage">7.5%</div>
+                    </div>
+                    <div class="indigenous-group">
+                        <div class="group-name">Buglé</div>
+                        <div class="group-population">23,898</div>
+                        <div class="group-percentage">3.5%</div>
+                    </div>
+                    <div class="indigenous-group">
+                        <div class="group-name">Wounaan</div>
+                        <div class="group-population">10,634</div>
+                        <div class="group-percentage">1.6%</div>
+                    </div>
+                    <div class="indigenous-group">
+                        <div class="group-name">Naso</div>
+                        <div class="group-population">5,568</div>
+                        <div class="group-percentage">0.8%</div>
+                    </div>
+                    <div class="indigenous-group">
+                        <div class="group-name">Teribe</div>
+                        <div class="group-population">1,331</div>
+                        <div class="group-percentage">0.2%</div>
+                    </div>
+                    <div class="indigenous-group">
+                        <div class="group-name">Bri Bri</div>
+                        <div class="group-population">766</div>
+                        <div class="group-percentage">0.1%</div>
+                    </div>
+                    <div class="indigenous-group">
+                        <div class="group-name">Bokota</div>
+                        <div class="group-population">590</div>
+                        <div class="group-percentage">0.1%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Cultural Diversity & National Symbols -->
     <section class="section" style="background-color: var(--seafoam);">

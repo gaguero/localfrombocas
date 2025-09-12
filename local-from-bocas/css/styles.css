@@ -636,3 +636,1576 @@ a:hover {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* ===== PANAMA CANAL DATA VISUALIZATION ===== */
+
+/* Data Section Layout */
+.canal-data-section {
+  margin-bottom: 3rem;
+}
+
+.canal-data-section h3 {
+  color: var(--primary-blue);
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+/* Top Users by Country */
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.data-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.data-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--jungle-teal), var(--primary-blue));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.data-item:hover::before {
+  transform: scaleX(1);
+}
+
+.data-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: var(--jungle-teal);
+}
+
+.country-flag {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.country-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: 0.4rem;
+  text-align: center;
+}
+
+.country-percentage {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--jungle-teal);
+  text-align: center;
+  margin-bottom: 0.4rem;
+}
+
+.country-detail {
+  font-size: 0.8rem;
+  color: #666;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* Cargo by Segment */
+.cargo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.cargo-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.cargo-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: var(--jungle-teal);
+}
+
+.cargo-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.cargo-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: 0.4rem;
+}
+
+.cargo-percentage {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--jungle-teal);
+  margin-bottom: 0.4rem;
+}
+
+.cargo-detail {
+  font-size: 0.75rem;
+  color: #666;
+  line-height: 1.3;
+}
+
+/* Vessel Types & Size */
+.construction-context {
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.construction-note {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border: 2px solid var(--jungle-teal);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 600px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.construction-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.construction-text {
+  font-size: 0.9rem;
+  color: var(--primary-blue);
+  line-height: 1.4;
+}
+
+.construction-text strong {
+  color: var(--jungle-teal);
+  font-weight: 600;
+}
+
+.vessel-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.vessel-type {
+  background: white;
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.vessel-type:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: var(--jungle-teal);
+}
+
+.vessel-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.vessel-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: 0.75rem;
+}
+
+.vessel-stats {
+  margin: 0.75rem 0;
+}
+
+.vessel-stats .stat {
+  background: var(--seafoam);
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+  margin: 0.4rem 0;
+  font-weight: 600;
+  color: var(--primary-blue);
+  font-size: 0.85rem;
+}
+
+.vessel-detail {
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.3;
+  margin-top: 0.75rem;
+}
+
+.toll-info {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--seafoam), #e8f5e8);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.toll-average,
+.toll-maximum {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+}
+
+.toll-maximum {
+  color: var(--jungle-teal);
+}
+
+/* Main Trade Routes */
+.trade-routes {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.route-item {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.route-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: var(--jungle-teal);
+}
+
+.route-number {
+  background: var(--jungle-teal);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.route-connection {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  flex: 1;
+}
+
+.route-percentage {
+  background: var(--seafoam);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  color: var(--jungle-teal);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.route-detail {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+  margin-top: 0.5rem;
+  grid-column: 2 / -1;
+}
+
+/* Drought Data */
+.drought-impact {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.drought-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.drought-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6b6b, #ffa500);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.drought-item:hover::before {
+  transform: scaleX(1);
+}
+
+.drought-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #ff6b6b;
+}
+
+.drought-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.drought-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: 0.4rem;
+}
+
+.drought-detail {
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.3;
+}
+
+  .drought-detail strong {
+    color: #ff6b6b;
+    font-weight: 700;
+  }
+
+/* ===== POPULATION DEMOGRAPHICS ===== */
+
+/* Population Overview */
+.population-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* Gender Distribution */
+.gender-distribution {
+  margin: 2rem 0;
+}
+
+.gender-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 1.5rem 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gender-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.gender-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.gender-card.male::before {
+  background: linear-gradient(90deg, #2196F3, #1976D2);
+}
+
+.gender-card.female::before {
+  background: linear-gradient(90deg, #E91E63, #C2185B);
+}
+
+.gender-card:hover::before {
+  transform: scaleX(1);
+}
+
+.gender-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.gender-card.male:hover {
+  border-color: #2196F3;
+}
+
+.gender-card.female:hover {
+  border-color: #E91E63;
+}
+
+.gender-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.gender-number {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--jungle-teal);
+  margin-bottom: 0.5rem;
+}
+
+.gender-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: 0.5rem;
+}
+
+.gender-percentage {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--jungle-teal);
+}
+
+.gender-summary {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--seafoam), #e8f5e8);
+  border-radius: 8px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.summary-text {
+  font-size: 1rem;
+  color: var(--primary-blue);
+  font-weight: 500;
+}
+
+.summary-text strong {
+  color: var(--jungle-teal);
+  font-weight: 700;
+}
+
+/* Population Minorities Overview */
+.population-minorities {
+  margin: 2rem 0;
+}
+
+.minorities-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 1.5rem 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.minority-total {
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.minority-total:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.minority-total.afrodescendant {
+  background: linear-gradient(135deg, #2e7d32, var(--jungle-teal));
+}
+
+.minority-total.indigenous {
+  background: linear-gradient(135deg, #1976D2, #42A5F5);
+}
+
+.minority-total .total-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.minority-total .total-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.minority-total .total-label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.minority-total .total-percentage {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* Afro-descendant Population */
+.afrodescendant-population {
+  margin: 2rem 0;
+}
+
+.afrodescendant-overview {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.afrodescendant-total {
+  background: linear-gradient(135deg, #2e7d32, var(--jungle-teal));
+  color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+.total-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.total-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.total-label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.total-percentage {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.afrodescendant-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.afrodescendant-group {
+  background: white;
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.afrodescendant-group::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2e7d32, var(--jungle-teal));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.afrodescendant-group:hover::before {
+  transform: scaleX(1);
+}
+
+.afrodescendant-group:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border-color: var(--jungle-teal);
+}
+
+.group-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: 0.5rem;
+}
+
+.group-population {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--jungle-teal);
+  margin-bottom: 0.3rem;
+}
+
+.group-percentage {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.group-detail {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.3;
+  font-style: italic;
+}
+
+/* Indigenous Population Overview */
+.indigenous-overview {
+  margin: 2rem 0;
+}
+
+.indigenous-total {
+  background: linear-gradient(135deg, #2e7d32, var(--jungle-teal));
+  color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto 2rem auto;
+}
+
+.indigenous-gender {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.gender-breakdown {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 400px;
+}
+
+.gender-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.gender-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border-color: var(--jungle-teal);
+}
+
+.gender-item .gender-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.gender-item .gender-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--jungle-teal);
+  margin-bottom: 0.5rem;
+}
+
+.gender-item .gender-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+}
+
+/* Context Notes */
+.comarca-context,
+.groups-context {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.context-note {
+  font-size: 1rem;
+  color: var(--primary-blue);
+  font-style: italic;
+  background: linear-gradient(135deg, var(--seafoam), #e8f5e8);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--jungle-teal);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Indigenous Groups Grid */
+.indigenous-groups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.indigenous-group {
+  background: white;
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.indigenous-group::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2e7d32, var(--jungle-teal));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.indigenous-group:hover::before {
+  transform: scaleX(1);
+}
+
+.indigenous-group:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border-color: var(--jungle-teal);
+}
+
+.indigenous-group .group-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: 0.5rem;
+}
+
+.indigenous-group .group-population {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--jungle-teal);
+  margin-bottom: 0.3rem;
+}
+
+.indigenous-group .group-percentage {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.indigenous-group .group-detail {
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.3;
+  font-style: italic;
+}
+
+.population-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.population-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: var(--jungle-teal);
+}
+
+.population-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.population-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--jungle-teal);
+  margin-bottom: 0.5rem;
+}
+
+.population-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: 0.5rem;
+}
+
+.population-detail {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Provincial Population */
+.province-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.province-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.province-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border-color: var(--jungle-teal);
+}
+
+.province-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--jungle-teal), var(--primary-blue));
+  border-radius: 8px 8px 0 0;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.province-item:hover::before {
+  transform: scaleX(1);
+}
+
+.province-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: 0.5rem;
+}
+
+.province-population {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--jungle-teal);
+  margin-bottom: 0.3rem;
+}
+
+.province-percentage {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 600;
+}
+
+/* Comarca Population */
+.comarca-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.comarca-item {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border: 2px solid var(--jungle-teal);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.comarca-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #2e7d32, var(--jungle-teal));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.comarca-item:hover::before {
+  transform: scaleX(1);
+}
+
+.comarca-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.comarca-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: 0.75rem;
+}
+
+.comarca-population {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--jungle-teal);
+  margin-bottom: 0.5rem;
+}
+
+.comarca-percentage {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.comarca-detail {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.3;
+}
+
+/* Responsive Design for Population */
+@media (max-width: 768px) {
+  .population-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .gender-stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .province-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  
+  .comarca-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .afrodescendant-groups {
+    grid-template-columns: 1fr;
+  }
+  
+  .gender-breakdown {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .indigenous-groups-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+  
+  .minorities-overview {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .province-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .population-card,
+  .province-item,
+  .comarca-item {
+    padding: 1rem;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .data-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+  
+  .cargo-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+  
+  .construction-note {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+  
+  .vessel-comparison {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .toll-info {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .drought-impact {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .data-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cargo-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .canal-data-section h3 {
+    font-size: 1.3rem;
+  }
+  
+  .data-item,
+  .cargo-item,
+  .vessel-type,
+  .drought-item {
+    padding: 0.75rem;
+  }
+}
+
+/* Concise Demographics Styles */
+.population-timeline {
+  margin-bottom: 2rem;
+}
+
+.timeline-context {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.context-note {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  font-style: italic;
+  margin: 0;
+}
+
+.timeline-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.timeline-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.year {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.population {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.growth {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--success);
+}
+
+.ethnic-distribution {
+  margin-bottom: 2rem;
+}
+
+.ethnic-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ethnic-group {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ethnic-group:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.ethnic-group.afrodescendant {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.ethnic-group.indigenous {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.ethnic-number {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.ethnic-label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.indigenous-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.indigenous-group {
+  background: white;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.indigenous-group:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.group-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.group-population {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.25rem;
+}
+
+.group-percentage {
+  font-size: 0.75rem;
+  color: var(--text-light);
+}
+
+.comarca-population {
+  margin-bottom: 2rem;
+}
+
+.comarca-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.comarca-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px solid var(--primary);
+}
+
+.comarca-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.comarca-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.75rem;
+}
+
+.comarca-population {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.comarca-percentage {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+/* Comarca items within province grid */
+.province-item.comarca-item {
+  border-left: 4px solid var(--success);
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.province-item.comarca-item .province-name {
+  color: var(--success);
+  font-weight: 600;
+}
+
+.province-item.comarca-item .province-population {
+  color: var(--success);
+}
+
+/* Responsive adjustments for concise demographics */
+@media (max-width: 768px) {
+  .timeline-stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .ethnic-overview {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .indigenous-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+  }
+  
+  .timeline-item,
+  .ethnic-group {
+    padding: 1rem;
+  }
+  
+  .population,
+  .ethnic-number {
+    font-size: 1.5rem;
+  }
+}
+
+/* Bocas del Toro Population Section Styles */
+.province-summary {
+  margin-bottom: 2rem;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.summary-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px solid var(--primary);
+}
+
+.summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.summary-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.summary-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.summary-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.25rem;
+}
+
+.summary-detail {
+  font-size: 0.75rem;
+  color: var(--text-light);
+}
+
+.population-evolution {
+  margin-bottom: 2rem;
+}
+
+.evolution-chart {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.evolution-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.evolution-item.current {
+  border: 2px solid var(--primary);
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.evolution-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.evolution-item .year {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.evolution-item .population {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.evolution-item .density {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.districts-section {
+  margin-bottom: 2rem;
+}
+
+.districts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.district-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.district-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.district-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.district-header h4 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.district-area {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.district-stats {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.stat-row:last-child {
+  margin-bottom: 0;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 0.875rem;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.corregimientos {
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+.corregimiento-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.875rem;
+}
+
+.corregimiento-item:last-child {
+  border-bottom: none;
+}
+
+.corregimiento-name {
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.corregimiento-pop {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Responsive adjustments for population section */
+@media (max-width: 768px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .evolution-chart {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .districts-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .district-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .summary-card,
+  .evolution-item {
+    padding: 1rem;
+  }
+  
+  .summary-number,
+  .evolution-item .population {
+    font-size: 1.5rem;
+  }
+}
