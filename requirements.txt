@@ -1,2 +1,3 @@
-# Static HTML site - no Python dependencies required
-# This file exists to help Railway detect this as a Python project
+# Local From Bocas - Static HTML Site
+# This file helps Railway detect this as a Python project
+# No actual Python dependencies required for static site serving

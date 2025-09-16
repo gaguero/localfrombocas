@@ -1,25 +1,3 @@
-{
-  "name": "local-from-bocas",
-  "version": "1.0.0",
-  "description": "Sitio web de Local From Bocas - Marca turística de Bocas del Toro, Panamá",
-  "main": "index.html",
-  "scripts": {
-    "start": "python3 -m http.server 8000",
-    "dev": "python3 -m http.server 8000"
-  },
-  "keywords": [
-    "bocas-del-toro",
-    "panama",
-    "turismo",
-    "cultura",
-    "tours",
-    "local"
-  ],
-  "author": "Local From Bocas",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gaguero/localfrombocas.git"
-  },
-  "homepage": "https://localfrombocas.com"
-}
+# This file has been renamed to package.json.backup
+# Railway was detecting Node.js because of this file
+# Now Railway will use requirements.txt to detect Python
