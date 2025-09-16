@@ -1,0 +1,14 @@
+[providers]
+python = "3.9"
+
+[phases.setup]
+nixPkgs = ["python39"]
+
+[phases.install]
+cmds = ["echo 'No dependencies to install for static site'"]
+
+[phases.build]
+cmds = ["echo 'Static site - no build required'"]
+
+[start]
+cmd = "cd local-from-bocas && python3 -m http.server 8000"

@@ -2590,6 +2590,193 @@
                 justify-content: center;
             }
         }
+        
+        /* ===== CALENDAR STYLES ===== */
+        .calendar-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .month-panel {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .month-panel:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .month-header {
+            background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .month-header:hover {
+            background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--jungle-teal) 100%);
+        }
+        
+        .month-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .month-toggle {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .month-panel.active .month-toggle {
+            transform: rotate(180deg);
+        }
+        
+        .month-content {
+            padding: 2rem;
+            display: none;
+        }
+        
+        .month-panel.active .month-content {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .holiday-category, .festival-category {
+            margin-bottom: 2rem;
+        }
+        
+        .holiday-category h4, .festival-category h4 {
+            color: var(--jungle-teal);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-bottom: 2px solid var(--seafoam);
+            padding-bottom: 0.5rem;
+        }
+        
+        .holiday-list, .festival-list {
+            display: grid;
+            gap: 0.75rem;
+        }
+        
+        .holiday-item, .festival-item {
+            background: var(--shell-light);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--jungle-teal);
+            position: relative;
+        }
+        
+        .holiday-item:hover, .festival-item:hover {
+            background: var(--seafoam);
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(15, 91, 85, 0.1);
+        }
+        
+        .holiday-item {
+            border-left-color: var(--ocean-blue);
+        }
+        
+        .holiday-item:hover {
+            border-left-color: var(--jungle-teal);
+        }
+        
+        .holiday-date, .festival-dates {
+            font-weight: 600;
+            color: var(--jungle-teal);
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .holiday-name, .festival-name {
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 0.25rem;
+        }
+        
+        .festival-location {
+            color: var(--neutral-gray);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        /* Tooltip styles */
+        .holiday-item[data-tooltip], .festival-item[data-tooltip] {
+            position: relative;
+        }
+        
+        .holiday-item[data-tooltip]:hover::after,
+        .festival-item[data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--deep-reef);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-md);
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: tooltipFadeIn 0.3s ease;
+        }
+        
+        .holiday-item[data-tooltip]:hover::before,
+        .festival-item[data-tooltip]:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: var(--deep-reef);
+            z-index: 1000;
+        }
+        
+        @keyframes tooltipFadeIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(5px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .month-header {
+                padding: 1rem 1.5rem;
+            }
+            
+            .month-content {
+                padding: 1.5rem;
+            }
+            
+            .holiday-item, .festival-item {
+                padding: 0.75rem 1rem;
+            }
+            
+            .holiday-item[data-tooltip]:hover::after,
+            .festival-item[data-tooltip]:hover::after {
+                display: none; /* Hide tooltips on mobile */
+            }
+        }
     </style>
 </head>
 <body>
@@ -3978,145 +4165,111 @@
         </div>
     </section>
 
-    <!-- Interactive Photo Gallery -->
-    <section class="section">
+    <!-- Panama Festival & Holiday Calendar 2025 -->
+    <section class="section" style="background: linear-gradient(135deg, var(--shell-light) 0%, var(--seafoam) 100%);">
         <div class="container">
             <div class="text-center mb-xxl">
-                <h2>Galería de Panamá</h2>
-                <p class="body-large">Descubre la belleza de Panamá a través de nuestras imágenes</p>
+                <h2>Panama Festival & Holiday Calendar 2025</h2>
+                <p class="body-large">Discover all official holidays and major festivals across Panama by month</p>
             </div>
             
-            <div class="photo-mosaic">
-                <div class="photo-item large">
-                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Canal de Panamá" data-caption="El Canal de Panamá, una maravilla de la ingeniería mundial">
-                </div>
-                <div class="photo-item">
-                    <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Casco Viejo" data-caption="El histórico Casco Viejo de Ciudad de Panamá">
-                </div>
-                <div class="photo-item">
-                    <img src="https://images.unsplash.com/photo-1506905925346-14b1e5d36f9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="San Blas" data-caption="Las hermosas islas de San Blas">
-                </div>
-                <div class="photo-item">
-                    <img src="https://images.unsplash.com/photo-1506905925346-14b1e5d36f9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Boquete" data-caption="Boquete, la Suiza de Panamá">
-                </div>
-                <div class="photo-item">
-                    <img src="https://via.placeholder.com/300x200/5B4B3F/FFFFFF?text=Darien" alt="Darién" data-caption="La selva virgen del Darién">
-                </div>
-                <div class="photo-item">
-                    <img src="https://via.placeholder.com/300x400/8DBB66/FFFFFF?text=Volcan+Baru" alt="Volcán Barú" data-caption="El majestuoso Volcán Barú">
-                </div>
-                <div class="photo-item">
-                    <img src="https://via.placeholder.com/300x200/FF69B4/FFFFFF?text=Orquideas" alt="Orquídeas" data-caption="Las hermosas orquídeas panameñas">
-                </div>
-                <div class="photo-item">
-                    <img src="https://via.placeholder.com/300x300/87CEEB/FFFFFF?text=Playa" alt="Playa" data-caption="Playas paradisíacas del Pacífico">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lightbox Modal -->
-    <div id="photoLightbox" class="lightbox">
-        <div class="lightbox-content">
-            <span class="lightbox-close">&times;</span>
-            <img id="lightboxImage" src="" alt="">
-            <div class="lightbox-caption" id="lightboxCaption"></div>
-        </div>
-    </div>
-
-    <!-- Conversion Deck -->
-    <section class="section" style="background-color: var(--seafoam);">
-        <div class="container">
-            <div class="text-center mb-xxl">
-                <h2>Explora Panamá</h2>
-                <p class="body-large">Descubre cada provincia y comarca, y encuentra contenido especializado</p>
-            </div>
-            
-            <!-- Province Grid -->
-            <div class="province-exploration">
-                <h3>Provincias y Comarcas</h3>
-                <div class="province-grid">
-                    <div class="province-mini-card" data-province="bocas-del-toro">
-                        <img src="https://via.placeholder.com/200x150/0F5B55/FFFFFF?text=Bocas+del+Toro" alt="Bocas del Toro">
-                        <h4>Bocas del Toro</h4>
-                    </div>
-                    <div class="province-mini-card" data-province="chiriqui">
-                        <img src="https://via.placeholder.com/200x150/8DBB66/FFFFFF?text=Chiriqui" alt="Chiriquí">
-                        <h4>Chiriquí</h4>
-                    </div>
-                    <div class="province-mini-card" data-province="cocle">
-                        <img src="https://via.placeholder.com/200x150/FF7466/FFFFFF?text=Cocle" alt="Coclé">
-                        <h4>Coclé</h4>
-                    </div>
-                    <div class="province-mini-card" data-province="colon">
-                        <img src="https://via.placeholder.com/200x150/2C8AC6/FFFFFF?text=Colon" alt="Colón">
-                        <h4>Colón</h4>
-                    </div>
-                    <div class="province-mini-card" data-province="darien">
-                        <img src="https://via.placeholder.com/200x150/5B4B3F/FFFFFF?text=Darien" alt="Darién">
-                        <h4>Darién</h4>
-                    </div>
-                    <div class="province-mini-card" data-province="herrera">
-                        <img src="https://via.placeholder.com/200x150/8DBB66/FFFFFF?text=Herrera" alt="Herrera">
-                        <h4>Herrera</h4>
-                    </div>
-                    <div class="province-mini-card" data-province="los-santos">
-                        <img src="https://via.placeholder.com/200x150/FF7466/FFFFFF?text=Los+Santos" alt="Los Santos">
-                        <h4>Los Santos</h4>
-                    </div>
-                    <div class="province-mini-card" data-province="panama">
-                        <img src="https://via.placeholder.com/200x150/0F5B55/FFFFFF?text=Panama" alt="Panamá">
-                        <h4>Panamá</h4>
-                    </div>
-                    <div class="province-mini-card" data-province="panama-oeste">
-                        <img src="https://via.placeholder.com/200x150/2C8AC6/FFFFFF?text=Panama+Oeste" alt="Panamá Oeste">
-                        <h4>Panamá Oeste</h4>
-                    </div>
-                    <div class="province-mini-card" data-province="veraguas">
-                        <img src="https://via.placeholder.com/200x150/5B4B3F/FFFFFF?text=Veraguas" alt="Veraguas">
-                        <h4>Veraguas</h4>
-                    </div>
-                    <div class="province-mini-card" data-province="guna-yala">
-                        <img src="https://via.placeholder.com/200x150/0F5B55/FFFFFF?text=Guna+Yala" alt="Guna Yala">
-                        <h4>Guna Yala</h4>
-                    </div>
-                    <div class="province-mini-card" data-province="embera-wounaan">
-                        <img src="https://via.placeholder.com/200x150/8DBB66/FFFFFF?text=Embera-Wounaan" alt="Emberá-Wounaan">
-                        <h4>Emberá-Wounaan</h4>
-                    </div>
-                    <div class="province-mini-card" data-province="ngabe-bugle">
-                        <img src="https://via.placeholder.com/200x150/FF7466/FFFFFF?text=Ngabe-Bugle" alt="Ngäbe-Buglé">
-                        <h4>Ngäbe-Buglé</h4>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Country-Level Content Carousel -->
-            <div class="content-carousel">
-                <h3>Contenido Especializado</h3>
-                <div class="content-slider">
-                    <div class="content-card">
-                        <img src="https://via.placeholder.com/300x200/FF69B4/FFFFFF?text=LGBTQ+Travel" alt="LGBTQ+ Travel">
-                        <div class="content-info">
-                            <h4>Viajes LGBTQ+</h4>
-                            <p>Guía completa para viajeros LGBTQ+ en Panamá</p>
-                            <a href="#" class="btn btn-sm">Leer Más</a>
+            <!-- Calendar Container -->
+            <div class="calendar-container">
+                <!-- January 2025 -->
+                <div class="month-panel active" data-month="january">
+                    <div class="month-header">
+                        <h3>January 2025</h3>
+                        <div class="month-toggle">
+                            <span class="toggle-icon">▼</span>
                         </div>
                     </div>
-                    <div class="content-card">
-                        <img src="https://via.placeholder.com/300x200/87CEEB/FFFFFF?text=Family+Travel" alt="Family Travel">
-                        <div class="content-info">
-                            <h4>Viajes en Familia</h4>
-                            <p>Destinos perfectos para toda la familia</p>
-                            <a href="#" class="btn btn-sm">Leer Más</a>
+                    
+                    <div class="month-content">
+                        <!-- Official Holidays -->
+                        <div class="holiday-category">
+                            <h4>Official Holidays</h4>
+                            <div class="holiday-list">
+                                <div class="holiday-item" data-tooltip="New Year's Day - National holiday">
+                                    <div class="holiday-date">Jan 1 (Wed)</div>
+                                    <div class="holiday-name">New Year's Day</div>
+                                </div>
+                                <div class="holiday-item" data-tooltip="Martyrs' Day - Commemorates the 1964 Flag Riots">
+                                    <div class="holiday-date">Jan 9 (Thu)</div>
+                                    <div class="holiday-name">Martyrs' Day</div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="content-card">
-                        <img src="https://via.placeholder.com/300x200/90EE90/FFFFFF?text=Accessibility" alt="Accessibility">
-                        <div class="content-info">
-                            <h4>Accesibilidad</h4>
-                            <p>Panamá accesible para todos</p>
-                            <a href="#" class="btn btn-sm">Leer Más</a>
+                        
+                        <!-- Festivals & Ferias -->
+                        <div class="festival-category">
+                            <h4>Festivals / Ferias / Fiestas</h4>
+                            <div class="festival-list">
+                                <div class="festival-item" data-tooltip="Encuentro Folklórico del Canajagua y Fiesta de Reyes - Macaracas, Los Santos">
+                                    <div class="festival-dates">Jan 3–7</div>
+                                    <div class="festival-name">Encuentro Folklórico del Canajagua y Fiesta de Reyes</div>
+                                    <div class="festival-location">📍 Macaracas, Los Santos</div>
+                                </div>
+                                
+                                <div class="festival-item" data-tooltip="Feria de las Flores y del Café - Boquete, Chiriquí">
+                                    <div class="festival-dates">Jan 8–19</div>
+                                    <div class="festival-name">Feria de las Flores y del Café</div>
+                                    <div class="festival-location">📍 Boquete, Chiriquí</div>
+                                </div>
+                                
+                                <div class="festival-item" data-tooltip="Desfile de las Mil Polleras - Las Tablas, Los Santos">
+                                    <div class="festival-dates">Jan 11</div>
+                                    <div class="festival-name">Desfile de las Mil Polleras</div>
+                                    <div class="festival-location">📍 Las Tablas, Los Santos</div>
+                                </div>
+                                
+                                <div class="festival-item" data-tooltip="Feria de San Sebastián de Ocú - Ocú, Herrera">
+                                    <div class="festival-dates">Jan 15–20</div>
+                                    <div class="festival-name">Feria de San Sebastián de Ocú</div>
+                                    <div class="festival-location">📍 Ocú, Herrera</div>
+                                </div>
+                                
+                                <div class="festival-item" data-tooltip="Feria de Pixvae - Pixvae de Las Palmas, Veraguas">
+                                    <div class="festival-dates">Jan 16–18</div>
+                                    <div class="festival-name">Feria de Pixvae</div>
+                                    <div class="festival-location">📍 Pixvae de Las Palmas, Veraguas</div>
+                                </div>
+                                
+                                <div class="festival-item" data-tooltip="Feria del Sombrero Pintao - Las Minas de Tulú de Penonomé, Coclé">
+                                    <div class="festival-dates">Jan 17–19</div>
+                                    <div class="festival-name">Feria del Sombrero Pintao</div>
+                                    <div class="festival-location">📍 Las Minas de Tulú de Penonomé, Coclé</div>
+                                </div>
+                                
+                                <div class="festival-item" data-tooltip="Feria Internacional de La Chorrera - La Chorrera, Panamá Oeste">
+                                    <div class="festival-dates">Jan 22–Feb 2</div>
+                                    <div class="festival-name">Feria Internacional de La Chorrera</div>
+                                    <div class="festival-location">📍 La Chorrera, Panamá Oeste</div>
+                                </div>
+                                
+                                <div class="festival-item" data-tooltip="Feria de la Sandía - Calobre, Veraguas">
+                                    <div class="festival-dates">Jan 24–26</div>
+                                    <div class="festival-name">Feria de la Sandía</div>
+                                    <div class="festival-location">📍 Calobre, Veraguas</div>
+                                </div>
+                                
+                                <div class="festival-item" data-tooltip="Feria de La Candelaria - Concepción, Chiriquí">
+                                    <div class="festival-dates">Jan 29–Feb 2</div>
+                                    <div class="festival-name">Feria de La Candelaria</div>
+                                    <div class="festival-location">📍 Concepción, Chiriquí</div>
+                                </div>
+                                
+                                <div class="festival-item" data-tooltip="Feria de la Naranja - Churuquita Grande de Penonomé, Coclé">
+                                    <div class="festival-dates">Jan 29–Feb 2</div>
+                                    <div class="festival-name">Feria de la Naranja</div>
+                                    <div class="festival-location">📍 Churuquita Grande de Penonomé, Coclé</div>
+                                </div>
+                                
+                                <div class="festival-item" data-tooltip="Feria de los Postres - San Francisco de la Montaña, Veraguas">
+                                    <div class="festival-dates">Jan 30–Feb 2</div>
+                                    <div class="festival-name">Feria de los Postres</div>
+                                    <div class="festival-location">📍 San Francisco de la Montaña, Veraguas</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -5653,6 +5806,80 @@
                 });
             });
         });
+        
+        // ===== CALENDAR FUNCTIONALITY =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize calendar
+            initCalendar();
+        });
+        
+        function initCalendar() {
+            // Month panel toggle functionality
+            const monthHeaders = document.querySelectorAll('.month-header');
+            
+            monthHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const monthPanel = this.parentElement;
+                    const isActive = monthPanel.classList.contains('active');
+                    
+                    // Close all other panels
+                    document.querySelectorAll('.month-panel').forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+                    
+                    // Toggle current panel
+                    if (!isActive) {
+                        monthPanel.classList.add('active');
+                    }
+                });
+            });
+            
+            // Event item click functionality (optional modal)
+            const eventItems = document.querySelectorAll('.holiday-item, .festival-item');
+            
+            eventItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const tooltip = this.getAttribute('data-tooltip');
+                    if (tooltip) {
+                        showEventModal(tooltip);
+                    }
+                });
+            });
+        }
+        
+        function showEventModal(tooltip) {
+            // Create modal if it doesn't exist
+            let modal = document.getElementById('eventModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'eventModal';
+                modal.className = 'modal';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div id="eventModalContent"></div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                
+                // Close modal functionality
+                const closeBtn = modal.querySelector('.close');
+                closeBtn.addEventListener('click', () => {
+                    modal.style.display = 'none';
+                });
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Set content and show modal
+            const content = modal.querySelector('#eventModalContent');
+            content.innerHTML = `<p>${tooltip}</p>`;
+            modal.style.display = 'block';
+        }
     </script>
     
 <script src="js/dynamic-css.js"></script>

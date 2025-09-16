@@ -5,9 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "python3 -m http.server 8000",
-    "dev": "python3 -m http.server 8000",
-    "build": "echo 'Static site - no build required'",
-    "deploy": "echo 'Deploy via Railway'"
+    "dev": "python3 -m http.server 8000"
   },
   "keywords": [
     "bocas-del-toro",
@@ -21,10 +19,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/[username]/local-from-bocas.git"
+    "url": "https://github.com/gaguero/localfrombocas.git"
   },
-  "homepage": "https://localfrombocas.com",
-  "engines": {
-    "node": ">=14.0.0"
-  }
+  "homepage": "https://localfrombocas.com"
 }

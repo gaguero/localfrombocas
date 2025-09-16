@@ -1,0 +1,2 @@
+# Static HTML site - no Python dependencies required
+# This file exists to help Railway detect this as a Python project
