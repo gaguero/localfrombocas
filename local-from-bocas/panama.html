@@ -24,6 +24,334 @@
             padding: 0;
             overflow-x: hidden;
         }
+
+        /* ===== SECTION NAVIGATION STYLES ===== */
+        .section-nav {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(15, 91, 85, 0.1);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .section-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-nav-progress {
+            height: 3px;
+            background: rgba(15, 91, 85, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--jungle-teal), var(--ocean-blue));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .section-nav-list {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .section-nav-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-link {
+            color: var(--neutral-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--jungle-teal);
+            background: rgba(15, 91, 85, 0.1);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* ===== UNIFIED CARD SYSTEM ===== */
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(15, 91, 85, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            padding: 1.5rem 1.5rem 0;
+            position: relative;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-footer {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        /* Card Variants */
+        .card--stat {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .card--feature {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card--interactive {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card--interactive::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--jungle-teal), var(--ocean-blue));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .card--interactive:hover::before {
+            opacity: 0.1;
+        }
+
+        /* Card Content Elements */
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--jungle-teal);
+            font-family: var(--font-display);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-label {
+            color: var(--neutral-gray);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--jungle-teal);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-description {
+            color: var(--neutral-gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .card-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .highlight-tag {
+            background: rgba(15, 91, 85, 0.1);
+            color: var(--jungle-teal);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* ===== GRID SYSTEM ===== */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .grid--2-cols {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .grid--3-cols {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .grid--4-cols {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @media (max-width: 1024px) {
+            .grid--4-cols {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid--3-cols {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid--4-cols,
+            .grid--3-cols,
+            .grid--2-cols {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== MICRO-INTERACTIONS ===== */
+        .loading {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .interactive-element {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .interactive-element:hover {
+            transform: translateY(-2px);
+        }
+
+        .interactive-element:active {
+            transform: translateY(0);
+        }
+
+        .focusable:focus {
+            outline: 2px solid var(--jungle-teal);
+            outline-offset: 2px;
+        }
+
+        .btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+        @media (prefers-contrast: high) {
+            .card {
+                border: 2px solid var(--jungle-teal);
+            }
+            
+            .nav-link.active {
+                background: var(--jungle-teal);
+                color: white;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .nav-link:focus,
+        .month-header:focus,
+        .festival-item:focus,
+        .holiday-item:focus {
+            outline: 2px solid var(--jungle-teal);
+            outline-offset: 2px;
+        }
         
         /* Ancho adaptativo inteligente para el mapa */
         .full-width-map-container {
@@ -247,6 +575,19 @@
         }
         
         @media (max-width: 768px) {
+            .section-nav {
+                top: 70px;
+            }
+            
+            .section-nav-list {
+                gap: 1rem;
+            }
+            
+            .nav-link {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+
             .panama-stats {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
@@ -2797,8 +3138,60 @@
         </div>
     </header>
 
+    <!-- Section Navigation -->
+    <nav class="section-nav" id="sectionNav" role="navigation" aria-label="Page sections">
+        <div class="section-nav-container">
+            <div class="section-nav-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <ul class="section-nav-list" role="list">
+                <li role="listitem">
+                    <a href="#hero" class="nav-link active" aria-current="page">
+                        <span class="nav-link-text">Overview</span>
+                        <span class="sr-only">Current section</span>
+                    </a>
+                </li>
+                <li role="listitem">
+                    <a href="#interactive-map" class="nav-link">
+                        <span class="nav-link-text">Map</span>
+                    </a>
+                </li>
+                <li role="listitem">
+                    <a href="#country-snapshot" class="nav-link">
+                        <span class="nav-link-text">Facts</span>
+                    </a>
+                </li>
+                <li role="listitem">
+                    <a href="#canal-timeline" class="nav-link">
+                        <span class="nav-link-text">Canal</span>
+                    </a>
+                </li>
+                <li role="listitem">
+                    <a href="#demographics" class="nav-link">
+                        <span class="nav-link-text">Culture</span>
+                    </a>
+                </li>
+                <li role="listitem">
+                    <a href="#biodiversity" class="nav-link">
+                        <span class="nav-link-text">Nature</span>
+                    </a>
+                </li>
+                <li role="listitem">
+                    <a href="#festivals" class="nav-link">
+                        <span class="nav-link-text">Events</span>
+                    </a>
+                </li>
+                <li role="listitem">
+                    <a href="#calendar" class="nav-link">
+                        <span class="nav-link-text">Calendar</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
-    <section class="hero" style="height: 25vh; min-height: 200px;">
+    <section class="hero" id="hero" style="height: 25vh; min-height: 200px;">
         <div class="hero-content">
             <div class="pill mb-md">🇵🇦 Descubre Panamá</div>
             <h1>La Riqueza de un País Completo</h1>
@@ -2807,31 +3200,38 @@
     </section>
 
     <!-- Mapa Interactivo - Primera Sección -->
-    <div class="full-width-map-container">
-                    <div class="interactive-map-container" id="panamaMap">
-                        <!-- El mapa SVG se generará dinámicamente con JavaScript -->
+    <section id="interactive-map">
+        <div class="full-width-map-container">
+            <div class="interactive-map-container" id="panamaMap" role="img" aria-label="Interactive map showing Panama's provinces and comarcas" tabindex="0">
+                <!-- El mapa SVG se generará dinámicamente con JavaScript -->
+            </div>
+            
+            <!-- Tarjeta dinámica que aparece al hacer hover -->
+            <div id="dynamicCard" class="dynamic-card" style="display: none;">
+                <div class="dynamic-card-content">
+                    <div class="dynamic-card-header">
+                        <img id="dynamicCardImage" src="" alt="" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-md);">
+                        <div class="pill" id="dynamicCardPill">🏝️ Región</div>
                     </div>
-                    
-                    <!-- Tarjeta dinámica que aparece al hacer hover -->
-                    <div id="dynamicCard" class="dynamic-card" style="display: none;">
-                        <div class="dynamic-card-content">
-                            <div class="dynamic-card-header">
-                                <img id="dynamicCardImage" src="" alt="" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-md);">
-                                <div class="pill" id="dynamicCardPill">🏝️ Región</div>
-                            </div>
-                            <div class="dynamic-card-body">
-                                <h3 id="dynamicCardTitle">Título</h3>
-                                <p id="dynamicCardDescription">Descripción de la región...</p>
-                                <div class="dynamic-card-highlights" id="dynamicCardHighlights">
-                                    <!-- Los highlights se llenarán dinámicamente -->
-                                </div>
-                            </div>
+                    <div class="dynamic-card-body">
+                        <h3 id="dynamicCardTitle">Título</h3>
+                        <p id="dynamicCardDescription">Descripción de la región...</p>
+                        <div class="dynamic-card-highlights" id="dynamicCardHighlights">
+                            <!-- Los highlights se llenarán dinámicamente -->
                         </div>
                     </div>
-    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Map Instructions -->
+        <div class="map-instructions" aria-live="polite">
+            <p>Use your mouse to hover over regions or keyboard to navigate. Press Enter to select a region.</p>
+        </div>
+    </section>
 
     <!-- Country Snapshot - Segunda Sección -->
-    <section class="section">
+    <section class="section" id="country-snapshot">
         <div class="container">
             <div class="text-center mb-xxl">
                 <h2>Un País de Contrastes y Belleza</h2>
@@ -2839,76 +3239,60 @@
             </div>
             
             <!-- Country Snapshot Cards -->
-            <div class="country-snapshot-grid">
-                <div class="snapshot-card">
-                    <div class="snapshot-icon">👥</div>
-                    <div class="snapshot-content">
-                        <div class="snapshot-number">4.3M</div>
-                        <div class="snapshot-label">Población (2023)</div>
+            <div class="grid grid--3-cols">
+                <div class="card card--stat interactive-element">
+                    <div class="card-icon">👥</div>
+                    <div class="card-number">4.3M</div>
+                    <div class="card-label">Población (2023)</div>
                 </div>
+                <div class="card card--stat interactive-element">
+                    <div class="card-icon">🏛️</div>
+                    <div class="card-number">13</div>
+                    <div class="card-label">Provincias & Comarcas</div>
                 </div>
-                <div class="snapshot-card">
-                    <div class="snapshot-icon">🏛️</div>
-                    <div class="snapshot-content">
-                        <div class="snapshot-number">13</div>
-                        <div class="snapshot-label">Provincias & Comarcas</div>
+                <div class="card card--stat interactive-element">
+                    <div class="card-icon">🏙️</div>
+                    <div class="card-number">Ciudad de Panamá</div>
+                    <div class="card-label">Capital</div>
                 </div>
+                <div class="card card--stat interactive-element">
+                    <div class="card-icon">🗣️</div>
+                    <div class="card-number">Español</div>
+                    <div class="card-label">Idioma Oficial</div>
                 </div>
-                <div class="snapshot-card">
-                    <div class="snapshot-icon">🏙️</div>
-                    <div class="snapshot-content">
-                        <div class="snapshot-number">Ciudad de Panamá</div>
-                        <div class="snapshot-label">Capital</div>
+                <div class="card card--stat interactive-element">
+                    <div class="card-icon">💵</div>
+                    <div class="card-number">Balboa</div>
+                    <div class="card-label">Moneda</div>
+                </div>
+                <div class="card card--stat interactive-element">
+                    <div class="card-icon">🕐</div>
+                    <div class="card-content">
+                        <div class="card-number">UTC-5</div>
+                        <div class="card-label">Zona Horaria</div>
                     </div>
                 </div>
-                <div class="snapshot-card">
-                    <div class="snapshot-icon">🗣️</div>
-                    <div class="snapshot-content">
-                        <div class="snapshot-number">Español</div>
-                        <div class="snapshot-label">Idioma Oficial</div>
-                    </div>
+                <div class="card card--stat interactive-element">
+                    <div class="card-icon">🌿</div>
+                    <div class="card-number">25%</div>
+                    <div class="card-label">Territorio Protegido</div>
                 </div>
-                <div class="snapshot-card">
-                    <div class="snapshot-icon">💵</div>
-                    <div class="snapshot-content">
-                        <div class="snapshot-number">Balboa</div>
-                        <div class="snapshot-label">Moneda</div>
-                    </div>
+                <div class="card card--stat interactive-element">
+                    <div class="card-icon">🌊</div>
+                    <div class="card-number">2</div>
+                    <div class="card-label">Océanos</div>
                 </div>
-                <div class="snapshot-card">
-                    <div class="snapshot-icon">🕐</div>
-                    <div class="snapshot-content">
-                        <div class="snapshot-number">UTC-5</div>
-                        <div class="snapshot-label">Zona Horaria</div>
-                    </div>
-                </div>
-                <div class="snapshot-card">
-                    <div class="snapshot-icon">🌿</div>
-                    <div class="snapshot-content">
-                        <div class="snapshot-number">25%</div>
-                        <div class="snapshot-label">Territorio Protegido</div>
-                    </div>
-                </div>
-                <div class="snapshot-card">
-                    <div class="snapshot-icon">🌊</div>
-                    <div class="snapshot-content">
-                        <div class="snapshot-number">2</div>
-                        <div class="snapshot-label">Océanos</div>
-                    </div>
-                </div>
-                <div class="snapshot-card">
-                    <div class="snapshot-icon">🏗️</div>
-                    <div class="snapshot-content">
-                        <div class="snapshot-number">1914</div>
-                        <div class="snapshot-label">Canal Inaugurado</div>
-                    </div>
+                <div class="card card--stat interactive-element">
+                    <div class="card-icon">🏗️</div>
+                    <div class="card-number">1914</div>
+                    <div class="card-label">Canal Inaugurado</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Interactive Canal Timeline -->
-    <section class="section" style="background-color: var(--seafoam);">
+    <section class="section" id="canal-timeline" style="background-color: var(--seafoam);">
         <div class="container">
             <div class="text-center mb-xxl">
                 <h2>Historia de Panamá: Un Viaje por el Canal del Tiempo</h2>
@@ -3211,7 +3595,7 @@
     </section>
     
     <!-- Demographics & Cultural Diversity -->
-    <section class="section">
+    <section class="section" id="demographics">
         <div class="container">
             <div class="text-center mb-xxl">
                 <h2>Demographics & Cultural Diversity</h2>
@@ -3495,7 +3879,7 @@
     </section>
 
     <!-- Biodiversity: Flora & Fauna -->
-    <section class="section">
+    <section class="section" id="biodiversity">
         <div class="container">
             <div class="text-center mb-xxl">
                 <h2>Biodiversity of Panama: Flora & Fauna</h2>
@@ -3929,7 +4313,7 @@
     </section>
 
     <!-- Festivals and Celebrations -->
-    <section class="section" style="background-color: var(--seafoam);">
+    <section class="section" id="festivals" style="background-color: var(--seafoam);">
         <div class="container">
             <div class="text-center mb-xxl">
                 <h2>Festivals and Celebrations</h2>
@@ -4166,7 +4550,7 @@
     </section>
 
     <!-- Panama Festival & Holiday Calendar 2025 -->
-    <section class="section" style="background: linear-gradient(135deg, var(--shell-light) 0%, var(--seafoam) 100%);">
+    <section class="section" id="calendar" style="background: linear-gradient(135deg, var(--shell-light) 0%, var(--seafoam) 100%);">
         <div class="container">
             <div class="text-center mb-xxl">
                 <h2>Panama Festival & Holiday Calendar 2025</h2>
@@ -4174,12 +4558,22 @@
             </div>
             
             <!-- Calendar Container -->
-            <div class="calendar-container">
+            <div class="calendar-container" role="region" aria-label="Festival and holiday calendar">
                 <!-- January 2025 -->
-                <div class="month-panel active" data-month="january">
-                    <div class="month-header">
+                <div class="month-panel active" 
+                     data-month="january" 
+                     role="tabpanel" 
+                     aria-labelledby="january-tab"
+                     id="january-panel">
+                    <div class="month-header" 
+                         role="button" 
+                         tabindex="0" 
+                         aria-expanded="true"
+                         aria-controls="january-content"
+                         id="january-tab"
+                         class="focusable">
                         <h3>January 2025</h3>
-                        <div class="month-toggle">
+                        <div class="month-toggle" aria-hidden="true">
                             <span class="toggle-icon">▼</span>
                         </div>
                     </div>
@@ -5807,6 +6201,300 @@
             });
         });
         
+        // ===== UX IMPROVEMENTS - COMPREHENSIVE JAVASCRIPT =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all UX improvements
+            new SectionNavigation();
+            new MicroInteractions();
+            new AccessibilityManager();
+            new PerformanceOptimizer();
+            
+            // Initialize calendar
+            initCalendar();
+        });
+
+        // ===== SECTION NAVIGATION SYSTEM =====
+        class SectionNavigation {
+            constructor() {
+                this.nav = document.getElementById('sectionNav');
+                this.links = document.querySelectorAll('.nav-link');
+                this.sections = document.querySelectorAll('section[id]');
+                this.progressBar = document.getElementById('progressBar');
+                
+                this.init();
+            }
+            
+            init() {
+                this.setupScrollListener();
+                this.setupClickHandlers();
+            }
+            
+            setupScrollListener() {
+                let ticking = false;
+                
+                const updateActiveSection = () => {
+                    const scrollTop = window.pageYOffset;
+                    const windowHeight = window.innerHeight;
+                    const documentHeight = document.documentElement.scrollHeight;
+                    
+                    // Update progress bar
+                    const progress = (scrollTop / (documentHeight - windowHeight)) * 100;
+                    this.progressBar.style.width = `${Math.min(progress, 100)}%`;
+                    
+                    // Update active nav link
+                    this.sections.forEach(section => {
+                        const rect = section.getBoundingClientRect();
+                        const isVisible = rect.top <= 100 && rect.bottom >= 100;
+                        
+                        if (isVisible) {
+                            this.setActiveLink(section.id);
+                        }
+                    });
+                    
+                    ticking = false;
+                };
+                
+                const requestTick = () => {
+                    if (!ticking) {
+                        requestAnimationFrame(updateActiveSection);
+                        ticking = true;
+                    }
+                };
+                
+                window.addEventListener('scroll', requestTick);
+            }
+            
+            setupClickHandlers() {
+                this.links.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('href').substring(1);
+                        const targetSection = document.getElementById(targetId);
+                        
+                        if (targetSection) {
+                            targetSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+            }
+            
+            setActiveLink(sectionId) {
+                this.links.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        }
+
+        // ===== MICRO-INTERACTIONS MANAGER =====
+        class MicroInteractions {
+            constructor() {
+                this.setupHoverEffects();
+                this.setupClickEffects();
+                this.setupLoadingStates();
+            }
+            
+            setupHoverEffects() {
+                const interactiveElements = document.querySelectorAll('.interactive-element');
+                
+                interactiveElements.forEach(element => {
+                    element.addEventListener('mouseenter', () => {
+                        element.style.transform = 'translateY(-2px)';
+                    });
+                    
+                    element.addEventListener('mouseleave', () => {
+                        element.style.transform = 'translateY(0)';
+                    });
+                });
+            }
+            
+            setupClickEffects() {
+                const buttons = document.querySelectorAll('.btn');
+                
+                buttons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        // Create ripple effect
+                        const ripple = document.createElement('span');
+                        const rect = button.getBoundingClientRect();
+                        const size = Math.max(rect.width, rect.height);
+                        const x = e.clientX - rect.left - size / 2;
+                        const y = e.clientY - rect.top - size / 2;
+                        
+                        ripple.style.cssText = `
+                            position: absolute;
+                            width: ${size}px;
+                            height: ${size}px;
+                            left: ${x}px;
+                            top: ${y}px;
+                            background: rgba(255, 255, 255, 0.3);
+                            border-radius: 50%;
+                            transform: scale(0);
+                            animation: ripple 0.6s linear;
+                            pointer-events: none;
+                        `;
+                        
+                        button.appendChild(ripple);
+                        
+                        setTimeout(() => {
+                            ripple.remove();
+                        }, 600);
+                    });
+                });
+            }
+            
+            setupLoadingStates() {
+                // Add loading state to dynamic content
+                const dynamicElements = document.querySelectorAll('[data-loading]');
+                
+                dynamicElements.forEach(element => {
+                    element.classList.add('loading');
+                    
+                    // Simulate loading completion
+                    setTimeout(() => {
+                        element.classList.remove('loading');
+                    }, 1000);
+                });
+            }
+        }
+
+        // ===== ACCESSIBILITY MANAGER =====
+        class AccessibilityManager {
+            constructor() {
+                this.setupKeyboardNavigation();
+                this.setupARIALabels();
+                this.setupFocusManagement();
+            }
+            
+            setupKeyboardNavigation() {
+                // Map keyboard navigation
+                const map = document.getElementById('panamaMap');
+                if (map) {
+                    map.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            this.handleMapSelection();
+                        }
+                    });
+                }
+                
+                // Calendar keyboard navigation
+                const monthHeaders = document.querySelectorAll('.month-header');
+                monthHeaders.forEach(header => {
+                    header.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            header.click();
+                        }
+                    });
+                });
+            }
+            
+            setupARIALabels() {
+                // Update progress bar ARIA value
+                const progressBar = document.getElementById('progressBar');
+                if (progressBar) {
+                    const updateProgress = () => {
+                        const scrollTop = window.pageYOffset;
+                        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+                        const progress = Math.round((scrollTop / documentHeight) * 100);
+                        
+                        progressBar.setAttribute('aria-valuenow', progress);
+                        progressBar.setAttribute('aria-label', `Page progress: ${progress}%`);
+                    };
+                    
+                    window.addEventListener('scroll', updateProgress);
+                }
+            }
+            
+            setupFocusManagement() {
+                // Manage focus for modals
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    modal.addEventListener('keydown', (e) => {
+                        if (e.key === 'Escape') {
+                            modal.style.display = 'none';
+                            // Return focus to trigger element
+                            const trigger = document.activeElement;
+                            if (trigger) trigger.focus();
+                        }
+                    });
+                });
+            }
+            
+            handleMapSelection() {
+                // Handle map selection with keyboard
+                const activeRegion = document.querySelector('.region.active');
+                if (activeRegion) {
+                    const regionName = activeRegion.getAttribute('data-region');
+                    this.showRegionDetails(regionName);
+                }
+            }
+            
+            showRegionDetails(regionName) {
+                // Show region details with proper ARIA announcements
+                const announcement = document.createElement('div');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.setAttribute('aria-atomic', 'true');
+                announcement.className = 'sr-only';
+                announcement.textContent = `Selected region: ${regionName}`;
+                
+                document.body.appendChild(announcement);
+                
+                setTimeout(() => {
+                    document.body.removeChild(announcement);
+                }, 1000);
+            }
+        }
+
+        // ===== PERFORMANCE OPTIMIZER =====
+        class PerformanceOptimizer {
+            constructor() {
+                this.setupLazyLoading();
+                this.setupImageOptimization();
+                this.setupResourceHints();
+            }
+            
+            setupLazyLoading() {
+                // Lazy load images
+                const images = document.querySelectorAll('img[data-src]');
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                
+                images.forEach(img => imageObserver.observe(img));
+            }
+            
+            setupImageOptimization() {
+                // Add responsive image loading
+                const images = document.querySelectorAll('img');
+                images.forEach(img => {
+                    img.loading = 'lazy';
+                    img.decoding = 'async';
+                });
+            }
+            
+            setupResourceHints() {
+                // Preload next likely resources
+                const preloadLink = document.createElement('link');
+                preloadLink.rel = 'preload';
+                preloadLink.href = 'js/main.js';
+                preloadLink.as = 'script';
+                document.head.appendChild(preloadLink);
+            }
+        }
+
         // ===== CALENDAR FUNCTIONALITY =====
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize calendar
