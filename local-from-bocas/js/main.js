@@ -354,7 +354,7 @@ function initVlogsPage() {
     articleCards.forEach(card => {
         card.addEventListener('click', function() {
             // Aquí se puede agregar lógica para abrir el artículo
-            console.log('Artículo clickeado:', this.querySelector('h3').textContent);
+            // Article clicked
         });
     });
 }
@@ -391,7 +391,5 @@ switch(currentPage) {
 
 // ===== CONSOLA DE DESARROLLO =====
 if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    console.log('🏝️ Local From Bocas - Sitio web cargado correctamente');
-    console.log('📧 Para soporte: info@localfrombocas.com');
-    console.log('🌐 Repositorio: https://github.com/gaguero/localfrombocas');
+    // Local From Bocas website loaded successfully
 }

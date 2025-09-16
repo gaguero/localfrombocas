@@ -134,10 +134,7 @@ class ProvinceMap {
         // Use the district features directly (they are now proper districts, not corregimientos)
         const provinceDistricts = districtFeatures;
 
-        console.log('Province:', this.provinceData.name);
-        console.log('Expected districts:', this.provinceData.districts.map(d => d.name));
-        console.log('Found districts:', provinceDistricts.map(f => f.properties.name));
-        console.log('Total districts found:', provinceDistricts.length);
+        // Province data loaded and processed
 
         if (provinceDistricts.length === 0) {
             console.warn('No districts found for province:', this.provinceData.name);
@@ -170,8 +167,7 @@ class ProvinceMap {
             if (g.type === 'MultiPolygon') scanCoords(g.coordinates);
         }
 
-        console.log('Geographic bounds:', { minLon, minLat, maxLon, maxLat });
-        console.log('Lon range:', maxLon - minLon, 'Lat range:', maxLat - minLat);
+        // Geographic bounds calculated
 
         // Focus on the main Bocas del Toro archipelago
         // Exclude extreme outliers like Escudo de Veraguas that distort the view
@@ -211,12 +207,7 @@ class ProvinceMap {
         svg.style.width = '100%';
         svg.style.height = '100%';
 
-        console.log('Focused bounds:', { mainLonMin, mainLonMax, mainLatMin, mainLatMax });
-        console.log('Focused ranges:', { focusedLonRange, focusedLatRange });
-        console.log('ViewBox dimensions:', { viewW, viewH });
-        console.log('Aspect ratio:', aspectRatio);
-        console.log('Scale factors:', { scaleX, scaleY, scale });
-        console.log('Center point:', { centerX, centerY });
+        // Map projection calculations completed
 
         function pathFromPolygon(coords) {
             let d = '';
@@ -553,7 +544,7 @@ class ProvinceMap {
 
     // Handle district click
     onDistrictClick(districtName) {
-        console.log('District clicked:', districtName);
+        // District selected
         // You can add navigation or other actions here
     }
 
@@ -683,7 +674,7 @@ class ProvinceMap {
                     svg.style.height = '100vh';
                 }
             }).catch(err => {
-                console.log('Error attempting to enable fullscreen:', err);
+                // Fullscreen error handled
             });
         } else {
             document.exitFullscreen().then(() => {

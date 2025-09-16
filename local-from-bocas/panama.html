@@ -8,9 +8,11 @@
     <meta name="keywords" content="Panamá, provincias Panamá, comarcas indígenas, geografía Panamá, cultura panameña">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/geojson-map.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         /* Estilos globales para ancho completo */
         * {
@@ -50,7 +52,7 @@
         
         .hero {
             background: linear-gradient(135deg, var(--jungle-teal) 0%, var(--ocean-blue) 100%);
-            background-image: url('https://via.placeholder.com/1920x800/0F5B55/FFFFFF?text=Panama+Completo');
+            background-image: url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-blend-mode: overlay;
@@ -1418,11 +1420,102 @@
             }
         }
         
-        /* Cultural Diversity & National Symbols Styles */
-        .cultural-section {
+        /* Demographics & Cultural Diversity Styles */
+        .cultural-diversity-section {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-top: 2rem;
+        }
+        
+        /* Pie Chart Styles */
+        .pie-chart-container {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .pie-chart-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--jungle-teal);
+            margin-bottom: 1rem;
+            font-family: var(--font-display);
+        }
+        
+        .pie-chart-wrapper {
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .pie-chart-legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .chart-stats {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .stat-box {
+            background: var(--seafoam);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+        
+        .stat-percentage {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--jungle-teal);
+            font-family: var(--font-display);
+        }
+        
+        .stat-population {
+            font-size: 0.9rem;
+            color: var(--neutral-gray);
+            margin-top: 0.25rem;
+        }
+        
+        @media (max-width: 768px) {
+            .cultural-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .pie-chart-wrapper {
+                max-width: 300px;
+            }
+            
+            .chart-stats {
+                grid-template-columns: 1fr;
+            }
         }
         
         .cultural-diversity h3,
@@ -1440,87 +1533,23 @@
             box-shadow: var(--shadow-sm);
         }
         
-        .cultural-groups {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
         
-        .cultural-group {
+        
+        /* National Symbols Slider Styles */
+        .symbols-slider-container {
+            position: relative;
             display: flex;
             align-items: center;
             gap: 1rem;
+            margin: 2rem 0;
         }
         
-        .group-color {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-        }
-        
-        .cultural-group.indigenous .group-color {
-            background: #FF6B6B;
-        }
-        
-        .cultural-group.afro-caribbean .group-color {
-            background: #4ECDC4;
-        }
-        
-        .cultural-group.mestizo .group-color {
-            background: #45B7D1;
-        }
-        
-        .cultural-map-visual {
-            height: 200px;
-            background: #f8f9fa;
-            border-radius: var(--radius-md);
-            position: relative;
+        .symbols-slider {
+            display: flex;
             overflow: hidden;
-        }
-        
-        .panama-outline {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            background: linear-gradient(45deg, #e8f4f8, #d1e7dd);
-        }
-        
-        .indigenous-areas,
-        .afro-caribbean-areas,
-        .mestizo-areas {
-            position: absolute;
-            border-radius: 50%;
-        }
-        
-        .indigenous-areas {
-            top: 20%;
-            left: 10%;
-            width: 30px;
-            height: 30px;
-            background: #FF6B6B;
-        }
-        
-        .afro-caribbean-areas {
-            top: 60%;
-            left: 15%;
-            width: 25px;
-            height: 25px;
-            background: #4ECDC4;
-        }
-        
-        .mestizo-areas {
-            top: 40%;
-            right: 20%;
-            width: 40px;
-            height: 40px;
-            background: #45B7D1;
-        }
-        
-        .symbols-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
+            scroll-behavior: smooth;
+            flex: 1;
         }
         
         .symbol-card {
@@ -1529,49 +1558,543 @@
             border-radius: var(--radius-lg);
             text-align: center;
             box-shadow: var(--shadow-sm);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-width: 200px;
+            flex-shrink: 0;
         }
         
         .symbol-card:hover {
             transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
         }
         
         .symbol-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
         }
         
         .symbol-name {
             color: var(--jungle-teal);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .symbol-preview {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+        
+        .slider-btn {
+            background: var(--jungle-teal);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slider-btn:hover {
+            background: var(--ocean-blue);
+            transform: scale(1.1);
+        }
+        
+        .slider-btn:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background: var(--jungle-teal);
+            transform: scale(1.2);
+        }
+        
+        .dot:hover {
+            background: var(--ocean-blue);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--text-muted);
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .modal-close:hover {
+            color: var(--jungle-teal);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--jungle-teal), var(--ocean-blue));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+        
+        .modal-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+        
+        .modal-image {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-image img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .modal-description p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-facts {
+            background: var(--seafoam);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--jungle-teal);
+        }
+        
+        .modal-facts h4 {
+            color: var(--jungle-teal);
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+        }
+        
+        .modal-facts ul {
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+        
+        .modal-facts li {
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
         }
         
         @media (max-width: 1024px) {
-            .cultural-section {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .cultural-diversity-section {
+                margin-top: 1.5rem;
+                padding: 1.5rem;
             }
         }
         
         @media (max-width: 768px) {
-            .symbols-grid {
-                grid-template-columns: repeat(3, 1fr);
+            .symbols-slider {
+                gap: 0.75rem;
+            }
+            
+            .symbol-card {
+                min-width: 160px;
+                padding: 1rem;
+            }
+            
+            .symbol-icon {
+                font-size: 2rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+            
+            .modal-header {
+                padding: 1.5rem;
+            }
+            
+            .modal-body {
+                padding: 1.5rem;
             }
         }
         
-        @media (max-width: 480px) {
-            .symbols-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        /* Biodiversity Showcase Styles */
-        .biodiversity-carousel {
+        /* Biodiversity Flora & Fauna Styles */
+        .biodiversity-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
             margin-bottom: 2rem;
+        }
+        
+        .biodiversity-column {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .column-title {
+            font-size: 1.5rem;
+            color: var(--jungle-teal);
+            margin-bottom: 2rem;
+            text-align: center;
+            border-bottom: 2px solid var(--seafoam);
+            padding-bottom: 1rem;
+        }
+        
+        .species-category {
+            margin-bottom: 2rem;
+        }
+        
+        .category-title {
+            font-size: 1.2rem;
+            color: var(--ocean-blue);
+            margin-bottom: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: var(--seafoam);
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+        }
+        
+        .category-title:hover {
+            background: var(--jungle-teal);
+            color: white;
+        }
+        
+        .expand-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .category-title.active .expand-icon {
+            transform: rotate(45deg);
+        }
+        
+        .species-list {
+            display: none;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .species-list.active {
+            display: flex;
+        }
+        
+        .species-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: var(--seafoam);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .species-item:hover {
+            background: white;
+            border-left-color: var(--jungle-teal);
+            box-shadow: var(--shadow-sm);
+            transform: translateX(4px);
+        }
+        
+        .species-info {
+            flex: 1;
+        }
+        
+        .species-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .species-scientific {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .species-status {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+        }
+        
+        .species-status.native {
+            background: var(--ocean-blue);
+            color: white;
+        }
+        
+        .species-status.endemic {
+            background: var(--jungle-teal);
+            color: white;
+        }
+        
+        .species-image {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .species-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Mobile Accordion Styles */
+        @media (max-width: 768px) {
+            .biodiversity-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .biodiversity-column {
+                padding: 1.5rem;
+            }
+            
+            .species-item {
+                padding: 0.75rem;
+            }
+            
+            .species-image {
+                width: 50px;
+                height: 50px;
+            }
+        }
+        
+        /* Festivals Accordion Styles */
+        .festivals-accordion {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .month-accordion {
+            background: white;
+            border-radius: var(--radius-lg);
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+        
+        .month-header {
+            background: var(--jungle-teal);
+            color: white;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .month-header:hover {
+            background: var(--ocean-blue);
+        }
+        
+        .month-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .expand-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .month-header.active .expand-icon {
+            transform: rotate(45deg);
+        }
+        
+        .month-content {
+            display: none;
+            padding: 2rem;
+        }
+        
+        .month-content.active {
+            display: block;
+        }
+        
+        .holidays-section, .festivals-section {
+            margin-bottom: 2rem;
+        }
+        
+        .holidays-section:last-child, .festivals-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            color: var(--jungle-teal);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--seafoam);
+        }
+        
+        .holidays-list, .festivals-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .holiday-item, .festival-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: var(--seafoam);
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .holiday-item:hover, .festival-item:hover {
+            background: white;
+            box-shadow: var(--shadow-sm);
+            transform: translateX(4px);
+        }
+        
+        .holiday-date, .festival-dates {
+            font-weight: 600;
+            color: var(--ocean-blue);
+            min-width: 120px;
+            font-size: 0.9rem;
+        }
+        
+        .holiday-name, .festival-info {
+            flex: 1;
+            margin-left: 1rem;
+        }
+        
+        .festival-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .festival-location {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .no-holidays, .no-festivals {
+            text-align: center;
+            color: var(--text-muted);
+            font-style: italic;
+            padding: 2rem;
+            background: var(--seafoam);
+            border-radius: var(--radius-md);
+        }
+        
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .month-header {
+                padding: 1rem;
+            }
+            
+            .month-title {
+                font-size: 1.25rem;
+            }
+            
+            .month-content {
+                padding: 1.5rem;
+            }
+            
+            .holiday-item, .festival-item {
+                padding: 0.75rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .holiday-date, .festival-dates {
+                min-width: auto;
+                margin-bottom: 0.5rem;
+            }
+            
+            .holiday-name, .festival-info {
+                margin-left: 0;
+            }
         }
         
         .species-card {
@@ -2125,7 +2648,7 @@
         <div class="container">
             <div class="text-center mb-xxl">
                 <h2>Un País de Contrastes y Belleza</h2>
-                <p class="body-large mb-lg">Panamá es mucho más que su famoso canal. Es un país que conecta dos océanos y dos continentes, creando una diversidad única de ecosistemas, culturas y tradiciones.</p>
+                <p class="body-large mb-lg">Panamá es mucho más que su famoso canal. Es un país que conecta dos océanos y dos continentes, creando una diversidad única de ecosistemas, culturas y tradiciones. Desde las playas caribeñas de Bocas del Toro hasta las montañas de Chiriquí, cada región ofrece experiencias únicas e inolvidables.</p>
             </div>
             
             <!-- Country Snapshot Cards -->
@@ -2134,7 +2657,7 @@
                     <div class="snapshot-icon">👥</div>
                     <div class="snapshot-content">
                         <div class="snapshot-number">4.3M</div>
-                        <div class="snapshot-label">Población</div>
+                        <div class="snapshot-label">Población (2023)</div>
                 </div>
                 </div>
                 <div class="snapshot-card">
@@ -2500,25 +3023,25 @@
         </div>
     </section>
     
-    <!-- Population Demographics -->
+    <!-- Demographics & Cultural Diversity -->
     <section class="section">
         <div class="container">
             <div class="text-center mb-xxl">
-                <h2>Demografía Panameña: Crecimiento y Distribución</h2>
-                <p class="body-large">Evolución poblacional desde 1911 hasta 2023</p>
+                <h2>Demographics & Cultural Diversity</h2>
+                <p class="body-large">Population growth, distribution, and ethnic composition of Panama</p>
             </div>
             
             <!-- Population Timeline -->
             <div class="population-timeline mb-xxl">
-                <h3 class="text-center mb-lg">📈 Crecimiento Poblacional</h3>
+                <h3 class="text-center mb-lg">📈 Population Growth</h3>
                 <div class="timeline-context">
-                    <p class="context-note">*Datos de 1911 corresponden al primer censo oficial realizado en Panamá</p>
+                    <p class="context-note">*Data from 1911 corresponds to the first official census conducted in Panama</p>
                 </div>
                 <div class="timeline-stats">
                     <div class="timeline-item">
                         <div class="year">1911*</div>
                         <div class="population">336,742</div>
-                        <div class="growth">Primer censo</div>
+                        <div class="growth">First census</div>
                     </div>
                     <div class="timeline-item">
                         <div class="year">2023</div>
@@ -2530,22 +3053,22 @@
 
             <!-- Gender Distribution -->
             <div class="gender-distribution mb-xxl">
-                <h3 class="text-center mb-lg">👨‍👩‍👧‍👦 Distribución por Sexo</h3>
+                <h3 class="text-center mb-lg">👨‍👩‍👧‍👦 Gender Distribution</h3>
                 <div class="gender-stats">
                     <div class="gender-card male">
                         <div class="gender-number">2,014,818</div>
-                        <div class="gender-label">Hombres (49.6%)</div>
+                        <div class="gender-label">Male (49.6%)</div>
                     </div>
                     <div class="gender-card female">
                         <div class="gender-number">2,049,962</div>
-                        <div class="gender-label">Mujeres (50.4%)</div>
+                        <div class="gender-label">Female (50.4%)</div>
                     </div>
                 </div>
             </div>
 
             <!-- Provincial Distribution -->
             <div class="provincial-population mb-xxl">
-                <h3 class="text-center mb-lg">🏛️ Distribución Provincial y Comarcas</h3>
+                <h3 class="text-center mb-lg">🏛️ Provincial and Comarca Distribution</h3>
                 <div class="province-grid">
                     <div class="province-item">
                         <div class="province-name">Panamá</div>
@@ -2682,175 +3205,551 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Cultural Diversity -->
+            <div class="cultural-diversity-section">
+                <h3 class="text-center mb-lg">🌍 Cultural Diversity</h3>
+                <div class="pie-chart-container">
+                    <div class="pie-chart-title">Panama's Ethnic Composition (2023)</div>
+                    <div class="pie-chart-wrapper">
+                        <canvas id="culturalDiversityChart" width="400" height="400"></canvas>
+                    </div>
+                    
+                    <!-- Legend -->
+                    <div class="pie-chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #8DBB66;"></div>
+                            <span>Mestizo Majority (51.1%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #2C8AC6;"></div>
+                            <span>Afro-descendants (31.7%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #0F5B55;"></div>
+                            <span>Indigenous Peoples (17.2%)</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Statistics Boxes -->
+                    <div class="chart-stats">
+                        <div class="stat-box">
+                            <div class="stat-percentage">51.1%</div>
+                            <div class="stat-population">2,079,809 people</div>
+                            <div style="font-size: 0.8rem; color: var(--jungle-teal); margin-top: 0.5rem;">Mestizo Majority</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-percentage">31.7%</div>
+                            <div class="stat-population">1,286,857 people</div>
+                            <div style="font-size: 0.8rem; color: var(--ocean-blue); margin-top: 0.5rem;">Afro-descendants</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-percentage">17.2%</div>
+                            <div class="stat-population">698,114 people</div>
+                            <div style="font-size: 0.8rem; color: var(--jungle-teal); margin-top: 0.5rem;">Indigenous Peoples</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Cultural Diversity & National Symbols -->
+    <!-- National Symbols -->
     <section class="section" style="background-color: var(--seafoam);">
         <div class="container">
             <div class="text-center mb-xxl">
-                <h2>Diversidad Cultural y Símbolos Nacionales</h2>
-                <p class="body-large">Un país rico en tradiciones y símbolos que representan nuestra identidad</p>
+                <h2>National Symbols</h2>
+                <p class="body-large">Rich traditions and symbols that represent our national identity</p>
             </div>
             
-            <div class="cultural-section">
-                <!-- Cultural Diversity Map -->
-                <div class="cultural-diversity">
-                    <h3>Diversidad Cultural</h3>
-                    <div class="cultural-map">
-                        <div class="cultural-groups">
-                            <div class="cultural-group indigenous">
-                                <div class="group-color"></div>
-                                <span>Comarcas Indígenas</span>
+            <!-- National Symbols Slider -->
+            <div class="national-symbols">
+                    <div class="symbols-slider-container">
+                        <button class="slider-btn prev-btn" aria-label="Previous symbol">‹</button>
+                        <div class="symbols-slider">
+                            <div class="symbol-card" data-symbol="flag">
+                                <div class="symbol-icon">🏴</div>
+                                <div class="symbol-name">Flag</div>
+                                <div class="symbol-preview">Click to learn more</div>
                             </div>
-                            <div class="cultural-group afro-caribbean">
-                                <div class="group-color"></div>
-                                <span>Herencia Afrocaribeña</span>
+                            <div class="symbol-card" data-symbol="anthem">
+                                <div class="symbol-icon">🎵</div>
+                                <div class="symbol-name">National Anthem</div>
+                                <div class="symbol-preview">Click to learn more</div>
                             </div>
-                            <div class="cultural-group mestizo">
-                                <div class="group-color"></div>
-                                <span>Mayoría Mestiza</span>
+                            <div class="symbol-card" data-symbol="coat">
+                                <div class="symbol-icon">🛡️</div>
+                                <div class="symbol-name">Coat of Arms</div>
+                                <div class="symbol-preview">Click to learn more</div>
+                            </div>
+                            <div class="symbol-card" data-symbol="eagle">
+                                <div class="symbol-icon">🦅</div>
+                                <div class="symbol-name">Harpy Eagle</div>
+                                <div class="symbol-preview">Click to learn more</div>
+                            </div>
+                            <div class="symbol-card" data-symbol="orchid">
+                                <div class="symbol-icon">🌸</div>
+                                <div class="symbol-name">Holy Spirit Orchid</div>
+                                <div class="symbol-preview">Click to learn more</div>
                             </div>
                         </div>
-                        <div class="cultural-map-visual">
-                            <div class="panama-outline">
-                                <div class="indigenous-areas"></div>
-                                <div class="afro-caribbean-areas"></div>
-                                <div class="mestizo-areas"></div>
-                            </div>
-                        </div>
+                        <button class="slider-btn next-btn" aria-label="Next symbol">›</button>
                     </div>
-                </div>
-                
-                <!-- National Symbols Grid -->
-                <div class="national-symbols">
-                    <h3>Símbolos Nacionales</h3>
-                    <div class="symbols-grid">
-                        <div class="symbol-card">
-                            <div class="symbol-icon">🏴</div>
-                            <div class="symbol-name">Bandera</div>
-                        </div>
-                        <div class="symbol-card">
-                            <div class="symbol-icon">🎵</div>
-                            <div class="symbol-name">Himno Nacional</div>
-                        </div>
-                        <div class="symbol-card">
-                            <div class="symbol-icon">🛡️</div>
-                            <div class="symbol-name">Escudo de Armas</div>
-                        </div>
-                        <div class="symbol-card">
-                            <div class="symbol-icon">🦅</div>
-                            <div class="symbol-name">Águila Harpía</div>
-                        </div>
-                        <div class="symbol-card">
-                            <div class="symbol-icon">🌸</div>
-                            <div class="symbol-name">Orquídea del Espíritu Santo</div>
-                        </div>
-                        <div class="symbol-card">
-                            <div class="symbol-icon">🌳</div>
-                            <div class="symbol-name">Árbol Nacional</div>
-                        </div>
+                    <div class="slider-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
+                        <span class="dot" data-slide="4"></span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Biodiversity Showcase -->
+    <!-- Biodiversity: Flora & Fauna -->
     <section class="section">
         <div class="container">
             <div class="text-center mb-xxl">
-                <h2>Biodiversidad Excepcional</h2>
-                <p class="body-large">Especies icónicas que hacen de Panamá un paraíso natural</p>
+                <h2>Biodiversity of Panama: Flora & Fauna</h2>
+                <p class="body-large">Panama is a biodiversity hotspot, home to a wide variety of native and endemic species of mammals, birds, amphibians, reptiles, marine life, trees, and plants. This incredible diversity makes Panama one of the most biologically rich countries in the world.</p>
             </div>
             
-            <div class="biodiversity-carousel">
-                <div class="species-card">
-                    <div class="species-image">
-                        <img src="https://via.placeholder.com/300x200/0F5B55/FFFFFF?text=Aguila+Harpia" alt="Águila Harpía">
+            <div class="biodiversity-container">
+                <!-- Fauna Column -->
+                <div class="biodiversity-column fauna-column">
+                    <h3 class="column-title">🦎 Fauna</h3>
+                    
+                    <!-- Mammals -->
+                    <div class="species-category">
+                        <h4 class="category-title" data-category="mammals">🐒 Mammals <span class="expand-icon">+</span></h4>
+                        <div class="species-list" id="mammals">
+                            <div class="species-item" data-species="coiba-howler">
+                                <div class="species-info">
+                                    <div class="species-name">Coiba Howler Monkey</div>
+                                    <div class="species-scientific">Alouatta coibensis</div>
+                                    <div class="species-status endemic">Endemic to Coiba Island</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Coiba Howler Monkey">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="agouti">
+                                <div class="species-info">
+                                    <div class="species-name">Central American Agouti</div>
+                                    <div class="species-scientific">Dasyprocta punctata</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Central American Agouti">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="pygmy-sloth">
+                                <div class="species-info">
+                                    <div class="species-name">Pygmy Three-toed Sloth</div>
+                                    <div class="species-scientific">Bradypus pygmaeus</div>
+                                    <div class="species-status endemic">Endemic to Escudo de Veraguas</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Pygmy Three-toed Sloth">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="jaguar">
+                                <div class="species-info">
+                                    <div class="species-name">Jaguar</div>
+                                    <div class="species-scientific">Panthera onca</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Jaguar">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="puma">
+                                <div class="species-info">
+                                    <div class="species-name">Puma / Cougar</div>
+                                    <div class="species-scientific">Puma concolor</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Puma">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="kinkajou">
+                                <div class="species-info">
+                                    <div class="species-name">Kinkajou</div>
+                                    <div class="species-scientific">Potos flavus</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Kinkajou">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="tamandua">
+                                <div class="species-info">
+                                    <div class="species-name">Tamandua / Lesser Anteater</div>
+                                    <div class="species-scientific">Tamandua mexicana</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Tamandua">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="species-info">
-                        <h3>Águila Harpía</h3>
-                        <p>Ave nacional de Panamá, una de las águilas más poderosas del mundo</p>
+                    
+                    <!-- Birds -->
+                    <div class="species-category">
+                        <h4 class="category-title" data-category="birds">🦅 Birds <span class="expand-icon">+</span></h4>
+                        <div class="species-list" id="birds">
+                            <div class="species-item" data-species="scarlet-macaw">
+                                <div class="species-info">
+                                    <div class="species-name">Scarlet Macaw</div>
+                                    <div class="species-scientific">Ara macao</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Scarlet Macaw">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="quetzal">
+                                <div class="species-info">
+                                    <div class="species-name">Resplendent Quetzal</div>
+                                    <div class="species-scientific">Pharomachrus mocinno</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Resplendent Quetzal">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="harpy-eagle">
+                                <div class="species-info">
+                                    <div class="species-name">Harpy Eagle</div>
+                                    <div class="species-scientific">Harpia harpyja</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Harpy Eagle">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="escudo-hummingbird">
+                                <div class="species-info">
+                                    <div class="species-name">Escudo Hummingbird</div>
+                                    <div class="species-scientific">Amazilia handleyi</div>
+                                    <div class="species-status endemic">Endemic to Escudo de Veraguas</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Escudo Hummingbird">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="manakin">
+                                <div class="species-info">
+                                    <div class="species-name">Golden-collared Manakin</div>
+                                    <div class="species-scientific">Manacus vitellinus amitinus</div>
+                                    <div class="species-status endemic">Endemic to Escudo de Veraguas</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Golden-collared Manakin">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Amphibians -->
+                    <div class="species-category">
+                        <h4 class="category-title" data-category="amphibians">🐸 Amphibians <span class="expand-icon">+</span></h4>
+                        <div class="species-list" id="amphibians">
+                            <div class="species-item" data-species="golden-frog">
+                                <div class="species-info">
+                                    <div class="species-name">Panamanian Golden Frog</div>
+                                    <div class="species-scientific">Atelopus zeteki</div>
+                                    <div class="species-status endemic">Endemic</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Panamanian Golden Frog">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="oedipina">
+                                <div class="species-info">
+                                    <div class="species-name">Oedipina maritima</div>
+                                    <div class="species-scientific">Oedipina maritima</div>
+                                    <div class="species-status endemic">Endemic to Escudo de Veraguas</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Oedipina maritima">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reptiles -->
+                    <div class="species-category">
+                        <h4 class="category-title" data-category="reptiles">🐍 Reptiles <span class="expand-icon">+</span></h4>
+                        <div class="species-list" id="reptiles">
+                            <div class="species-item" data-species="crocodile">
+                                <div class="species-info">
+                                    <div class="species-name">American Crocodile</div>
+                                    <div class="species-scientific">Crocodylus acutus</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="American Crocodile">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="fer-de-lance">
+                                <div class="species-info">
+                                    <div class="species-name">Terciopelo / Fer-de-lance</div>
+                                    <div class="species-scientific">Bothrops asper</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Fer-de-lance">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="green-turtle">
+                                <div class="species-info">
+                                    <div class="species-name">Green Sea Turtle</div>
+                                    <div class="species-scientific">Chelonia mydas</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Green Sea Turtle">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Marine/Aquatic -->
+                    <div class="species-category">
+                        <h4 class="category-title" data-category="marine">🐠 Marine/Aquatic <span class="expand-icon">+</span></h4>
+                        <div class="species-list" id="marine">
+                            <div class="species-item" data-species="corals">
+                                <div class="species-info">
+                                    <div class="species-name">Corals (various species)</div>
+                                    <div class="species-scientific">Various species</div>
+                                    <div class="species-status native">Native to Panamanian coasts</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Corals">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="parrotfish">
+                                <div class="species-info">
+                                    <div class="species-name">Rainbow Parrotfish</div>
+                                    <div class="species-scientific">Scarus guacamaia</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Rainbow Parrotfish">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="conch">
+                                <div class="species-info">
+                                    <div class="species-name">Queen Conch</div>
+                                    <div class="species-scientific">Lobatus gigas</div>
+                                    <div class="species-status native">Native to Caribbean coast</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Queen Conch">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="species-card">
-                    <div class="species-image">
-                        <img src="https://via.placeholder.com/300x200/FFD700/FFFFFF?text=Rana+Dorada" alt="Rana Dorada">
+                <!-- Flora Column -->
+                <div class="biodiversity-column flora-column">
+                    <h3 class="column-title">🌿 Flora</h3>
+                    
+                    <!-- Trees -->
+                    <div class="species-category">
+                        <h4 class="category-title" data-category="trees">🌳 Trees <span class="expand-icon">+</span></h4>
+                        <div class="species-list" id="trees">
+                            <div class="species-item" data-species="gumbo-limbo">
+                                <div class="species-info">
+                                    <div class="species-name">Gumbo-limbo</div>
+                                    <div class="species-scientific">Bursera simaruba</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Gumbo-limbo">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="star-apple">
+                                <div class="species-info">
+                                    <div class="species-name">Caimito / Star Apple</div>
+                                    <div class="species-scientific">Chrysophyllum cainito</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Star Apple">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="brownea">
+                                <div class="species-info">
+                                    <div class="species-name">Brownea macrophylla</div>
+                                    <div class="species-scientific">Brownea macrophylla</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Brownea macrophylla">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="wild-cashew">
+                                <div class="species-info">
+                                    <div class="species-name">Marañón / Wild Cashew</div>
+                                    <div class="species-scientific">Caryocar costaricense</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Wild Cashew">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="cecropia">
+                                <div class="species-info">
+                                    <div class="species-name">Cecropia peltata</div>
+                                    <div class="species-scientific">Cecropia peltata</div>
+                                    <div class="species-status native">Native pioneer tree</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Cecropia peltata">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="species-info">
-                        <h3>Rana Dorada</h3>
-                        <p>Especie endémica de Panamá, símbolo de conservación</p>
+                    
+                    <!-- Plants/Shrubs -->
+                    <div class="species-category">
+                        <h4 class="category-title" data-category="plants">🌱 Plants/Shrubs <span class="expand-icon">+</span></h4>
+                        <div class="species-list" id="plants">
+                            <div class="species-item" data-species="achiote">
+                                <div class="species-info">
+                                    <div class="species-name">Achiote / Annatto</div>
+                                    <div class="species-scientific">Bixa orellana</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Achiote">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="hoja-santa">
+                                <div class="species-info">
+                                    <div class="species-name">Hoja Santa</div>
+                                    <div class="species-scientific">Piper auritum</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Hoja Santa">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="cacao">
+                                <div class="species-info">
+                                    <div class="species-name">Cacao</div>
+                                    <div class="species-scientific">Theobroma cacao</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Cacao">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="heliconia">
+                                <div class="species-info">
+                                    <div class="species-name">Heliconia collinsiana</div>
+                                    <div class="species-scientific">Heliconia collinsiana</div>
+                                    <div class="species-status native">Native, ornamental</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Heliconia">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="zamia">
+                                <div class="species-info">
+                                    <div class="species-name">Zamia hamannii</div>
+                                    <div class="species-scientific">Zamia hamannii</div>
+                                    <div class="species-status endemic">Endemic to Escudo de Veraguas</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Zamia hamannii">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="species-card">
-                    <div class="species-image">
-                        <img src="https://via.placeholder.com/300x200/8DBB66/FFFFFF?text=Perezoso" alt="Perezoso">
-                    </div>
-                    <div class="species-info">
-                        <h3>Perezoso</h3>
-                        <p>Mamífero emblemático de los bosques tropicales panameños</p>
-                    </div>
-                </div>
-                
-                <div class="species-card">
-                    <div class="species-image">
-                        <img src="https://via.placeholder.com/300x200/4682B4/FFFFFF?text=Tortugas+Marinas" alt="Tortugas Marinas">
-                    </div>
-                    <div class="species-info">
-                        <h3>Tortugas Marinas</h3>
-                        <p>Importantes sitios de anidación en las costas panameñas</p>
-                    </div>
-                </div>
-                
-                <div class="species-card">
-                    <div class="species-image">
-                        <img src="https://via.placeholder.com/300x200/FF69B4/FFFFFF?text=Orquideas" alt="Orquídeas">
-                    </div>
-                    <div class="species-info">
-                        <h3>Orquídeas</h3>
-                        <p>Más de 1,200 especies, incluyendo la flor nacional</p>
-                    </div>
-                </div>
-                
-                <div class="species-card">
-                    <div class="species-image">
-                        <img src="https://via.placeholder.com/300x200/87CEEB/FFFFFF?text=Ballenas" alt="Ballenas">
-                    </div>
-                    <div class="species-info">
-                        <h3>Ballenas</h3>
-                        <p>Migración anual de ballenas jorobadas en el Pacífico</p>
-                    </div>
-                </div>
-                
-                <div class="species-card">
-                    <div class="species-image">
-                        <img src="https://via.placeholder.com/300x200/8B4513/FFFFFF?text=Monos" alt="Monos">
-                    </div>
-                    <div class="species-info">
-                        <h3>Monos</h3>
-                        <p>Diversas especies de primates en los bosques tropicales</p>
+                    
+                    <!-- Mangroves -->
+                    <div class="species-category">
+                        <h4 class="category-title" data-category="mangroves">🌊 Mangroves <span class="expand-icon">+</span></h4>
+                        <div class="species-list" id="mangroves">
+                            <div class="species-item" data-species="red-mangrove">
+                                <div class="species-info">
+                                    <div class="species-name">Red Mangrove</div>
+                                    <div class="species-scientific">Rhizophora mangle</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Red Mangrove">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="black-mangrove">
+                                <div class="species-info">
+                                    <div class="species-name">Black Mangrove</div>
+                                    <div class="species-scientific">Avicennia germinans</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="Black Mangrove">
+                                </div>
+                            </div>
+                            
+                            <div class="species-item" data-species="white-mangrove">
+                                <div class="species-info">
+                                    <div class="species-name">White Mangrove</div>
+                                    <div class="species-scientific">Laguncularia racemosa</div>
+                                    <div class="species-status native">Native</div>
+                                </div>
+                                <div class="species-image">
+                                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&q=80" alt="White Mangrove">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="text-center mt-lg">
-                <a href="#" class="btn btn-primary">Conocer Más sobre Biodiversidad</a>
-            </div>
         </div>
     </section>
 
-    <!-- Festivals Overview -->
+    <!-- Festivals and Celebrations -->
     <section class="section" style="background-color: var(--seafoam);">
         <div class="container">
             <div class="text-center mb-xxl">
-                <h2>Festivales y Celebraciones</h2>
-                <p class="body-large">Descubre la rica tradición cultural de Panamá a través de sus festivales</p>
+                <h2>Festivals and Celebrations</h2>
+                <p class="body-large">Discover Panama's rich cultural traditions through its vibrant festivals, fairs, and celebrations throughout the year</p>
             </div>
             
-            <div class="festivals-container">
+            <div class="festivals-accordion">
                 <div class="festival-calendar">
                     <div class="calendar-header">
                         <h3>Calendario de Festivales 2024</h3>
@@ -3089,16 +3988,16 @@
             
             <div class="photo-mosaic">
                 <div class="photo-item large">
-                    <img src="https://via.placeholder.com/600x400/0F5B55/FFFFFF?text=Canal+de+Panama" alt="Canal de Panamá" data-caption="El Canal de Panamá, una maravilla de la ingeniería mundial">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Canal de Panamá" data-caption="El Canal de Panamá, una maravilla de la ingeniería mundial">
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/300x400/8DBB66/FFFFFF?text=Casco+Viejo" alt="Casco Viejo" data-caption="El histórico Casco Viejo de Ciudad de Panamá">
+                    <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Casco Viejo" data-caption="El histórico Casco Viejo de Ciudad de Panamá">
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/300x200/FF7466/FFFFFF?text=San+Blas" alt="San Blas" data-caption="Las hermosas islas de San Blas">
+                    <img src="https://images.unsplash.com/photo-1506905925346-14b1e5d36f9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="San Blas" data-caption="Las hermosas islas de San Blas">
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/300x300/2C8AC6/FFFFFF?text=Boquete" alt="Boquete" data-caption="Boquete, la Suiza de Panamá">
+                    <img src="https://images.unsplash.com/photo-1506905925346-14b1e5d36f9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Boquete" data-caption="Boquete, la Suiza de Panamá">
                 </div>
                 <div class="photo-item">
                     <img src="https://via.placeholder.com/300x200/5B4B3F/FFFFFF?text=Darien" alt="Darién" data-caption="La selva virgen del Darién">
@@ -3927,6 +4826,87 @@
     </script>
     
     <script>
+        // Cultural Diversity Pie Chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('culturalDiversityChart');
+            if (ctx) {
+                const culturalDiversityChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Mestizo Majority', 'Afro-descendants', 'Indigenous Peoples'],
+                        datasets: [{
+                            data: [51.1, 31.7, 17.2],
+                            backgroundColor: [
+                                '#8DBB66', // Palm Leaf - Mestiza
+                                '#2C8AC6', // Ocean Blue - Afrodescendientes
+                                '#0F5B55'  // Jungle Teal - Indígenas
+                            ],
+                            borderColor: [
+                                '#7AA855',
+                                '#1E7BB8',
+                                '#0D4A47'
+                            ],
+                            borderWidth: 2,
+                            hoverOffset: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        plugins: {
+                            legend: {
+                                display: false // We're using custom legend
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const label = context.label || '';
+                                        const value = context.parsed;
+                                        const population = getPopulationForGroup(context.dataIndex);
+                                        return `${label}: ${value}% (${population} people)`;
+                                    }
+                                },
+                                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                                titleColor: 'white',
+                                bodyColor: 'white',
+                                borderColor: '#0F5B55',
+                                borderWidth: 1
+                            }
+                        },
+                        cutout: '60%',
+                        animation: {
+                            animateRotate: true,
+                            animateScale: true,
+                            duration: 2000,
+                            easing: 'easeOutQuart'
+                        }
+                    }
+                });
+                
+                // Function to get population for tooltip
+                function getPopulationForGroup(index) {
+                    const populations = ['2,079,809', '1,286,857', '698,114'];
+                    return populations[index];
+                }
+                
+                // Add click interaction
+                ctx.addEventListener('click', function(event) {
+                    const points = culturalDiversityChart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
+                    if (points.length) {
+                        const firstPoint = points[0];
+                        const label = culturalDiversityChart.data.labels[firstPoint.index];
+                        const value = culturalDiversityChart.data.datasets[0].data[firstPoint.index];
+                        const population = getPopulationForGroup(firstPoint.index);
+                        
+                        // Show detailed info (you could add a modal or alert here)
+                        // Chart data processed
+                    }
+                });
+            }
+        });
+    </script>
+    
+    <script>
         // Comprehensive Canal Timeline functionality
         document.addEventListener('DOMContentLoaded', function() {
             // Milestone data structure
@@ -3971,16 +4951,16 @@
             
             // Initialize timeline
             function initializeTimeline() {
-                console.log('Initializing timeline with', milestones.length, 'milestones');
+                // Timeline initialization
                 generateMilestoneDots();
                 updateDeckCard(milestones[0]);
                 moveShipToPosition(0);
-                console.log('Timeline initialized successfully');
+                // Timeline ready
             }
             
             // Generate milestone dots
             function generateMilestoneDots() {
-                console.log('Generating milestone dots...');
+                // Generating milestone markers
                 timelineMilestones.innerHTML = '';
                 
                 milestones.forEach((milestone, index) => {
@@ -4013,7 +4993,7 @@
                     
                     timelineMilestones.appendChild(dot);
                 });
-                console.log('Generated', milestones.length, 'milestone dots');
+                // Milestone markers generated
             }
             
             // Get era class for styling
@@ -4383,9 +5363,319 @@
                 });
             });
         }
+
+        // National Symbols Slider and Modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.symbols-slider');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const dots = document.querySelectorAll('.dot');
+            const symbolCards = document.querySelectorAll('.symbol-card');
+            const modal = document.getElementById('symbolModal');
+            const modalClose = document.querySelector('.modal-close');
+            
+            let currentSlide = 0;
+            const totalSlides = symbolCards.length;
+            const cardsPerView = window.innerWidth < 768 ? 2 : 3;
+            
+            // Symbol data for modal
+            const symbolData = {
+                flag: {
+                    icon: '🏴',
+                    title: 'Panama Flag',
+                    image: 'https://images.unsplash.com/photo-1521753048031-8a2b5c5b5b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+                    description: 'The Panamanian flag features two horizontal rectangles - red and blue - representing the two political parties that existed when the flag was created. The white rectangle in the center symbolizes peace between them.',
+                    facts: [
+                        'Adopted on November 3, 1903',
+                        'Designed by Manuel E. Amador',
+                        'Red represents the Liberal Party',
+                        'Blue represents the Conservative Party',
+                        'White represents peace and purity'
+                    ]
+                },
+                anthem: {
+                    icon: '🎵',
+                    title: 'National Anthem',
+                    image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+                    description: 'The Panamanian National Anthem, "Himno Istmeño", was composed by Santos Jorge and written by Jerónimo de la Ossa. It was officially adopted in 1906.',
+                    facts: [
+                        'Composed by Santos Jorge in 1903',
+                        'Lyrics by Jerónimo de la Ossa',
+                        'Officially adopted in 1906',
+                        'Originally called "Himno Istmeño"',
+                        'Celebrates Panama\'s independence and natural beauty'
+                    ]
+                },
+                coat: {
+                    icon: '🛡️',
+                    title: 'Coat of Arms',
+                    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+                    description: 'The Panamanian coat of arms features a shield divided into four quarters, each representing different aspects of Panama\'s history and geography.',
+                    facts: [
+                        'Designed by Nicanor Villalaz',
+                        'Adopted in 1904',
+                        'Top left: Tools of work and progress',
+                        'Top right: Weapons of war and defense',
+                        'Bottom left: Cornucopia of abundance',
+                        'Bottom right: Wheel of progress'
+                    ]
+                },
+                eagle: {
+                    icon: '🦅',
+                    title: 'Harpy Eagle',
+                    image: 'https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+                    description: 'The Harpy Eagle is Panama\'s national bird and one of the most powerful eagles in the world. It represents strength, freedom, and the country\'s rich biodiversity.',
+                    facts: [
+                        'Declared national bird in 2002',
+                        'One of the largest eagles in the world',
+                        'Wingspan up to 2 meters',
+                        'Lives in tropical rainforests',
+                        'Symbol of strength and freedom',
+                        'Endangered species requiring protection'
+                    ]
+                },
+                orchid: {
+                    icon: '🌸',
+                    title: 'Holy Spirit Orchid',
+                    image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+                    description: 'The Holy Spirit Orchid (Peristeria elata) is Panama\'s national flower. Its unique shape resembles a dove, symbolizing peace and the Holy Spirit.',
+                    facts: [
+                        'Declared national flower in 1980',
+                        'Scientific name: Peristeria elata',
+                        'Also known as "Dove Orchid"',
+                        'Native to Central and South America',
+                        'Symbolizes peace and the Holy Spirit',
+                        'Rare and protected species'
+                    ]
+                }
+            };
+            
+            // Update slider position
+            function updateSlider() {
+                const cardWidth = symbolCards[0].offsetWidth + 16; // width + gap
+                const translateX = -currentSlide * cardWidth;
+                slider.style.transform = `translateX(${translateX}px)`;
+                
+                // Update dots
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+                
+                // Update button states
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide >= totalSlides - cardsPerView;
+            }
+            
+            // Next slide
+            function nextSlide() {
+                if (currentSlide < totalSlides - cardsPerView) {
+                    currentSlide++;
+                    updateSlider();
+                }
+            }
+            
+            // Previous slide
+            function prevSlide() {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateSlider();
+                }
+            }
+            
+            // Go to specific slide
+            function goToSlide(slideIndex) {
+                currentSlide = slideIndex;
+                updateSlider();
+            }
+            
+            // Open modal with symbol data
+            function openModal(symbolType) {
+                const data = symbolData[symbolType];
+                if (!data) return;
+                
+                document.getElementById('modalIcon').textContent = data.icon;
+                document.getElementById('modalTitle').textContent = data.title;
+                document.getElementById('modalImage').src = data.image;
+                document.getElementById('modalImage').alt = data.title;
+                document.getElementById('modalDescription').textContent = data.description;
+                
+                const factsList = document.getElementById('modalFacts');
+                factsList.innerHTML = '<h4>Quick Facts</h4><ul>' + 
+                    data.facts.map(fact => `<li>${fact}</li>`).join('') + 
+                    '</ul>';
+                
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Close modal
+            function closeModal() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+            
+            // Event listeners
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => goToSlide(index));
+            });
+            
+            symbolCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const symbolType = card.getAttribute('data-symbol');
+                    openModal(symbolType);
+                });
+            });
+            
+            modalClose.addEventListener('click', closeModal);
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.style.display === 'block') {
+                    closeModal();
+                }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                const newCardsPerView = window.innerWidth < 768 ? 2 : 3;
+                if (newCardsPerView !== cardsPerView) {
+                    currentSlide = Math.min(currentSlide, totalSlides - newCardsPerView);
+                    updateSlider();
+                }
+            });
+            
+            // Touch/swipe support for mobile
+            let startX = 0;
+            let startY = 0;
+            
+            slider.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            });
+            
+            slider.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const diffX = startX - endX;
+                const diffY = startY - endY;
+                
+                // Only trigger if horizontal swipe is greater than vertical
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                    if (diffX > 0) {
+                        nextSlide();
+                    } else {
+                        prevSlide();
+                    }
+                }
+            });
+            
+            // Initialize slider
+            updateSlider();
+        });
+
+        // Biodiversity Accordion Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryTitles = document.querySelectorAll('.category-title');
+            
+            categoryTitles.forEach(title => {
+                title.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    const speciesList = document.getElementById(category);
+                    
+                    // Toggle active class on title
+                    this.classList.toggle('active');
+                    
+                    // Toggle species list visibility
+                    if (speciesList.classList.contains('active')) {
+                        speciesList.classList.remove('active');
+                    } else {
+                        speciesList.classList.add('active');
+                    }
+                });
+            });
+            
+            // Species item hover tooltips (optional enhancement)
+            const speciesItems = document.querySelectorAll('.species-item');
+            
+            speciesItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    // Add subtle hover effect
+                    this.style.transform = 'translateX(4px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+        });
+
+        // Festivals Accordion Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const monthHeaders = document.querySelectorAll('.month-header');
+            
+            monthHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const month = this.getAttribute('data-month');
+                    const content = document.getElementById(month);
+                    
+                    // Toggle active class on header
+                    this.classList.toggle('active');
+                    
+                    // Toggle content visibility
+                    if (content.classList.contains('active')) {
+                        content.classList.remove('active');
+                    } else {
+                        content.classList.add('active');
+                    }
+                });
+            });
+            
+            // Festival item hover effects
+            const festivalItems = document.querySelectorAll('.festival-item, .holiday-item');
+            
+            festivalItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(4px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+        });
     </script>
     
 <script src="js/dynamic-css.js"></script>
+
+    <!-- National Symbols Modal -->
+    <div id="symbolModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon" id="modalIcon"></div>
+                <h2 id="modalTitle"></h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modalImage" src="" alt="">
+                </div>
+                <div class="modal-description">
+                    <p id="modalDescription"></p>
+                    <div class="modal-facts" id="modalFacts"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
